@@ -1,0 +1,16 @@
+{
+  "type": "module",
+  "scripts": {
+    "dev": "node main.js"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.22.5",
+    "@babel/core": "^7.22.5",
+    "@babel/node": "^7.22.5",
+    "@babel/polyfill": "^7.12.1",
+    "@babel/preset-env": "^7.22.5",
+    "style-dictionary": "^4",
+    "@tokens-studio/sd-transforms": "^1.2.5"
+  },
+  "dependencies": {}
+}
