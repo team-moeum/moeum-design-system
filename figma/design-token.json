@@ -846,8 +846,7 @@
           "value": 72,
           "type": "number"
         }
-      },
-      "type": "other"
+      }
     }
   },
   "Collection 1/Dark": {
@@ -1345,8 +1344,7 @@
           "value": 72,
           "type": "number"
         }
-      },
-      "type": "other"
+      }
     }
   },
   "$themes": [],

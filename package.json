@@ -1,7 +1,7 @@
 {
   "type": "module",
   "scripts": {
-    "dev": "node main.js"
+    "build": "node ./src/build.js"
   },
   "devDependencies": {
     "@babel/cli": "^7.22.5",
