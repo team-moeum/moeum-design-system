@@ -31,4 +31,4 @@ jobs:
 
       - name: Upload AWS S3
         run: |
-          aws s3 cp build/css s3://finhub-bucket/css
+          aws s3 sync build/css s3://finhub-bucket/design-token
