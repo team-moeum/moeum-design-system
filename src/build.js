@@ -1,7 +1,7 @@
 import { register } from "@tokens-studio/sd-transforms";
 import StyleDictionary from "style-dictionary";
 import { fileHeader, formattedVariables } from "style-dictionary/utils";
-import { splitJsonFile }  from './utils/splite-tokens.js';
+import { splitJsonFile } from "./utils/splite-tokens.js";
 
 register(StyleDictionary);
 
@@ -12,7 +12,11 @@ StyleDictionary.registerFormat({
     const header = await fileHeader({ file });
 
     const filename = file.destination.split(".")[0].toLowerCase();
-    const selector = filename.includes("lite") ? '.lite' : filename.includes("dark") ? '.dark' : ':root';
+    const selector = filename.includes("lite")
+      ? ".lite"
+      : filename.includes("dark")
+      ? ".dark"
+      : ":root";
     const variables = formattedVariables({
       format: "css",
       dictionary,
@@ -23,7 +27,7 @@ StyleDictionary.registerFormat({
   },
 });
 
-async function makeTokensCss(filename) {  
+async function makeTokensCss(filename) {
   const sd = new StyleDictionary({
     source: [`src/tokens/${filename}.json`],
     preprocessors: ["tokens-studio"],
@@ -46,14 +50,10 @@ async function makeTokensCss(filename) {
   await sd.buildAllPlatforms();
 }
 
-async function main() {
+export async function main() {
   const keys = await splitJsonFile();
 
   keys.forEach((filename) => {
     makeTokensCss(filename);
-  })
+  });
 }
-
-main();
-
-

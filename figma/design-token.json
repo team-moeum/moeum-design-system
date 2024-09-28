@@ -1349,10 +1349,6 @@
   },
   "$themes": [],
   "$metadata": {
-    "tokenSetOrder": [
-      "global",
-      "Collection 1/lite",
-      "Collection 1/Dark"
-    ]
+    "tokenSetOrder": ["global", "Collection 1/lite", "Collection 1/Dark"]
   }
 }
