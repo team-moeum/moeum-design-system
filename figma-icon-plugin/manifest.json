@@ -1,0 +1,9 @@
+{
+  "name": "Figma Asset Plugin",
+  "id": "00000000",
+  "api": "1.0.0",
+  "editorType": ["figma"],
+  "main": "dist/code.js",
+  "ui": "dist/ui.html",
+  "enablePrivatePluginApi": true
+}
