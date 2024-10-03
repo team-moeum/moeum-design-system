@@ -20,7 +20,7 @@ export const Setting = () => {
 
   const [url, setUrl] = useState("");
   const [token, setToken] = useState("");
-  const [targetPath, setTargetPath] = useState("package.json");
+  const [targetPath, setTargetPath] = useState("packages/figma-icon-plugin/package.json");
   const [targetBranch, setTargetBranch] = useState("");
   const [isValidating, setIsValidating] = useState(false);
   const [calloutInfo, setCalloutInfo] = useState<CallOutInfo | null>(null);
@@ -77,6 +77,7 @@ export const Setting = () => {
         const githubData = {
           url, 
           token,
+          targetPath,
           targetBranch,
           repo: parseData.repo,
           owner: parseData.owner,

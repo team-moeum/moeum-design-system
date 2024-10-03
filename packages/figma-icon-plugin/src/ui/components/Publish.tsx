@@ -25,7 +25,7 @@ export const Publish = () => {
 
   const [newVersion, setNewVersion] = useState(githubData.packageJson.version ?? "");
   const [commitMsg, setCommitMsg] = useState("");
-  const [uploadPath, setUploadPath] = useState("asset");
+  const [uploadPath, setUploadPath] = useState("packages/figma-icon-plugin/asset");
   const [svgData, setSvgData] = useState<SVGData>();
   const [isLoading, setIsLoading] = useState(false);
   const [calloutInfo, setCalloutInfo] = useState<CallOutInfo | null>(null);
@@ -93,7 +93,8 @@ export const Publish = () => {
       owner: githubData.owner,
       repo: githubData.repo,
       packageJson: githubData.packageJson,
-      baseBranch: githubData.targetBranch
+      baseBranch: githubData.targetBranch,
+      targetPath: githubData.targetPath
     };
 
     if (svgData) {

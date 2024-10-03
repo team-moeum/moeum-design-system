@@ -1,6 +1,6 @@
 {
   "name": "@fotcamp/figma-icon-plugin",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "figma asset deploy",
   "main": "code.js",
   "scripts": {

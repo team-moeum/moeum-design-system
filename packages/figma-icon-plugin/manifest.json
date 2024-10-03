@@ -8,6 +8,6 @@
   "enablePrivatePluginApi": true,
   "documentAccess": "dynamic-page",
   "networkAccess": {
-    "allowedDomains": ["none"]
+    "allowedDomains": ["https://api.github.com"]
   }
 }

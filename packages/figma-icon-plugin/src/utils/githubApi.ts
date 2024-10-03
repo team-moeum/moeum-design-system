@@ -59,7 +59,8 @@ export async function uploadSVGsToGitHub(svgData: SVGData, config) {
     commitMsg,
     newVersion,
     packageJson,
-    uploadPath
+    uploadPath,
+    targetPath
   } = config;
 
   const newBranch = `figma-icon-${(new Date()).getTime()}`;
@@ -95,7 +96,7 @@ export async function uploadSVGsToGitHub(svgData: SVGData, config) {
   // Update package.json
   const updatedPackageJson = { ...packageJson, version: newVersion };
   tree.push({
-    path: 'package.json',
+    path: `${targetPath}`,
     mode: '100644',
     type: 'blob',
     content: JSON.stringify(updatedPackageJson, null, 2)

@@ -4,6 +4,7 @@ export interface GitHubData {
   owner: string,
   token: string,
   targetBranch: string,
+  targetPath: string,
   packageJson: {
     name?: string;
     version?: string;
