@@ -57,6 +57,7 @@ jobs:
         with:
           tags: true
           branch: ${{ github.ref }}
+          github_token: ${{ secrets.GH_TOKEN }}
 
       - name: Deploy
         run: pnpm run publish:fotcamp-icons
