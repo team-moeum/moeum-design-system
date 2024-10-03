@@ -1,6 +1,7 @@
 name: Icon CD
 env:
   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+  GH_TOKEN: ${{ secrets.GH_TOKEN }}
 on:
   workflow_dispatch:
   push:
@@ -48,8 +49,8 @@ jobs:
 
       - name: Increment version
         run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
+          git config --local user.email "fotcamp[bot]@users.noreply.github.com"
+          git config --local user.name "fotcamp[bot]"
           pnpm run publish-version:fotcamp-icon
 
       - name: Push changes
