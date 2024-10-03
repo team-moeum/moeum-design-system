@@ -10,8 +10,9 @@
     "deploy:version": "pnpm version patch"
   },
   "keywords": [
+    "fotcamp",
     "icons",
-    "fotcamp"
+    "svg"
   ],
   "author": "",
   "license": "ISC",

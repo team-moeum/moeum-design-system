@@ -47,7 +47,10 @@ jobs:
         run: pnpm run build:fotcamp-icons
 
       - name: Increment version
-        run: pnpm run publish-version:fotcamp-icon
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          pnpm run publish-version:fotcamp-icon
 
       - name: Push changes
         uses: ad-m/github-push-action@master
