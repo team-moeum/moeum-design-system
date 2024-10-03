@@ -17,7 +17,7 @@ module.exports = {
   entry: getIconEntries(path.resolve(__dirname, "asset")),
   output: {
     filename: "[name].js",
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, "icons"),
   },
   module: {
     rules: [
