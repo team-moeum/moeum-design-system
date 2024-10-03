@@ -9,7 +9,10 @@
     "deploy": "pnpm publish --access public",
     "deploy:version": "pnpm version patch"
   },
-  "keywords": [],
+  "keywords": [
+    "icons",
+    "fotcamp"
+  ],
   "author": "",
   "license": "ISC",
   "peerDependencies": {},
