@@ -1,4 +1,4 @@
-## @fotcamp/icons
+# @fotcamp/icons
 
 ```bash
 $ npm install @fotcamp/icons

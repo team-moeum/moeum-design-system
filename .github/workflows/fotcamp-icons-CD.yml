@@ -1,7 +1,6 @@
 name: Icon CD
 env:
   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-  GH_TOKEN: ${{ secrets.GH_TOKEN }}
 on:
   workflow_dispatch:
   push:
@@ -9,6 +8,8 @@ on:
       - main
     paths:
       - packages/fotcamp-icons/**
+permissions:
+  contents: write
 jobs:
   Deploy:
     runs-on: ubuntu-latest
@@ -57,7 +58,7 @@ jobs:
         uses: ad-m/github-push-action@master
         with:
           branch: ${{ github.ref }}
-          github_token: ${{ secrets.GH_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Deploy
         run: pnpm run publish:fotcamp-icons
