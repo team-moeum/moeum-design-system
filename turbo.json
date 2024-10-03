@@ -21,7 +21,7 @@
       "outputs": []
     },
     "deploy": {
-      "dependsOn": ["deploy:version"],
+      "dependsOn": ["build", "lint"],
       "outputs": []
     }
   }
