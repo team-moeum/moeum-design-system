@@ -1,13 +1,13 @@
 name: Icon CD
 env:
-  AWS_REGION: ap-northeast-2
   NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
     paths:
-      - "packages/fotcamp-icons/**"
+      - packages/fotcamp-icons/**
 jobs:
   Deploy:
     runs-on: ubuntu-latest
