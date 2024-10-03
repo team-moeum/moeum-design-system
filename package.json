@@ -6,7 +6,9 @@
     "lint": "turbo run lint",
     "clean": "turbo run clean && rm -rf node_modules",
     "build:figma-token": "turbo run build --filter=@fotcamp/figma-token",
-    "build:figma-icon-plugin": "turbo run build --filter=@fotcamp/figma-icon-plugin"
+    "build:figma-icon-plugin": "turbo run build --filter=@fotcamp/figma-icon-plugin",
+    "build:fotcamp-icons": "turbo run build --filter=@fotcamp/icons",
+    "publish:fotcamp-icons": "turbo run publish --filter=@fotcamp/icons"
   },
   "devDependencies": {
     "turbo": "^2.1.3"
