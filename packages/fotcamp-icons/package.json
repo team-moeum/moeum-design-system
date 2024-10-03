@@ -1,11 +1,12 @@
 {
   "name": "@fotcamp/icons",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --mode production && node scripts/build.js"
+    "build": "webpack --mode production && node scripts/build.js",
+    "deploy": "pnpm publish --access public"
   },
   "keywords": [],
   "author": "",

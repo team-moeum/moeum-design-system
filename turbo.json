@@ -19,6 +19,10 @@
     "publish": {
       "dependsOn": ["build", "lint"],
       "outputs": []
+    },
+    "deploy": {
+      "dependsOn": ["build", "lint"],
+      "outputs": []
     }
   }
 }
