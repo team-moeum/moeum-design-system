@@ -4,6 +4,7 @@ export { default as Tcomplete } from './dist/Tcomplete';
 export { default as Terror } from './dist/Terror';
 export { default as Trash } from './dist/Trash';
 export { default as add } from './dist/add';
+export { default as apple } from './dist/apple';
 export { default as arrow1 } from './dist/arrow1';
 export { default as arrow2 } from './dist/arrow2';
 export { default as block } from './dist/block';
