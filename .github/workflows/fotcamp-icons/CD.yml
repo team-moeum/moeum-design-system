@@ -46,6 +46,15 @@ jobs:
       - name: Install dependencies
         run: pnpm run build:fotcamp-icons
 
+      - name: Increment version
+        run: pnpm run publish-version:fotcamp-icon
+
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          tags: true
+          branch: ${{ github.ref }}
+
       - name: Deploy
         run: pnpm run publish:fotcamp-icons
         env:
