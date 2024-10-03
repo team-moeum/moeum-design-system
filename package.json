@@ -8,7 +8,7 @@
     "build:figma-token": "turbo run build --filter=@fotcamp/figma-token",
     "build:figma-icon-plugin": "turbo run build --filter=@fotcamp/figma-icon-plugin",
     "build:fotcamp-icons": "turbo run build --filter=@fotcamp/icons",
-    "publish:fotcamp-icons": "turbo run deploy --filter=@fotcamp/icons"
+    "publish:fotcamp-icons": "turbo run deploy:version --filter=@fotcamp/icons && turbo run deploy --filter=@fotcamp/icons"
   },
   "devDependencies": {
     "turbo": "^2.1.3"

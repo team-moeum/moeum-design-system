@@ -1,12 +1,13 @@
-name: Design Token CD
+name: Icon CD
 env:
   AWS_REGION: ap-northeast-2
-  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 on:
   push:
     branches:
       - main
+    paths:
+      - "packages/fotcamp-icons/**"
 jobs:
   Deploy:
     runs-on: ubuntu-latest
@@ -43,15 +44,9 @@ jobs:
         run: pnpm install --no-frozen-lockfile
 
       - name: Install dependencies
-        run: pnpm run build:figma-token
+        run: pnpm run build:fotcamp-icons
 
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ env.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ env.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ env.AWS_REGION }}
-
-      - name: Upload AWS S3
-        run: |
-          aws s3 sync packages/figma-token/build/css s3://finhub-bucket/design-token
+      - name: Deploy
+        run: pnpm run publish:fotcamp-icons
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

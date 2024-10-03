@@ -16,12 +16,12 @@
     "clean": {
       "cache": false
     },
-    "publish": {
+    "deploy:version": {
       "dependsOn": ["build", "lint"],
       "outputs": []
     },
     "deploy": {
-      "dependsOn": ["build", "lint"],
+      "dependsOn": ["deploy:version"],
       "outputs": []
     }
   }
