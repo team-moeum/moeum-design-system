@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --mode production && node scripts/build.js",
-    "publish": "pnpm publish --access public"
+    "build": "webpack --mode production && node scripts/build.js"
   },
   "keywords": [],
   "author": "",
