@@ -1,0 +1,13 @@
+{
+  "name": "Fotcamp Figma Asset Plugin",
+  "id": "1423621986032211603",
+  "api": "1.0.0",
+  "editorType": ["figma"],
+  "main": "dist/code.js",
+  "ui": "dist/ui.html",
+  "enablePrivatePluginApi": true,
+  "documentAccess": "dynamic-page",
+  "networkAccess": {
+    "allowedDomains": ["none"]
+  }
+}
