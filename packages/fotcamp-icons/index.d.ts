@@ -37,7 +37,6 @@ declare module '@fotcamp/icons' {
   export const moon: (props: IconProps) => JSX.Element;
   export const more: (props: IconProps) => JSX.Element;
   export const name44: (props: IconProps) => JSX.Element;
-  export const new1: (props: IconProps) => JSX.Element;
   export const question: (props: IconProps) => JSX.Element;
   export const refresh: (props: IconProps) => JSX.Element;
   export const report: (props: IconProps) => JSX.Element;

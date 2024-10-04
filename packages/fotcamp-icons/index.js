@@ -32,7 +32,6 @@ export { default as megaphone2 } from './icons/megaphone2';
 export { default as moon } from './icons/moon';
 export { default as more } from './icons/more';
 export { default as name44 } from './icons/name44';
-export { default as new1 } from './icons/new1';
 export { default as question } from './icons/question';
 export { default as refresh } from './icons/refresh';
 export { default as report } from './icons/report';
