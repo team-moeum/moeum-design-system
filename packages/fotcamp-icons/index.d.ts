@@ -1,0 +1,55 @@
+import { SVGProps } from 'react';
+
+declare module '@fotcamp/icons' {
+  export type IconProps = SVGProps<SVGSVGElement>;
+
+  export const Edit: (props: IconProps) => JSX.Element;
+  export const Tcaution: (props: IconProps) => JSX.Element;
+  export const Tcomplete: (props: IconProps) => JSX.Element;
+  export const Terror: (props: IconProps) => JSX.Element;
+  export const Trash: (props: IconProps) => JSX.Element;
+  export const add: (props: IconProps) => JSX.Element;
+  export const apple: (props: IconProps) => JSX.Element;
+  export const arrow1: (props: IconProps) => JSX.Element;
+  export const arrow2: (props: IconProps) => JSX.Element;
+  export const block: (props: IconProps) => JSX.Element;
+  export const building: (props: IconProps) => JSX.Element;
+  export const caculator: (props: IconProps) => JSX.Element;
+  export const camera1: (props: IconProps) => JSX.Element;
+  export const camera2: (props: IconProps) => JSX.Element;
+  export const carat: (props: IconProps) => JSX.Element;
+  export const check: (props: IconProps) => JSX.Element;
+  export const close: (props: IconProps) => JSX.Element;
+  export const copy: (props: IconProps) => JSX.Element;
+  export const download: (props: IconProps) => JSX.Element;
+  export const error: (props: IconProps) => JSX.Element;
+  export const file: (props: IconProps) => JSX.Element;
+  export const finter: (props: IconProps) => JSX.Element;
+  export const formclose: (props: IconProps) => JSX.Element;
+  export const guide1: (props: IconProps) => JSX.Element;
+  export const guide2: (props: IconProps) => JSX.Element;
+  export const hamburger: (props: IconProps) => JSX.Element;
+  export const info: (props: IconProps) => JSX.Element;
+  export const ipoup1: (props: IconProps) => JSX.Element;
+  export const live: (props: IconProps) => JSX.Element;
+  export const megaphone: (props: IconProps) => JSX.Element;
+  export const megaphone2: (props: IconProps) => JSX.Element;
+  export const moon: (props: IconProps) => JSX.Element;
+  export const more: (props: IconProps) => JSX.Element;
+  export const name44: (props: IconProps) => JSX.Element;
+  export const new1: (props: IconProps) => JSX.Element;
+  export const question: (props: IconProps) => JSX.Element;
+  export const refresh: (props: IconProps) => JSX.Element;
+  export const report: (props: IconProps) => JSX.Element;
+  export const search: (props: IconProps) => JSX.Element;
+  export const setting: (props: IconProps) => JSX.Element;
+  export const share: (props: IconProps) => JSX.Element;
+  export const sms1: (props: IconProps) => JSX.Element;
+  export const sms2: (props: IconProps) => JSX.Element;
+  export const sms3: (props: IconProps) => JSX.Element;
+  export const time: (props: IconProps) => JSX.Element;
+  export const transfer: (props: IconProps) => JSX.Element;
+  export const update: (props: IconProps) => JSX.Element;
+  export const warning: (props: IconProps) => JSX.Element;
+  export const write: (props: IconProps) => JSX.Element;
+}

@@ -1,5 +1,9 @@
-const path = require("path");
-const fs = require("fs");
+import path from "path";
+import fs from "fs";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 function getIconEntries(dir) {
   let entries = {};
@@ -13,7 +17,7 @@ function getIconEntries(dir) {
   return entries;
 }
 
-module.exports = {
+export default {
   entry: getIconEntries(path.resolve(__dirname, "asset")),
   output: {
     filename: "[name].js",
@@ -23,7 +27,33 @@ module.exports = {
     rules: [
       {
         test: /\.svg$/,
-        use: ["@svgr/webpack"],
+        use: [
+          {
+            loader: "@svgr/webpack",
+            options: {
+              svgo: false,
+              typescript: true,
+              exportType: "default",
+              template: (variables, { tpl }) => {
+                const {
+                  imports,
+                  interfaces,
+                  componentName,
+                  props,
+                  jsx,
+                  exports,
+                } = variables;
+                return tpl`
+                  ${imports}
+                  ${interfaces}
+                  const ${componentName} = (${props}) => ${jsx};
+                  ${componentName}.displayName = '${componentName}';
+                  ${exports}
+                `;
+              },
+            },
+          },
+        ],
       },
     ],
   },
