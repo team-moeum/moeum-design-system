@@ -62,6 +62,15 @@ jobs:
           branch: ${{ github.ref }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Configure npm
+        run: |
+          cat << EOF > "packages/fotcamp-icons/.npmrc"
+            email=minseok121512@gmail.com
+            //registry.npmjs.org/:_authToken=$NPM_TOKEN 
+          EOF
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
       - name: Deploy
         run: pnpm run publish:fotcamp-icons
         env:
