@@ -1,9 +1,9 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
 import { Badge, Box, Button, Flex, Text, TextArea, TextField } from "@radix-ui/themes"
-import { GitHubData, SVGData } from '../type/type';
+import { SVGData } from '../type/type';
 import { uploadSVGsToGitHub } from '../../utils/githubApi';
 import { CalloutBox, CallOutInfo } from './CalloutBox';
-import { isEmptyObj } from '../../utils/util';
+import { increaseVersion, isEmptyObj } from '../../utils/util';
 import { Link1Icon } from '@radix-ui/react-icons';
 import { useGitHubData } from './GithubDataProvider';
 
@@ -24,8 +24,8 @@ export const Publish = () => {
   const { githubData, setGithubData: _ } = useGitHubData();
 
   const [newVersion, setNewVersion] = useState(githubData.packageJson.version ?? "");
-  const [commitMsg, setCommitMsg] = useState("");
-  const [uploadPath, setUploadPath] = useState("packages/figma-icon-plugin/asset");
+  const [commitMsg, setCommitMsg] = useState("Update Svg Asset");
+  const [uploadPath, setUploadPath] = useState("packages/fotcamp-icons/asset");
   const [svgData, setSvgData] = useState<SVGData>();
   const [isLoading, setIsLoading] = useState(false);
   const [calloutInfo, setCalloutInfo] = useState<CallOutInfo | null>(null);
@@ -59,7 +59,13 @@ export const Publish = () => {
     } else {
       setDisabled(true);
     }
-  }, [newVersion, commitMsg, uploadPath, svgData])
+  }, [newVersion, commitMsg, uploadPath, svgData]);
+
+  useEffect(() => {
+    const prevVersion = githubData.packageJson.version;
+    const increasedVersion = increaseVersion(prevVersion);
+    setNewVersion(increasedVersion);
+  }, [githubData]);
 
   const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;

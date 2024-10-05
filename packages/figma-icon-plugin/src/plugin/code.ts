@@ -22,6 +22,18 @@ export const findAllComponentNode = (rootNode: SceneNode) => {
   return result
 }
 
+function convertSvgFileName(input) {
+  const match = input.match(/name=(.+)/);
+  
+  if (match && match[1]) {
+    const cleanedName = match[1].replace(/[-\s]/g, '');
+    const capitalizedName = cleanedName.charAt(0).toUpperCase() + cleanedName.slice(1);
+    return capitalizedName + 'Icon';
+  }
+  
+  return '';
+}
+
 async function extractIcon() {
   const componentNodes = figma.currentPage.selection
     .map(findAllComponentNode)
@@ -50,7 +62,14 @@ async function extractIcon() {
     if (!cur?.id) {
       return acc
     }
-    acc[cur.id] = cur
+
+    const name = convertSvgFileName(cur?.id);
+
+    if (!name) {
+      return acc
+    }
+
+    acc[name] = cur
     return acc
   }, {})
 
