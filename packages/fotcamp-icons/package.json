@@ -1,6 +1,6 @@
 {
   "name": "@fotcamp/icons",
-  "version": "1.0.21",
+  "version": "1.0.22",
   "description": "Icons Package for fotcamp design system",
   "main": "index.js",
   "types": "index.d.ts",
