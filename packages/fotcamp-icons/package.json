@@ -1,13 +1,15 @@
 {
   "name": "@fotcamp/icons",
-  "version": "1.0.22",
+  "version": "1.0.24",
   "description": "Icons Package for fotcamp design system",
-  "main": "index.js",
-  "types": "index.d.ts",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --mode production && node scripts/build.js && tsc",
+    "build:svgr": "npx @svgr/cli --typescript --out-dir src/icons -- asset",
+    "build:rollup": "rollup -c",
+    "build": "npm run build:svgr && npm run build:rollup",
     "deploy": "pnpm publish --access public --no-git-checks",
     "deploy:version": "pnpm version patch"
   },
@@ -30,14 +32,21 @@
     }
   ],
   "peerDependencies": {
-    "react": "^18"
+    "react": "^18",
+    "react-dom": "^18"
   },
   "devDependencies": {
-    "@svgr/webpack": "^8.1.0",
-    "@types/react": "^18",
-    "react": "^18",
-    "typescript": "^4.3.5",
-    "webpack": "^5.82.0",
-    "webpack-cli": "^5.1.1"
+    "@babel/core": "^7.22.5",
+    "@babel/preset-env": "^7.22.5",
+    "@babel/preset-react": "^7.25.7",
+    "@babel/preset-typescript": "^7.25.7",
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-typescript": "^12.1.0",
+    "@svgr/cli": "^8.1.0",
+    "@types/react": "^18.2.6",
+    "@types/react-dom": "^18.2.4",
+    "rollup": "^4.24.0",
+    "tslib": "^2.7.0",
+    "typescript": "^4.3.5"
   }
 }

@@ -1,4 +1,7 @@
 .turbo/
 asset/
-scripts/
-webpack.config.js
+icons/
+src/
+templates/
+rollup.config.js
+tsconfig.json
