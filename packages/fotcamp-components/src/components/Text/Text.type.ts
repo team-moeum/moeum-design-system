@@ -1,9 +1,9 @@
+import { AllHTMLAttributes, ElementType, CSSProperties } from "react";
+
 const Typography = {
   Heading: "heading",
   Body: "body",
   Text: "text",
-  Body2: "body2",
-  Body3: "body3",
 } as const;
 
 export type TypographyValue = (typeof Typography)[keyof typeof Typography];

@@ -1,14 +1,8 @@
-import React, { PropsWithChildren } from "react";
+import React from "react";
 import cx from "classnames";
+import { ButtonProps, ButtonSizeValue } from "./Button.type";
 
-export const ButtonSize = {
-  Large: "large",
-  Medium: "medium",
-  Small: "small",
-} as const;
-
-export type ButtonSizeValue = (typeof ButtonSize)[keyof typeof ButtonSize];
-
+/** To-Do move to Icon Package */
 function isIcon(children: React.ReactNode): boolean {
   /* React element인지 확인 */
   if (!React.isValidElement(children)) {
@@ -27,24 +21,12 @@ export function ButtonSide({
   children: React.ReactNode;
 }) {
   if (isIcon(children)) {
-    return <Icon source={children} size={size} />;
+    return <>To-Do Icon</>;
+    // return <Icon source={children} size={size} />;
   }
 
   return <>{children}</>;
 }
-
-export type ButtonProps = PropsWithChildren<{
-  type?: "primary" | "danger" | "secondary" | "success" | "warning" | "info";
-  style?: "fill" | "outline" | "flat";
-  display?: "inline" | "block" | "full";
-  size: ButtonSizeValue;
-  className?: string;
-  onClick?: React.MouseEventHandler<HTMLElement>;
-  disabled?: boolean;
-  loading?: boolean;
-  leftContent?: React.ReactNode;
-  rightContent?: React.ReactNode;
-}>;
 
 export function Button({
   style = "fill",
@@ -81,7 +63,8 @@ export function Button({
       <ButtonSide size={size}>{rightContent}</ButtonSide>
       {loading && (
         <div className="button-spinner">
-          <Spinner size={size} />
+          To-Do Spinner
+          {/* <Spinner size={size} /> */}
         </div>
       )}
     </button>

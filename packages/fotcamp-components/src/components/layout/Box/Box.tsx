@@ -1,5 +1,6 @@
-import { AllHTMLAttributes, CSSProperties, ElementType } from "react";
 import classnames from "classnames";
+import { BoxProps } from "./Box.type";
+import { getSpacingStyle } from "../../../utils/getSpacingStyle";
 
 export function Box({
   as: Component = "div",

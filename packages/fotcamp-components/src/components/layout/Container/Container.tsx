@@ -1,3 +1,4 @@
+import { ContainerProps } from "./Container.type";
 import { Box } from "../Box";
 import cx from "classnames";
 

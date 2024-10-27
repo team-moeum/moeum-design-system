@@ -1,15 +1,6 @@
-import { CSSProperties } from "react";
-import { Box, BoxProps } from "../Box";
 import cx from "classnames";
-
-export interface FlexProps extends BoxProps {
-  align?: CSSProperties["alignItems"];
-  justify?: CSSProperties["justifyContent"];
-  flex?: CSSProperties["flex"];
-  direction?: CSSProperties["flexDirection"];
-  wrap?: CSSProperties["flexWrap"];
-  gap?: number;
-}
+import { FlexProps } from "./Flex.type";
+import { Box } from "../Box";
 
 export function Flex({
   as: Component = "div",

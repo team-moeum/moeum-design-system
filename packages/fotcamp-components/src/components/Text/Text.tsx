@@ -1,5 +1,5 @@
 import cx from "classnames";
-import "./Text.css";
+import { TextProps } from "./Text.type";
 
 export function Text({
   as: Component = "span",

@@ -1,45 +1,48 @@
-export const Spacing = {
-  m: "margin",
-  mt: "marginTop",
-  mb: "marginBottom",
-  ml: "marginLeft",
-  mr: "marginRight",
-  // mx: "marginX",
-  // my: "marginY",
-  p: "padding",
-  pt: "paddingTop",
-  pb: "paddingBottom",
-  pl: "paddingLeft",
-  pr: "paddingRight",
-  // px: "paddingX",
-  // py: "paddingY",
+import { CSSProperties } from "react";
+
+const SingleSpacing = {
+  m: ["margin"],
+  mt: ["marginTop"],
+  mb: ["marginBottom"],
+  ml: ["marginLeft"],
+  mr: ["marginRight"],
+  p: ["padding"],
+  pt: ["paddingTop"],
+  pb: ["paddingBottom"],
+  pl: ["paddingLeft"],
+  pr: ["paddingRight"],
 } as const;
 
-export type SpacingValue = (typeof Spacing)[keyof typeof Spacing];
+const AxisSpacing = {
+  mx: ["marginLeft", "marginRight"],
+  my: ["marginTop", "marginBottom"],
+  px: ["paddingLeft", "paddingRight"],
+  py: ["paddingTop", "paddingBottom"],
+} as const;
 
-export const getSpacingStyle = (
-  props: Partial<Record<keyof typeof Spacing, SpacingValue>>
-): CSSProperties => {
+const Spacing = {
+  ...SingleSpacing,
+  ...AxisSpacing
+}
+
+export type SpacingProps = Partial<Record<keyof typeof Spacing, string | number>>;
+
+export const getSpacingStyle = (props: SpacingProps): CSSProperties => {
   const style: CSSProperties = {};
 
-  Object.entries(props).forEach(([key, value]) => {
+  (Object.entries(props) as [keyof SpacingProps, any][]).forEach(([key, value]) => {
     if (value === undefined) return;
 
-    if (key === "mx") {
-      style.marginLeft = value;
-      style.marginRight = value;
-    } else if (key === "my") {
-      style.marginTop = value;
-      style.marginBottom = value;
-    } else if (key === "px") {
-      style.paddingLeft = value;
-      style.paddingRight = value;
-    } else if (key === "py") {
-      style.paddingTop = value;
-      style.paddingBottom = value;
-    } else {
-      const cssProperty = Spacing[key as keyof typeof Spacing];
-      style[cssProperty as keyof CSSProperties] = value;
+    if (key in AxisSpacing) {
+      const axisKey = key as keyof typeof AxisSpacing;
+      const [prop1, prop2] = AxisSpacing[axisKey];
+      style[prop1] = value;
+      style[prop2] = value;
+    }
+    else if (key in SingleSpacing) {
+      const singleKey = key as keyof typeof SingleSpacing;
+      const [prop] = SingleSpacing[singleKey];
+      style[prop] = value;
     }
   });
 

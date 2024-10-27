@@ -1,15 +1,6 @@
-import { CSSProperties } from "react";
-import { Box, BoxProps } from "../Box";
+import { Box } from "../Box";
 import cx from "classnames";
-
-export interface GridProps extends BoxProps {
-  columns?: number | string;
-  gap?: number;
-  rowGap?: number;
-  columnGap?: number;
-  autoFlow?: CSSProperties["gridAutoFlow"];
-  areas?: CSSProperties["gridTemplateAreas"];
-}
+import { GridProps } from "./Grid.type";
 
 export function Grid({
   as: Component = "div",
