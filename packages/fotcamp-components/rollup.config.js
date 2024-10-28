@@ -25,6 +25,6 @@ export default {
         "@babel/preset-typescript",
       ],
     }),
-    postcss({ extensions: [".css"] }),
+    postcss({extract: true, minifycss: true}),
   ],
 };

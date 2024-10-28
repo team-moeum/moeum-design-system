@@ -1,9 +1,10 @@
 {
   "name": "@fotcamp/components",
-  "version": "1.0.4",
+  "version": "1.0.15",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "files": ["dist"],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev-build": "rollup -c -w",
@@ -34,6 +35,14 @@
   },
   "dependencies": {
     "@radix-ui/react-popover": "1.1.2",
-    "classnames": "^2.5.1"
+    "classnames": "^2.5.1",
+    "sass": "^1.80.4"
+  },
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./styles": "./dist/index.css"
   }
 }
