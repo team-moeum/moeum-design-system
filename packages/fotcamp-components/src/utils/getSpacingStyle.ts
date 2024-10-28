@@ -1,50 +1,57 @@
 import { CSSProperties } from "react";
 
-const SingleSpacing = {
-  m: ["margin"],
-  mt: ["marginTop"],
-  mb: ["marginBottom"],
-  ml: ["marginLeft"],
-  mr: ["marginRight"],
-  p: ["padding"],
-  pt: ["paddingTop"],
-  pb: ["paddingBottom"],
-  pl: ["paddingLeft"],
-  pr: ["paddingRight"],
-} as const;
+type SpacingKey = 'm' | 'mx' | 'my' | 'mt' | 'mb' | 'ml' | 'mr' | 
+                  'p' | 'px' | 'py' | 'pt' | 'pb' | 'pl' | 'pr';
 
-const AxisSpacing = {
-  mx: ["marginLeft", "marginRight"],
-  my: ["marginTop", "marginBottom"],
-  px: ["paddingLeft", "paddingRight"],
-  py: ["paddingTop", "paddingBottom"],
-} as const;
+type CSSSpacingProperty = 
+  | 'margin' | 'marginTop' | 'marginBottom' | 'marginLeft' | 'marginRight'
+  | 'padding' | 'paddingTop' | 'paddingBottom' | 'paddingLeft' | 'paddingRight';
 
-const Spacing = {
-  ...SingleSpacing,
-  ...AxisSpacing
+  export interface SpacingProps {
+  m?: CSSProperties['margin'],
+  mx?: CSSProperties['margin'],
+  my?: CSSProperties['margin'],
+  mt?: CSSProperties["marginTop"],
+  mb?: CSSProperties["marginBottom"],
+  ml?: CSSProperties["marginLeft"],
+  mr?: CSSProperties["marginRight"],
+  p?: CSSProperties["padding"],
+  px?: CSSProperties["padding"],
+  py?: CSSProperties["padding"],
+  pt?: CSSProperties["paddingTop"],
+  pb?: CSSProperties["paddingBottom"],
+  pl?: CSSProperties["paddingLeft"],
+  pr?: CSSProperties["paddingRight"],
 }
 
-export type SpacingProps = Partial<Record<keyof typeof Spacing, string | number>>;
+const SpacingMap: Record<SpacingKey, Array<CSSSpacingProperty>> = {
+  m: ['margin'],
+  mx: ['marginLeft', 'marginRight'],
+  my: ['marginTop', 'marginBottom'],
+  mt: ['marginTop'],
+  mb: ['marginBottom'],
+  ml: ['marginLeft'],
+  mr: ['marginRight'],
+  p: ['padding'],
+  px: ['paddingLeft', 'paddingRight'],
+  py: ['paddingTop', 'paddingBottom'],
+  pt: ['paddingTop'],
+  pb: ['paddingBottom'],
+  pl: ['paddingLeft'],
+  pr: ['paddingRight']
+}
 
 export const getSpacingStyle = (props: SpacingProps): CSSProperties => {
   const style: CSSProperties = {};
 
-  (Object.entries(props) as [keyof SpacingProps, any][]).forEach(([key, value]) => {
+  Object.entries(props).forEach(([key, value]) => {
     if (value === undefined) return;
 
-    if (key in AxisSpacing) {
-      const axisKey = key as keyof typeof AxisSpacing;
-      const [prop1, prop2] = AxisSpacing[axisKey];
-      style[prop1] = value;
-      style[prop2] = value;
-    }
-    else if (key in SingleSpacing) {
-      const singleKey = key as keyof typeof SingleSpacing;
-      const [prop] = SingleSpacing[singleKey];
-      style[prop] = value;
-    }
-  });
+    const properties = SpacingMap[key as SpacingKey];
+    properties.forEach(property => {
+      style[property] = value;
+    });
+  })
 
   return style;
 };
