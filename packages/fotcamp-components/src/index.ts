@@ -1,4 +1,6 @@
-import './components/index.scss';
+import "./components/index.scss";
+
+export { useFunnel } from "./components/Funnel";
 
 export { Box } from "./components/layout/Box";
 export { Container } from "./components/layout/Container";
