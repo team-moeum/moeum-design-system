@@ -1,4 +1,4 @@
-export { PopoverComponent } from "./components/Popover";
+import './components/index.scss';
 
 export { Box } from "./components/layout/Box";
 export { Container } from "./components/layout/Container";
