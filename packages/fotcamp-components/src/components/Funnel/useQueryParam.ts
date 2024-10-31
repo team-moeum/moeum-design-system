@@ -1,11 +1,13 @@
+import { useRouter } from "../../hooks/useRouter";
+
 interface Options<T> {
   parser?: (val: string) => T;
   required?: boolean;
 }
 
 export function useQueryParam<T = string>(name: string, options?: Options<T>) {
-  const queryParams = new URLSearchParams(window.location.search);
-  const value = queryParams.get(name);
+  const router = useRouter();
+  const value = router.getQuery(name);
 
   if (options?.required === true && value == null) {
     throw new Error(`${name} is required`);

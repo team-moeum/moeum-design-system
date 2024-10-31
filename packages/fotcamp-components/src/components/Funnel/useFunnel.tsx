@@ -2,6 +2,7 @@ import { useCallback, useMemo } from "react";
 import { Funnel, Step } from "./Funnel";
 import { useQueryParam } from "./useQueryParam";
 import { FunnelProps, NonEmptyArray } from "./Funnel.type";
+import { useRouter } from "../../hooks/useRouter";
 
 type RouteFunnelProps<Steps extends NonEmptyArray<string>> = Omit<
   FunnelProps<Steps>,
@@ -17,6 +18,7 @@ export const useFunnel = <Steps extends NonEmptyArray<string>>(
     initialStep?: Steps[number];
   }
 ) => {
+  const router = useRouter();
   const stepQueryKey = options?.stepQueryKey ?? DEFAULT_STEP_QUERY_KEY;
 
   if (steps.length === 0) {
@@ -47,15 +49,9 @@ export const useFunnel = <Steps extends NonEmptyArray<string>>(
 
   const setStep = useCallback(
     (step: Steps[number]) => {
-      const params = new URLSearchParams(window.location.search);
-      params.set(stepQueryKey, step);
-      window.history.pushState(
-        {},
-        "",
-        `${window.location.pathname}?${params.toString()}`
-      );
+      router.setQuery({ [stepQueryKey]: step });
     },
-    [stepQueryKey]
+    [stepQueryKey, router]
   );
 
   return [FunnelComponent, setStep] as const;
