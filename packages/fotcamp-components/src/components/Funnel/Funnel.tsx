@@ -22,12 +22,16 @@ export const Funnel = <Steps extends NonEmptyArray<string>>({
 };
 
 export const Step = <Steps extends NonEmptyArray<string>>({
-  onEnter,
+  onMounted,
+  onUnMounted,
   children,
 }: StepProps<Steps>) => {
   useEffect(() => {
-    onEnter?.();
-  }, [onEnter]);
+    onMounted?.();
+    return () => {
+      onUnMounted?.();
+    };
+  }, [onMounted, onUnMounted]);
 
   return <>{children}</>;
 };

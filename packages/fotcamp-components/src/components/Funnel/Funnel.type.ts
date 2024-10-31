@@ -12,6 +12,7 @@ export interface FunnelProps<Steps extends NonEmptyArray<string>> {
 
 export interface StepProps<Steps extends NonEmptyArray<string>> {
   name: Steps[number];
-  onEnter?: () => void;
+  onMounted?: () => void;
+  onUnMounted?: () => void;
   children: ReactNode;
 }
