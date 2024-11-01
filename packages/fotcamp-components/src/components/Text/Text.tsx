@@ -27,13 +27,14 @@ export function Text({
           [`text--font-weight-${fontWeight}`]: fontWeight,
           [`text--display-${display}`]:
             display && !isSingleLine && !isMultiLine,
-          [`typography-${typography}`]: typography,
+          [`text--typography-${typography}`]: typography,
         },
         className
       )}
       style={{
         color,
         textAlign,
+        WebkitLineClamp: ellipsisLines,
         ...style,
       }}
       {...rest}
