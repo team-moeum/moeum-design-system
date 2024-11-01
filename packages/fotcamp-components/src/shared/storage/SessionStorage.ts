@@ -3,7 +3,7 @@ import { MemoryStorage } from "./MemoryStorage";
 import { SafeStorage } from "./storage.type";
 
 class SessionStorage implements SafeStorage {
-  public static isEnabled(): boolean {
+  static isEnabled(): boolean {
     if (typeof window === "undefined" || !Boolean(window.sessionStorage)) {
       return false;
     }

@@ -3,7 +3,7 @@ import { MemoryStorage } from "./MemoryStorage";
 import { SafeStorage } from "./storage.type";
 
 class LocalStorage implements SafeStorage {
-  public static isEnabled(): boolean {
+  static isEnabled(): boolean {
     if (typeof window === "undefined" || !Boolean(window.localStorage)) {
       return false;
     }
