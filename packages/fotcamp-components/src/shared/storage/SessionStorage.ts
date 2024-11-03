@@ -37,6 +37,17 @@ class SessionStorage implements SafeStorage {
   clear() {
     sessionStorage.clear();
   }
+
+  setObject<T>(key: string, value: T): void {
+    sessionStorage.setItem(key, JSON.stringify(value));
+  }
+
+  getObject<T>(key: string): T | null {
+    const value = sessionStorage.getItem(key);
+    if (!value) return null;
+
+    return JSON.parse(value) as T;
+  }
 }
 
 export const safeSessionStorage = SessionStorage.isEnabled()

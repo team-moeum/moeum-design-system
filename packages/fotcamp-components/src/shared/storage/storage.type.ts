@@ -4,4 +4,6 @@ export interface SafeStorage {
   remove(key: string): void;
   clear(): void;
   has(key: string): boolean;
+  getObject<T>(key: string): T | null;
+  setObject<T>(key: string, value: T): void;
 }

@@ -22,4 +22,15 @@ export class MemoryStorage implements SafeStorage {
   clear() {
     this.map.clear();
   }
+
+  setObject<T>(key: string, value: T): void {
+    this.map.set(key, JSON.stringify(value));
+  }
+
+  getObject<T>(key: string): T | null {
+    const value = this.map.get(key);
+    if (!value) return null;
+
+    return JSON.parse(value) as T;
+  }
 }

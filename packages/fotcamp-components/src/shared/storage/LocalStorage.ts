@@ -37,6 +37,17 @@ class LocalStorage implements SafeStorage {
   clear() {
     localStorage.clear();
   }
+
+  setObject<T>(key: string, value: T): void {
+    localStorage.setItem(key, JSON.stringify(value));
+  }
+
+  getObject<T>(key: string): T | null {
+    const value = localStorage.getItem(key);
+    if (!value) return null;
+
+    return JSON.parse(value) as T;
+  }
 }
 
 export const safeLocalStorage = LocalStorage.isEnabled()
