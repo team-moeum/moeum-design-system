@@ -1,3 +1,71 @@
+// Variables
+$font-weights: (
+  "regular": 400,
+  "medium": 500,
+  "bold": 700,
+);
+
+$font-sizes: (
+  "heading": 24,
+  "body": 16,
+  "text": 14,
+);
+
+$font-displays: (
+  "block",
+  "inline-block",
+  "inline",
+  "flex",
+  "inline-flex",
+  "none"
+);
+
+:root {
+  @each $weight, $value in $font-weights {
+    --font-weight-#{$weight}: #{$value};
+  }
+
+  @each $size, $value in $font-sizes {
+    --font-sizes-#{$size}: #{$value};
+  }
+
+  @each $display in $font-displays {
+    --font-display-#{$display}: #{$display};
+  }
+}
+
+// Styles
 .text {
   box-sizing: border-box;
+}
+
+@each $weight, $value in $font-weights {
+  .font-weight-#{$weight} {
+    font-weight: var(--font-weight-#{$weight});
+  }
+}
+
+@each $size, $value in $font-sizes {
+  .text--typography-#{$size} {
+    font-size: var(--font-sizes-#{$value});
+    line-height: 1.4;
+  }
+}
+
+.text--single-line {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.text--multi-line {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@each $display in $displays {
+  .text--display-#{$display} {
+    display: var(--font-display-#{$display});
+  }
 }

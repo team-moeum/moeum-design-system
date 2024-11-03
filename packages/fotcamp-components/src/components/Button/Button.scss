@@ -1,3 +1,129 @@
+// Variables
+$button-sizes: (
+  "large": (
+    padding: 16px 24px,
+    font-size: 16px,
+    height: 48px,
+  ),
+  "medium": (
+    padding: 12px 20px,
+    font-size: 14px,
+    height: 40px,
+  ),
+  "small": (
+    padding: 8px 16px,
+    font-size: 14px,
+    height: 32px,
+  ),
+);
+
+$button-types: (
+  "primary": (
+    background: #007aff,
+    color: #ffffff,
+    hover-background: darken(#007aff, 10%),
+    active-background: darken(#007aff, 15%),
+  ),
+  "secondary": (
+    background: #f2f2f7,
+    color: #000000,
+    hover-background: darken(#f2f2f7, 5%),
+    active-background: darken(#f2f2f7, 10%),
+  ),
+  "danger": (
+    background: #ff3b30,
+    color: #ffffff,
+    hover-background: darken(#ff3b30, 10%),
+    active-background: darken(#ff3b30, 15%),
+  ),
+);
+
+$button-styles: ("fill", "outline", "flat");
+
+$button-displays: ("inline", "block", "full");
+
+:root {
+  @each $type, $values in $button-types {
+    --button-#{$type}-background: #{map-get($values, background)};
+    --button-#{$type}-color: #{map-get($values, color)};
+    --button-#{$type}-hover-background: #{map-get($values, hover-background)};
+    --button-#{$type}-active-background: #{map-get($values, active-background)};
+  }
+
+  @each $display in $button-displays {
+    --button-display-#{$display}: #{$display};
+  }
+}
+
+// Styles
 .button {
   box-sizing: border-box;
+  position: relative;
+  cursor: pointer;
+  border: none;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+@each $size, $values in $button-sizes {
+  .button--size-#{$size} {
+    padding: map-get($values, padding);
+    font-size: map-get($values, font-size);
+    height: map-get($values, height);
+  }
+}
+
+@each $type, $values in $button-types {
+  .button--type-#{$type}.button--style-fill {
+    background-color: var(--button-#{$type}-background);
+    color: var(--button-#{$type}-color);
+
+    &:hover:not(:disabled) {
+      background-color: var(--button-#{$type}-hover-background);
+    }
+
+    &:active:not(:disabled) {
+      background-color: var(--button-#{$type}-active-background);
+    }
+  }
+
+  .button--type-#{$type}.button--style-outline {
+    background-color: transparent;
+    color: var(--button-#{$type}-background);
+    border: 1px solid var(--button-#{$type}-background);
+
+    &:hover:not(:disabled) {
+      background-color: rgba(var(--button-#{$type}-background), 0.1);
+    }
+
+    &:active:not(:disabled) {
+      background-color: rgba(var(--button-#{$type}-background), 0.2);
+    }
+  }
+
+  .button--type-#{$type}.button--style-flat {
+    background-color: transparent;
+    color: var(--button-#{$type}-background);
+
+    &:hover:not(:disabled) {
+      background-color: rgba(var(--button-#{$type}-background), 0.1);
+    }
+
+    &:active:not(:disabled) {
+      background-color: rgba(var(--button-#{$type}-background), 0.2);
+    }
+  }
+}
+
+@each $display in $displays {
+  .button--display-#{$display} {
+    display: var(--button-display-#{$display});
+  }
+}
+
+.button--display-full {
+  width: 100%;
 }
