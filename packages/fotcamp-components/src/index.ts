@@ -9,6 +9,6 @@ export { Grid } from "./components/layout/Grid";
 export { Button } from "./components/Button";
 export { Text } from "./components/Text";
 
+export { safeLocalStorage, safeSessionStorage } from "./shared/storage";
 export { RouterProvider, useRouter } from "./hooks/useRouter";
-
 export { WindowRouter } from "./router/windowRouter";
