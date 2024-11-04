@@ -1,18 +1,37 @@
 import { PropsWithChildren } from "react";
 
-export const ButtonSize = {
-  Large: "large",
-  Medium: "medium",
-  Small: "small",
-} as const;
+export enum ButtonSize {
+  LARGE = "large",
+  MEDIUM = "medium",
+  SMALL = "small",
+}
 
-export type ButtonSizeValue = (typeof ButtonSize)[keyof typeof ButtonSize];
+export enum ButtonType {
+  Primary = "primary",
+  Danger = "danger",
+  Secondary = "secondary",
+  Success = "success",
+  Warning = "warning",
+  Info = "info",
+}
+
+export enum ButtonStyle {
+  Fill = "fill",
+  Outline = "outline",
+  Flat = "flat",
+}
+
+export enum ButtonDisplay {
+  Inline = "inline",
+  Block = "block",
+  Full = "full",
+}
 
 export type ButtonProps = PropsWithChildren<{
-  type?: "primary" | "danger" | "secondary" | "success" | "warning" | "info";
-  style?: "fill" | "outline" | "flat";
-  display?: "inline" | "block" | "full";
-  size?: ButtonSizeValue;
+  type?: ButtonType;
+  style?: ButtonStyle;
+  display?: ButtonDisplay;
+  size?: ButtonSize;
   className?: string;
   onClick?: React.MouseEventHandler<HTMLElement>;
   disabled?: boolean;

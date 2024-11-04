@@ -1,13 +1,13 @@
 import cx from "classnames";
-import { TextProps } from "./Text.type";
+import { FontWeight, TextProps, Typography } from "./Text.type";
 
 export function Text({
   as: Component = "span",
   className,
   children,
   ellipsisLines,
-  typography,
-  fontWeight,
+  typography = Typography.Body,
+  fontWeight = FontWeight.Regular,
   color = "#000",
   display = "inline-block",
   textAlign,
