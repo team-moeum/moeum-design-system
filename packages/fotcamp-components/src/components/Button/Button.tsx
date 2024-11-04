@@ -1,6 +1,12 @@
 import React from "react";
 import cx from "classnames";
-import { ButtonProps, ButtonSizeValue } from "./Button.type";
+import {
+  ButtonDisplay,
+  ButtonProps,
+  ButtonSize,
+  ButtonStyle,
+  ButtonType,
+} from "./Button.type";
 
 /** To-Do move to Icon Package */
 function isIcon(children: React.ReactNode): boolean {
@@ -17,7 +23,7 @@ export function ButtonSide({
   size,
   children,
 }: {
-  size: ButtonSizeValue;
+  size: ButtonSize;
   children: React.ReactNode;
 }) {
   if (isIcon(children)) {
@@ -29,12 +35,12 @@ export function ButtonSide({
 }
 
 export function Button({
-  style = "fill",
-  display = "inline",
+  style = ButtonStyle.Fill,
+  display = ButtonDisplay.Inline,
   disabled = false,
   loading = false,
-  type = "primary",
-  size = "large",
+  type = ButtonType.Primary,
+  size = ButtonSize.LARGE,
   className,
   children,
   leftContent,
