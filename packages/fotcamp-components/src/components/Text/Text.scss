@@ -1,37 +1,24 @@
-// Variables
-$font-weights: (
-  "regular": 400,
-  "medium": 500,
-  "bold": 700,
-);
-
-$font-sizes: (
-  "heading": 24,
-  "body": 16,
-  "text": 14,
-);
-
-$font-displays: (
-  "block",
-  "inline-block",
-  "inline",
-  "flex",
-  "inline-flex",
-  "none"
-);
-
 :root {
-  @each $weight, $value in $font-weights {
-    --font-weight-#{$weight}: #{$value};
-  }
+  // Font weights Tokens
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-bold: 700;
 
-  @each $size, $value in $font-sizes {
-    --font-sizes-#{$size}: #{$value};
-  }
+  // Font sizes (px) Tokens
+  --font-size-heading: 24px;
+  --font-size-body: 16px;
+  --font-size-text: 14px;
 
-  @each $display in $font-displays {
-    --font-display-#{$display}: #{$display};
-  }
+  // Line heights Tokens
+  --line-height-default: 1.4;
+
+  // Display options Tokens
+  --font-display-block: block;
+  --font-display-inline-block: inline-block;
+  --font-display-inline: inline;
+  --font-display-flex: flex;
+  --font-display-inline-flex: inline-flex;
+  --font-display-none: none;
 }
 
 // Styles
@@ -39,17 +26,31 @@ $font-displays: (
   box-sizing: border-box;
 }
 
-@each $weight, $value in $font-weights {
-  .font-weight-#{$weight} {
-    font-weight: var(--font-weight-#{$weight});
-  }
+.text--font-weight-regular {
+  font-weight: var(--font-weight-regular);
 }
 
-@each $size, $value in $font-sizes {
-  .text--typography-#{$size} {
-    font-size: var(--font-sizes-#{$value});
-    line-height: 1.4;
-  }
+.text--font-weight-medium {
+  font-weight: var(--font-weight-medium);
+}
+
+.text--font-weight-bold {
+  font-weight: var(--font-weight-bold);
+}
+
+.text--typography-heading {
+  font-size: var(--font-size-heading);
+  line-height: var(--line-height-default);
+}
+
+.text--typography-body {
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-default);
+}
+
+.text--typography-text {
+  font-size: var(--font-size-text);
+  line-height: var(--line-height-default);
 }
 
 .text--single-line {
@@ -64,8 +65,26 @@ $font-displays: (
   overflow: hidden;
 }
 
-@each $display in $displays {
-  .text--display-#{$display} {
-    display: var(--font-display-#{$display});
-  }
+.text--display-block {
+  display: var(--font-display-block);
+}
+
+.text--display-inline-block {
+  display: var(--font-display-inline-block);
+}
+
+.text--display-inline {
+  display: var(--font-display-inline);
+}
+
+.text--display-flex {
+  display: var(--font-display-flex);
+}
+
+.text--display-inline-flex {
+  display: var(--font-display-inline-flex);
+}
+
+.text--display-none {
+  display: var(--font-display-none);
 }
