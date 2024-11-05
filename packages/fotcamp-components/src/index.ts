@@ -1,4 +1,4 @@
-import "./components/index.scss";
+import "./style/index.scss";
 
 export { useFunnel } from "./components/Funnel";
 
