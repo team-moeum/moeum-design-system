@@ -32,7 +32,9 @@ type Story = StoryObj<typeof meta>;
 
 // 기본 온보딩 스텝
 export const Primary: Story = {
-  args: {},
+  args: {
+    overlay: false
+  },
   render: () => {
     const overlay = useOverlay();
 
