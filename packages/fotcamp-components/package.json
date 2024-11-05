@@ -49,9 +49,11 @@
     "react-dom": "^18.0.0"
   },
   "dependencies": {
+    "@radix-ui/react-dialog": "^1.1.2",
     "@radix-ui/react-popover": "1.1.2",
     "classnames": "^2.5.1",
-    "sass": "^1.80.4"
+    "sass": "^1.80.4",
+    "vaul": "^1.1.1"
   },
   "exports": {
     ".": {
