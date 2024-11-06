@@ -30,17 +30,17 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-// 기본 온보딩 스텝
 export const Primary: Story = {
   args: {
-    overlay: false
+    modal: false
   },
-  render: () => {
+  render: (args) => {
     const overlay = useOverlay();
 
     const openOverlay = () => {
       overlay.open(({ isOpen, close }) => (
         <BottomSheet
+          {...args}
           open={isOpen}
           onClose={() => {
             close();

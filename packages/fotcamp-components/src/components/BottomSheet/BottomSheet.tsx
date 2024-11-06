@@ -5,23 +5,18 @@ export const BottomSheet = ({
   open,
   onClose,
   children,
-  overlay=true,
+  modal=true,
 }: {
   open?: boolean;
   onClose?: () => void;
   children?: React.ReactNode;
-  overlay?: boolean;
+  modal?: boolean;
 }) => {
   return (
-    <Drawer.Root open={open} onClose={onClose}>
+    <Drawer.Root open={open} onClose={onClose} modal={modal}>
       <Drawer.Portal>
-        <SwitchCase
-          value={String(overlay)}
-          caseBy={{
-            true: <Drawer.Overlay />,
-          }}
-        />
-        <Drawer.Content className="drawer-content">
+        <Drawer.Overlay className="overlay" />
+        <Drawer.Content className="drawer-content" data-fotcamp-component="BottomSheet">
           <Drawer.Handle />
           <Drawer.Title />
           <div className="content">{children}</div>
