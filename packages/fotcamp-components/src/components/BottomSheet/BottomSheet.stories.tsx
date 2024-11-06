@@ -3,6 +3,7 @@ import { BottomSheet } from "./BottomSheet";
 import { useOverlay } from "../../hooks/useOverlay/useOverlay";
 import { Button } from "../Button";
 import { OverlayProvider } from "../../hooks/useOverlay/OverlayProvider";
+import { Flex } from "../layout/Flex";
 
 const meta = {
   title: "Components/BottomSheet",
@@ -11,13 +12,6 @@ const meta = {
     layout: "centered",
   },
   tags: ["autodocs"],
-  // argTypes: {
-  //   initialStep: {
-  //     control: "select",
-  //     options: Object.values(BottomSheet),
-  //     description: "퍼널의 초기 단계를 설정합니다",
-  //   },
-  // },
   decorators: [
     (Story) => (
       <OverlayProvider>
@@ -30,10 +24,16 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+const BottomSheetContentA = () => {
+  return (
+    <Flex height={200} p={20} align="center" justify="center">
+      BottomSheet
+    </Flex>
+  )
+}
+
 export const Primary: Story = {
-  args: {
-    modal: false
-  },
+  args: {},
   render: (args) => {
     const overlay = useOverlay();
 
@@ -45,10 +45,11 @@ export const Primary: Story = {
           onClose={() => {
             close();
           }}
+          children={<BottomSheetContentA />}
         />
       ));
     };
-  
+
     return (
       <Button onClick={openOverlay}>Open</Button>
     )
