@@ -1,22 +1,7 @@
 import React from "react";
 import cx from "classnames";
-import { isIcon } from "../../shared/icon";
-import { TextFieldProps, TextFieldSize } from "./TextField.type";
-
-function TextFieldSide({
-  size,
-  children,
-}: {
-  size: TextFieldSize;
-  children: React.ReactNode;
-}) {
-  if (isIcon(children)) {
-    return <>To-Do Icon</>;
-    // return <Icon source={children} size={size} />;
-  }
-
-  return <>{children}</>;
-}
+import { TextFieldProps } from "./TextField.type";
+import { TextFieldSide } from "./TextFieldSide";
 
 export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
   (
