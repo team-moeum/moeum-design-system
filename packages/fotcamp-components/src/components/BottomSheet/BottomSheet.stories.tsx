@@ -12,6 +12,11 @@ const meta = {
     layout: "centered",
   },
   tags: ["autodocs"],
+  argTypes: {
+    modal: {
+      control: "boolean"
+    }
+  },
   decorators: [
     (Story) => (
       <OverlayProvider>
@@ -26,14 +31,17 @@ type Story = StoryObj<typeof meta>;
 
 const BottomSheetContentA = () => {
   return (
-    <Flex height={200} p={20} align="center" justify="center">
+    <Flex height={500} p={20} align="center" justify="center">
       BottomSheet
     </Flex>
   )
 }
 
 export const Primary: Story = {
-  args: {},
+  args: {
+    showHandle: true,
+    radius: "medium",
+  },
   render: (args) => {
     const overlay = useOverlay();
 
@@ -55,3 +63,24 @@ export const Primary: Story = {
     )
   }
 };
+
+// export const SnapPointsExample = () => {
+//   const snapPoints = ['100px', '200px', 1];
+//   const overlay = useOverlay();
+
+//   const openOverlay = () => {
+//     overlay.open(({ isOpen, close }) => (
+//       <BottomSheet
+//         open={isOpen}
+//         onClose={() => {
+//           close();
+//         }}
+//         children={<BottomSheetContentA />}
+//       />
+//     ));
+//   };
+
+//   return (
+//     <Button onClick={openOverlay}>Open</Button>
+//   )
+// }

@@ -1,34 +1,50 @@
+import cx from "classnames";
 import { Drawer } from "vaul";
 import { BottomSheetProps } from "./BottomSheet.type";
-import { useState } from "react";
-
-const snapPoints = ['100px', '200px', 1];
+import { SwitchCase } from "../../shared/components/SwitchCase";
 
 export const BottomSheet = ({
   open,
   onClose,
-  children,
   modal = true,
-  ...rest
+  showHandle = true,
+  handleOnly = false,
+  radius,
+  zIndex = 1,
+  className,
+  children,
 }: BottomSheetProps) => {
-  const [snap, setSnap] = useState<number | string | null>(snapPoints[0]);
-
   return (
-    <Drawer.Root 
+    <Drawer.Root
       open={open}
       onClose={onClose}
       modal={modal}
-      snapPoints={snapPoints}
-      activeSnapPoint={snap}
-      setActiveSnapPoint={setSnap}
-      {...rest}
+      handleOnly={handleOnly}
     >
       <Drawer.Portal>
-        <Drawer.Overlay className="overlay" />
-        <Drawer.Content className="drawer-content" data-fotcamp-component="BottomSheet">
-          <Drawer.Handle className="drawer-handle" />
-          <Drawer.Title />
-          <div className="content">{children}</div>
+        <Drawer.Overlay
+          className="overlay"
+          data-fotcamp-component="BottomSheetOverlay"
+          style={{ zIndex }}
+        />
+        <Drawer.Content
+          className={cx(
+            "drawer-content",
+            {
+              [`bottomsheet-container--radius-${radius}`]: radius,
+            },
+            className
+          )}
+          data-fotcamp-component="BottomSheet"
+          style={{ zIndex }}
+        >
+          <SwitchCase
+            value={String(showHandle)}
+            caseBy={{
+              true: <Drawer.Handle className="drawer-handle" />,
+            }}
+          ></SwitchCase>
+          {children}
         </Drawer.Content>
       </Drawer.Portal>
     </Drawer.Root>
