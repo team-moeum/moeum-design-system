@@ -3,3 +3,4 @@ README.md
 .nvmrc
 .vscode
 dist
+*.docs.mdx
