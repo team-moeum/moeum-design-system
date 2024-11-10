@@ -1,6 +1,6 @@
 {
   "name": "@fotcamp/components",
-  "version": "1.0.15",
+  "version": "1.0.24",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -12,7 +12,9 @@
     "dev-build": "rollup -c -w",
     "build": "rollup -c",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "format": "prettier --write --cache .",
+    "lint": "eslint --cache ."
   },
   "type": "module",
   "keywords": [],
@@ -42,7 +44,17 @@
     "rollup-plugin-postcss": "^4.0.2",
     "storybook": "^8.3.6",
     "tslib": "^2.7.0",
-    "typescript": "^5.6.3"
+    "typescript": "^5.6.3",
+    "@typescript-eslint/eslint-plugin": "^8.0.1",
+    "@typescript-eslint/parser": "^8.0.1",
+    "eslint": "^8",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-storybook": "^0.8.0",
+    "prettier": "^3.3.3",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-jsx-a11y": "^6.8.0"
   },
   "peerDependencies": {
     "react": "^18.0.0",
