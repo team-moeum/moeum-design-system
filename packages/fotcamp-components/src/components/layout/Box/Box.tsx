@@ -12,8 +12,7 @@ export function Box({
   children,
   ...rest
 }: BoxProps) {
-  const { m, mt, mb, ml, mr, mx, my, p, pt, pb, pl, pr, px, py, ...props } =
-    rest;
+  const { m, mt, mb, ml, mr, mx, my, p, pt, pb, pl, pr, px, py, ...props } = rest;
 
   const spacingStyle = getSpacingStyle({
     m,
@@ -29,7 +28,7 @@ export function Box({
     pl,
     pr,
     px,
-    py,
+    py
   });
 
   return (
@@ -41,7 +40,7 @@ export function Box({
         height,
         display,
         ...spacingStyle,
-        ...style,
+        ...style
       }}
       {...props}
     >

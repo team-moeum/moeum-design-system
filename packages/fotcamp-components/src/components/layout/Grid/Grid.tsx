@@ -21,14 +21,13 @@ export function Grid({
       className={cx("grid", className)}
       style={{
         display: "grid",
-        gridTemplateColumns:
-          typeof columns === "number" ? `repeat(${columns}, 1fr)` : columns,
+        gridTemplateColumns: typeof columns === "number" ? `repeat(${columns}, 1fr)` : columns,
         gap: gap,
         rowGap: rowGap,
         columnGap: columnGap,
         gridAutoFlow: autoFlow,
         gridTemplateAreas: areas,
-        ...style,
+        ...style
       }}
       {...rest}
     />

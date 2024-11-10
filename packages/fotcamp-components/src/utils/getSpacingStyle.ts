@@ -42,12 +42,10 @@ const SpacingMap: Record<SpacingKey, Array<CSSSpacingProperty>> = {
   pt: ["paddingTop"],
   pb: ["paddingBottom"],
   pl: ["paddingLeft"],
-  pr: ["paddingRight"],
+  pr: ["paddingRight"]
 };
 
-export type SpacingProps = Partial<
-  Record<SpacingKey, CSSProperties[CSSSpacingProperty]>
->;
+export type SpacingProps = Partial<Record<SpacingKey, CSSProperties[CSSSpacingProperty]>>;
 
 export const getSpacingStyle = (props: SpacingProps): CSSProperties => {
   const style: CSSProperties = {};
@@ -56,7 +54,7 @@ export const getSpacingStyle = (props: SpacingProps): CSSProperties => {
     if (value === undefined) return;
 
     const properties = SpacingMap[key as SpacingKey];
-    properties.forEach((property) => {
+    properties.forEach(property => {
       style[property] = value;
     });
   });

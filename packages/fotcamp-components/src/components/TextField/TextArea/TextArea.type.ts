@@ -1,8 +1,4 @@
-import {
-  TextFieldRadius,
-  TextFieldSize,
-  TextFieldVariant,
-} from "../TextField.type";
+import { TextFieldRadius, TextFieldSize, TextFieldVariant } from "../TextField.type";
 
 export interface TextAreaProps
   extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, "size"> {

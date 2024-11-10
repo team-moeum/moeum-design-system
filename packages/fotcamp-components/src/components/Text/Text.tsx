@@ -25,9 +25,8 @@ export function Text({
           "text--single-line": isSingleLine,
           "text--multi-line": isMultiLine,
           [`text--font-weight-${fontWeight}`]: fontWeight,
-          [`text--display-${display}`]:
-            display && !isSingleLine && !isMultiLine,
-          [`text--typography-${typography}`]: typography,
+          [`text--display-${display}`]: display && !isSingleLine && !isMultiLine,
+          [`text--typography-${typography}`]: typography
         },
         className
       )}
@@ -35,7 +34,7 @@ export function Text({
         color,
         textAlign,
         WebkitLineClamp: ellipsisLines,
-        ...style,
+        ...style
       }}
       {...rest}
     >

@@ -3,7 +3,7 @@ import { TextFieldSize } from "./TextField.type";
 
 export function TextFieldSide({
   size,
-  children,
+  children
 }: {
   size: TextFieldSize;
   children: React.ReactNode;

@@ -1,14 +1,14 @@
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from "@storybook/react";
 
-import { Box } from '.';
+import { Box } from ".";
 
 const meta = {
-  title: 'Box',
+  title: "Box",
   component: Box,
   parameters: {
-    layout: 'centered',
+    layout: "centered"
   },
-  tags: ['autodocs'],
+  tags: ["autodocs"]
 } satisfies Meta<typeof Box>;
 
 export default meta;
@@ -19,7 +19,7 @@ export const Primary: Story = {
     width: 50,
     height: 50,
     style: {
-      background: "repeating-linear-gradient(45deg, #eee, #eee 3px, #ccc 0, #ccc 5px)",
+      background: "repeating-linear-gradient(45deg, #eee, #eee 3px, #ccc 0, #ccc 5px)"
     }
-  },
+  }
 };

@@ -7,21 +7,16 @@ enum FUNNEL {
   onBoarding = "온보딩",
   agreement = "약관동의",
   information = "정보입력",
-  registration = "가입",
+  registration = "가입"
 }
 
 function FunnelComponent({ initialStep = FUNNEL.onBoarding }) {
   const { onBoarding, agreement, information, registration } = FUNNEL;
-  const funnelSteps = [
-    onBoarding,
-    agreement,
-    information,
-    registration,
-  ] as const;
+  const funnelSteps = [onBoarding, agreement, information, registration] as const;
 
   const [Funnel] = useFunnel(funnelSteps, {
     initialStep,
-    stepQueryKey: "step",
+    stepQueryKey: "step"
   });
 
   return (
@@ -55,16 +50,16 @@ const meta = {
   title: "Components/Funnel",
   component: FunnelWithRouter,
   parameters: {
-    layout: "centered",
+    layout: "centered"
   },
   tags: ["autodocs"],
   argTypes: {
     initialStep: {
       control: "select",
       options: Object.values(FUNNEL),
-      description: "퍼널의 초기 단계를 설정합니다",
-    },
-  },
+      description: "퍼널의 초기 단계를 설정합니다"
+    }
+  }
 } satisfies Meta<typeof FunnelWithRouter>;
 
 export default meta;
@@ -73,27 +68,27 @@ type Story = StoryObj<typeof meta>;
 // 기본 온보딩 스텝
 export const Primary: Story = {
   args: {
-    initialStep: FUNNEL.onBoarding,
-  },
+    initialStep: FUNNEL.onBoarding
+  }
 };
 
 // 약관동의 스텝
 export const AgreementStep: Story = {
   args: {
-    initialStep: FUNNEL.agreement,
-  },
+    initialStep: FUNNEL.agreement
+  }
 };
 
 // 정보입력 스텝
 export const InformationStep: Story = {
   args: {
-    initialStep: FUNNEL.information,
-  },
+    initialStep: FUNNEL.information
+  }
 };
 
 // 가입완료 스텝
 export const RegistrationStep: Story = {
   args: {
-    initialStep: FUNNEL.registration,
-  },
+    initialStep: FUNNEL.registration
+  }
 };

@@ -3,13 +3,13 @@ import { AllHTMLAttributes, ElementType, CSSProperties } from "react";
 export enum Typography {
   Heading = "heading",
   Body = "body",
-  Text = "text",
+  Text = "text"
 }
 
 export enum FontWeight {
   Regular = "regular",
   Medium = "medium",
-  Bold = "bold",
+  Bold = "bold"
 }
 
 export interface TextProps extends Omit<AllHTMLAttributes<Element>, "as"> {

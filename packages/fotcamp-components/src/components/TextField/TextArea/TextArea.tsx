@@ -4,16 +4,7 @@ import { TextAreaProps } from "./TextArea.type";
 
 export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
   (
-    {
-      className,
-      size = "medium",
-      variant = "surface",
-      color,
-      radius,
-      disabled,
-      error,
-      ...props
-    },
+    { className, size = "medium", variant = "surface", color, radius, disabled, error, ...props },
     ref
   ) => {
     const handleFocus = (e: React.FocusEvent<HTMLTextAreaElement, Element>) => {
@@ -34,7 +25,7 @@ export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
             [`textarea-container--variant-${variant}`]: variant,
             [`textarea-container--radius-${radius}`]: radius,
             "textarea-container--disabled": disabled,
-            "textarea-container--error": error,
+            "textarea-container--error": error
           },
           className
         )}
@@ -52,3 +43,5 @@ export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
     );
   }
 );
+
+TextArea.displayName = "TextArea";

@@ -1,9 +1,4 @@
-import {
-  NavigateOptions,
-  RouterLocation,
-  RouterQuery,
-  SafeRouter,
-} from "./router.type";
+import { NavigateOptions, RouterLocation, RouterQuery, SafeRouter } from "./router.type";
 
 export class WindowRouter implements SafeRouter {
   get location(): RouterLocation {
@@ -11,24 +6,16 @@ export class WindowRouter implements SafeRouter {
       pathname: window.location.pathname,
       search: window.location.search,
       hash: window.location.hash,
-      state: window.history.state,
+      state: window.history.state
     };
   }
 
   push(path: string, options?: NavigateOptions): void {
-    window.history.pushState(
-      options?.state ?? null,
-      "",
-      this.normalizePath(path)
-    );
+    window.history.pushState(options?.state ?? null, "", this.normalizePath(path));
   }
 
   replace(path: string, options?: NavigateOptions): void {
-    window.history.replaceState(
-      options?.state ?? null,
-      "",
-      this.normalizePath(path)
-    );
+    window.history.replaceState(options?.state ?? null, "", this.normalizePath(path));
   }
 
   back(): void {
@@ -45,7 +32,7 @@ export class WindowRouter implements SafeRouter {
     Object.entries(query).forEach(([key, value]) => {
       if (Array.isArray(value)) {
         searchParams.delete(key);
-        value.forEach((v) => searchParams.append(key, v));
+        value.forEach(v => searchParams.append(key, v));
       } else if (value !== undefined) {
         searchParams.set(key, value);
       } else {
@@ -74,9 +61,7 @@ export class WindowRouter implements SafeRouter {
     searchParams.forEach((value, key) => {
       const existing = query[key];
       if (existing !== undefined) {
-        query[key] = Array.isArray(existing)
-          ? [...existing, value]
-          : [existing as string, value];
+        query[key] = Array.isArray(existing) ? [...existing, value] : [existing as string, value];
       } else {
         query[key] = value;
       }

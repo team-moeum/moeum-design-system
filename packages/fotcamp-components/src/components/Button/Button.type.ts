@@ -3,7 +3,7 @@ import { PropsWithChildren } from "react";
 export enum ButtonSize {
   LARGE = "large",
   MEDIUM = "medium",
-  SMALL = "small",
+  SMALL = "small"
 }
 
 export enum ButtonType {
@@ -12,19 +12,19 @@ export enum ButtonType {
   Secondary = "secondary",
   Success = "success",
   Warning = "warning",
-  Info = "info",
+  Info = "info"
 }
 
 export enum ButtonStyle {
   Fill = "fill",
   Outline = "outline",
-  Flat = "flat",
+  Flat = "flat"
 }
 
 export enum ButtonDisplay {
   Inline = "inline",
   Block = "block",
-  Full = "full",
+  Full = "full"
 }
 
 export type ButtonProps = PropsWithChildren<{

@@ -38,14 +38,12 @@ export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
             [`textfield-container--variant-${variant}`]: variant,
             [`textfield-container--radius-${radius}`]: radius,
             "textfield-container--disabled": disabled,
-            "textfield-container--error": error,
+            "textfield-container--error": error
           },
           className
         )}
       >
-        {leftContent && (
-          <TextFieldSide size={size}>{leftContent}</TextFieldSide>
-        )}
+        {leftContent && <TextFieldSide size={size}>{leftContent}</TextFieldSide>}
         <input
           type={type}
           disabled={disabled}
@@ -56,10 +54,10 @@ export const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
           style={{ color }}
           {...props}
         />
-        {rightContent && (
-          <TextFieldSide size={size}>{rightContent}</TextFieldSide>
-        )}
+        {rightContent && <TextFieldSide size={size}>{rightContent}</TextFieldSide>}
       </div>
     );
   }
 );
+
+TextField.displayName = "TextField";
