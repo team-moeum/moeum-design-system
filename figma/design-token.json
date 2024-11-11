@@ -1,0 +1,169 @@
+{
+  "global": {},
+  "Collection 1/light": {
+    "palette": {
+      "red_100": {
+        "value": "#ff0000",
+        "type": "color"
+      },
+      "red_50": {
+        "value": "#ff8181",
+        "type": "color"
+      },
+      "black": {
+        "value": "#000000",
+        "type": "color"
+      },
+      "white": {
+        "value": "#ffffff",
+        "type": "color"
+      }
+    },
+    "seed": {
+      "button": {
+        "value": "{palette.red_100}",
+        "type": "color"
+      },
+      "text": {
+        "value": "{palette.black}",
+        "type": "color"
+      }
+    }
+  },
+  "Collection 1/dark": {
+    "palette": {
+      "red_100": {
+        "value": "#ff0000",
+        "type": "color"
+      },
+      "red_50": {
+        "value": "#ff8181",
+        "type": "color"
+      },
+      "black": {
+        "value": "#000000",
+        "type": "color"
+      },
+      "white": {
+        "value": "#ffffff",
+        "type": "color"
+      }
+    },
+    "seed": {
+      "button": {
+        "value": "{palette.red_100}",
+        "type": "color"
+      },
+      "text": {
+        "value": "{palette.white}",
+        "type": "color"
+      }
+    }
+  },
+  "seed/light": {
+    "palette": {
+      "red_100": {
+        "value": "#ff0000",
+        "type": "color"
+      },
+      "red_50": {
+        "value": "#ff8181",
+        "type": "color"
+      },
+      "black": {
+        "value": "#000000",
+        "type": "color"
+      },
+      "white": {
+        "value": "#ffffff",
+        "type": "color"
+      }
+    },
+    "seed": {
+      "button": {
+        "value": "{palette.red_100}",
+        "type": "color"
+      },
+      "text": {
+        "value": "{palette.black}",
+        "type": "color"
+      }
+    },
+    "Number": {
+      "value": 0,
+      "type": "number"
+    },
+    "spacing": {
+      "0": {
+        "value": 0,
+        "type": "number"
+      },
+      "1": {
+        "value": 4,
+        "type": "number"
+      },
+      "2": {
+        "value": 8,
+        "type": "number"
+      }
+    }
+  },
+  "seed/dark": {
+    "palette": {
+      "red_100": {
+        "value": "#ff0000",
+        "type": "color"
+      },
+      "red_50": {
+        "value": "#ff8181",
+        "type": "color"
+      },
+      "black": {
+        "value": "#000000",
+        "type": "color"
+      },
+      "white": {
+        "value": "#ffffff",
+        "type": "color"
+      }
+    },
+    "seed": {
+      "button": {
+        "value": "{palette.red_100}",
+        "type": "color"
+      },
+      "text": {
+        "value": "{palette.black}",
+        "type": "color"
+      }
+    },
+    "Number": {
+      "value": 0,
+      "type": "number"
+    },
+    "spacing": {
+      "0": {
+        "value": 0,
+        "type": "number"
+      },
+      "1": {
+        "value": 4,
+        "type": "number"
+      },
+      "2": {
+        "value": 8,
+        "type": "number"
+      }
+    }
+  },
+  "$themes": [],
+  "$metadata": {
+    "tokenSetOrder": [
+      "global",
+      "Collection 1/light",
+      "Collection 1/dark",
+      "seed/light",
+      "seed/dark"
+    ]
+  }
+}
