@@ -88,6 +88,24 @@
         "value": "{palette.black}",
         "type": "color"
       }
+    },
+    "Number": {
+      "value": 0,
+      "type": "number"
+    },
+    "spacing": {
+      "0": {
+        "value": 0,
+        "type": "number"
+      },
+      "1": {
+        "value": 4,
+        "type": "number"
+      },
+      "2": {
+        "value": 8,
+        "type": "number"
+      }
     }
   },
   "seed/dark": {
@@ -115,8 +133,26 @@
         "type": "color"
       },
       "text": {
-        "value": "{palette.white}",
+        "value": "{palette.black}",
         "type": "color"
+      }
+    },
+    "Number": {
+      "value": 0,
+      "type": "number"
+    },
+    "spacing": {
+      "0": {
+        "value": 0,
+        "type": "number"
+      },
+      "1": {
+        "value": 4,
+        "type": "number"
+      },
+      "2": {
+        "value": 8,
+        "type": "number"
       }
     }
   },
