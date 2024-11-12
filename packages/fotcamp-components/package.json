@@ -64,6 +64,7 @@
   },
   "dependencies": {
     "@radix-ui/react-popover": "1.1.2",
+    "@radix-ui/react-toggle": "^1.1.0",
     "classnames": "^2.5.1",
     "sass": "^1.80.4"
   },
