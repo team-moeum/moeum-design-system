@@ -67,6 +67,7 @@
     "@radix-ui/react-popover": "1.1.2",
     "@radix-ui/react-radio-group": "^1.2.1",
     "@radix-ui/react-toggle": "^1.1.0",
+    "@radix-ui/react-select": "^2.1.2",
     "classnames": "^2.5.1",
     "sass": "^1.80.4"
   },
