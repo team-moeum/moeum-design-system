@@ -63,8 +63,10 @@
     "react-dom": "^18.0.0"
   },
   "dependencies": {
+    "@radix-ui/react-checkbox": "^1.1.2",
     "@radix-ui/react-popover": "1.1.2",
     "@radix-ui/react-radio-group": "^1.2.1",
+    "@radix-ui/react-toggle": "^1.1.0",
     "classnames": "^2.5.1",
     "sass": "^1.80.4"
   },
