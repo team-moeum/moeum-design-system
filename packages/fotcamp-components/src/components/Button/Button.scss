@@ -93,19 +93,11 @@
     border: 1px solid var(--button-#{$type}-background);
 
     &:hover:not(:disabled) {
-      background-color: color-mix(
-        in srgb,
-        var(--button-#{$type}-background) 10%,
-        transparent
-      );
+      background-color: color-mix(in srgb, var(--button-#{$type}-background) 10%, transparent);
     }
 
     &:active:not(:disabled) {
-      background-color: color-mix(
-        in srgb,
-        var(--button-#{$type}-background) 20%,
-        transparent
-      );
+      background-color: color-mix(in srgb, var(--button-#{$type}-background) 20%, transparent);
     }
   }
 
@@ -114,19 +106,11 @@
     color: var(--button-#{$type}-background);
 
     &:hover:not(:disabled) {
-      background-color: color-mix(
-        in srgb,
-        var(--button-#{$type}-background) 10%,
-        transparent
-      );
+      background-color: color-mix(in srgb, var(--button-#{$type}-background) 10%, transparent);
     }
 
     &:active:not(:disabled) {
-      background-color: color-mix(
-        in srgb,
-        var(--button-#{$type}-background) 20%,
-        transparent
-      );
+      background-color: color-mix(in srgb, var(--button-#{$type}-background) 20%, transparent);
     }
   }
 }

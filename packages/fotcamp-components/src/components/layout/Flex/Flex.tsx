@@ -27,7 +27,7 @@ export function Flex({
         flexDirection: direction,
         flexWrap: wrap,
         gap: gap,
-        ...style,
+        ...style
       }}
       {...rest}
     />

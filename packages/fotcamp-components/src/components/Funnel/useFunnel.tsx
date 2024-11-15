@@ -29,8 +29,7 @@ export const useFunnel = <Steps extends NonEmptyArray<string>>(
     () =>
       Object.assign(
         function RouteFunnel(props: RouteFunnelProps<Steps>) {
-          const step =
-            useQueryParam<Steps[number]>(stepQueryKey) ?? options?.initialStep;
+          const step = useQueryParam<Steps[number]>(stepQueryKey) ?? options?.initialStep;
 
           if (!step) {
             throw new Error(
@@ -41,7 +40,7 @@ export const useFunnel = <Steps extends NonEmptyArray<string>>(
           return <Funnel<Steps> steps={steps} step={step} {...props} />;
         },
         {
-          Step,
+          Step
         }
       ),
     []

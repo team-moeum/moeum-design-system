@@ -4,15 +4,15 @@ import { FunnelProps, NonEmptyArray, StepProps } from "./Funnel.type";
 export const Funnel = <Steps extends NonEmptyArray<string>>({
   steps,
   step,
-  children,
+  children
 }: FunnelProps<Steps>) => {
   const validChildren = Children.toArray(children)
     .filter(isValidElement)
-    .filter((i) =>
-      steps.includes((i.props as Partial<StepProps<Steps>>).name ?? "")
-    ) as Array<ReactElement<StepProps<Steps>>>;
+    .filter(i => steps.includes((i.props as Partial<StepProps<Steps>>).name ?? "")) as Array<
+    ReactElement<StepProps<Steps>>
+  >;
 
-  const targetStep = validChildren.find((child) => child.props.name === step);
+  const targetStep = validChildren.find(child => child.props.name === step);
 
   if (!targetStep) {
     throw new Error(`${step} Step Component를 찾지 못했습니다.`);
@@ -24,7 +24,7 @@ export const Funnel = <Steps extends NonEmptyArray<string>>({
 export const Step = <Steps extends NonEmptyArray<string>>({
   onMounted,
   onUnMounted,
-  children,
+  children
 }: StepProps<Steps>) => {
   useEffect(() => {
     onMounted?.();

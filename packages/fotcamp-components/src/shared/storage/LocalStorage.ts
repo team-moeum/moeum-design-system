@@ -4,7 +4,7 @@ import { SafeStorage } from "./storage.type";
 
 class LocalStorage implements SafeStorage {
   static isEnabled(): boolean {
-    if (typeof window === "undefined" || !Boolean(window.localStorage)) {
+    if (typeof window === "undefined" || !!window.localStorage) {
       return false;
     }
 
@@ -50,6 +50,4 @@ class LocalStorage implements SafeStorage {
   }
 }
 
-export const safeLocalStorage = LocalStorage.isEnabled()
-  ? new LocalStorage()
-  : new MemoryStorage();
+export const safeLocalStorage = LocalStorage.isEnabled() ? new LocalStorage() : new MemoryStorage();

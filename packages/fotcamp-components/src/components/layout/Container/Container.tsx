@@ -18,7 +18,7 @@ export function Container({
         maxWidth,
         marginLeft: "auto",
         marginRight: "auto",
-        ...style,
+        ...style
       }}
       {...rest}
     />
