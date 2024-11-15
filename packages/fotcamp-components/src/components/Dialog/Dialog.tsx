@@ -10,7 +10,7 @@ export const Dialog = ({
   size,
   zIndex = 1,
   className,
-  children,
+  children
 }: DialogProps) => (
   <DialogPrimitive.Root open={open} onOpenChange={onClose} modal={modal}>
     <DialogPrimitive.Portal>
@@ -24,7 +24,7 @@ export const Dialog = ({
           "dialog-content",
           {
             [`dialog-content--size-${size}`]: size,
-            [`dialog-content--radius-${radius}`]: radius,
+            [`dialog-content--radius-${radius}`]: radius
           },
           className
         )}

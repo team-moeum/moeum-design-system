@@ -10,29 +10,29 @@ const meta = {
   title: "Components/Dialog",
   component: Dialog,
   parameters: {
-    layout: "centered",
+    layout: "centered"
   },
   tags: ["autodocs"],
   argTypes: {
     size: {
       control: "select",
-      options: Object.values(DialogSize),
+      options: Object.values(DialogSize)
     },
     radius: {
       control: "select",
-      options: Object.values(DialogRadius),
+      options: Object.values(DialogRadius)
     },
     modal: {
-      control: "boolean",
-    },
+      control: "boolean"
+    }
   },
   decorators: [
-    (Story) => (
+    Story => (
       <OverlayProvider>
         <Story />
       </OverlayProvider>
-    ),
-  ],
+    )
+  ]
 } satisfies Meta<typeof Dialog>;
 
 export default meta;
@@ -49,9 +49,10 @@ const DialogContentA = () => {
 export const Primary: Story = {
   args: {
     size: "medium",
-    radius: "medium",
+    radius: "medium"
   },
-  render: (args) => {
+  render: args => {
+    // eslint-disable-next-line
     const overlay = useOverlay();
 
     const openOverlay = () => {
@@ -68,5 +69,5 @@ export const Primary: Story = {
     };
 
     return <Button onClick={openOverlay}>Open</Button>;
-  },
+  }
 };

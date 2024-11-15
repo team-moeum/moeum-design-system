@@ -9,7 +9,7 @@ const meta = {
   title: "Components/BottomSheet",
   component: BottomSheet,
   parameters: {
-    layout: "centered",
+    layout: "centered"
   },
   tags: ["autodocs"],
   argTypes: {
@@ -18,7 +18,7 @@ const meta = {
     }
   },
   decorators: [
-    (Story) => (
+    Story => (
       <OverlayProvider>
         <Story />
       </OverlayProvider>
@@ -34,15 +34,16 @@ const BottomSheetContentA = () => {
     <Flex height={500} p={20} align="center" justify="center">
       BottomSheet
     </Flex>
-  )
-}
+  );
+};
 
 export const Primary: Story = {
   args: {
     showHandle: true,
-    radius: "medium",
+    radius: "medium"
   },
-  render: (args) => {
+  render: args => {
+    // eslint-disable-next-line
     const overlay = useOverlay();
 
     const openOverlay = () => {
@@ -58,9 +59,7 @@ export const Primary: Story = {
       ));
     };
 
-    return (
-      <Button onClick={openOverlay}>Open</Button>
-    )
+    return <Button onClick={openOverlay}>Open</Button>;
   }
 };
 

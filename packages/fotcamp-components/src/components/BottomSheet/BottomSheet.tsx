@@ -12,15 +12,10 @@ export const BottomSheet = ({
   radius,
   zIndex = 1,
   className,
-  children,
+  children
 }: BottomSheetProps) => {
   return (
-    <Drawer.Root
-      open={open}
-      onClose={onClose}
-      modal={modal}
-      handleOnly={handleOnly}
-    >
+    <Drawer.Root open={open} onClose={onClose} modal={modal} handleOnly={handleOnly}>
       <Drawer.Portal>
         <Drawer.Overlay
           className="overlay"
@@ -31,7 +26,7 @@ export const BottomSheet = ({
           className={cx(
             "drawer-content",
             {
-              [`bottomsheet-container--radius-${radius}`]: radius,
+              [`bottomsheet-container--radius-${radius}`]: radius
             },
             className
           )}
@@ -41,7 +36,7 @@ export const BottomSheet = ({
           <SwitchCase
             value={String(showHandle)}
             caseBy={{
-              true: <Drawer.Handle className="drawer-handle" />,
+              true: <Drawer.Handle className="drawer-handle" />
             }}
           ></SwitchCase>
           {children}

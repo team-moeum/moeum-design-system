@@ -1,14 +1,14 @@
 export const DialogSize = {
   SMALL: "small",
   MEDIUM: "medium",
-  LARGE: "large",
+  LARGE: "large"
 } as const;
 
 export const DialogRadius = {
   NONE: "none",
   SMALL: "small",
   MEDIUM: "medium",
-  LARGE: "large",
+  LARGE: "large"
 } as const;
 
 type ValueOf<T> = T[keyof T];
