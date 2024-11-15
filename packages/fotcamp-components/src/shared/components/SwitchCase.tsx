@@ -7,7 +7,7 @@ interface Props<Case extends string | number> {
 export function SwitchCase<Case extends string | number>({
   value,
   caseBy,
-  defaultComponent: defaultComponent = null,
+  defaultComponent: defaultComponent = null
 }: Props<Case>) {
   if (value == null) {
     return defaultComponent;

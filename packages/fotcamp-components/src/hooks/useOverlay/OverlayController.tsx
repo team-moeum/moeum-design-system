@@ -1,11 +1,4 @@
-import {
-  forwardRef,
-  Ref,
-  useCallback,
-  useEffect,
-  useImperativeHandle,
-  useState,
-} from "react";
+import { forwardRef, Ref, useCallback, useEffect, useImperativeHandle, useState } from "react";
 import { CreateOverlayElement } from "./types";
 
 interface Props {
@@ -25,13 +18,9 @@ export const OverlayController = forwardRef(function OverlayController(
 
   const handleOverlayClose = useCallback(() => setIsOpenOverlay(false), []);
 
-  useImperativeHandle(
-    ref,
-    () => {
-      return { close: handleOverlayClose };
-    },
-    [handleOverlayClose]
-  );
+  useImperativeHandle(ref, () => {
+    return { close: handleOverlayClose };
+  }, [handleOverlayClose]);
 
   useEffect(() => {
     requestAnimationFrame(() => {
@@ -39,11 +28,5 @@ export const OverlayController = forwardRef(function OverlayController(
     });
   }, []);
 
-  return (
-    <OverlayElement
-      isOpen={isOpenOverlay}
-      close={handleOverlayClose}
-      exit={onExit}
-    />
-  );
+  return <OverlayElement isOpen={isOpenOverlay} close={handleOverlayClose} exit={onExit} />;
 });

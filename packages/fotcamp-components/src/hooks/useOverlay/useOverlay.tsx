@@ -49,7 +49,7 @@ export function useOverlay({ exitOnUnmount = true }: Options = {}) {
       },
       exit: () => {
         unmount(id);
-      },
+      }
     }),
     [id, mount, unmount]
   );

@@ -4,7 +4,7 @@ import React, {
   ReactNode,
   useCallback,
   useMemo,
-  useState,
+  useState
 } from "react";
 
 export const OverlayContext = createContext<{
@@ -13,12 +13,10 @@ export const OverlayContext = createContext<{
 } | null>(null);
 
 export function OverlayProvider({ children }: PropsWithChildren) {
-  const [overlayById, setOverlayById] = useState<Map<string, ReactNode>>(
-    new Map()
-  );
+  const [overlayById, setOverlayById] = useState<Map<string, ReactNode>>(new Map());
 
   const mount = useCallback((id: string, element: ReactNode) => {
-    setOverlayById((overlayById) => {
+    setOverlayById(overlayById => {
       const cloned = new Map(overlayById);
       cloned.set(id, element);
       return cloned;
@@ -26,7 +24,7 @@ export function OverlayProvider({ children }: PropsWithChildren) {
   }, []);
 
   const unmount = useCallback((id: string) => {
-    setOverlayById((overlayById) => {
+    setOverlayById(overlayById => {
       const cloned = new Map(overlayById);
       cloned.delete(id);
       return cloned;
