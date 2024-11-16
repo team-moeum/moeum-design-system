@@ -20,7 +20,18 @@ const preview: Preview = {
         ]
       }
     }
-  }
+  },
+  decorators: [
+    Story => {
+      if (!document.getElementById("toast-portal")) {
+        const portalDiv = document.createElement("div");
+        portalDiv.id = "toast-portal";
+        document.body.appendChild(portalDiv);
+      }
+
+      return <Story />;
+    }
+  ]
 };
 
 export default preview;
