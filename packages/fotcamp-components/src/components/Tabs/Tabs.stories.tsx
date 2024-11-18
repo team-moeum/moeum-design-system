@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "./Tabs";
-import { Button } from "../Button";
+import * as Tabs from "./Tabs";
 import { useState } from "react";
 
 /**
@@ -9,7 +8,7 @@ import { useState } from "react";
  */
 const meta = {
   title: "Components/Tabs",
-  component: Tabs,
+  component: Tabs.Root,
   parameters: {
     layout: "centered"
   },
@@ -35,7 +34,7 @@ const meta = {
       description: "초기 활성 tab 값을 설정"
     }
   }
-} satisfies Meta<typeof Tabs>;
+} satisfies Meta<typeof Tabs.Root>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -45,16 +44,16 @@ export const Default: Story = {
     dir: "ltr"
   },
   render: args => (
-    <Tabs {...args}>
-      <TabsList>
-        <TabsTrigger value="tab1">Tab1</TabsTrigger>
-        <TabsTrigger value="tab2">Tab2</TabsTrigger>
-        <TabsTrigger value="tab3">Tab3</TabsTrigger>
-      </TabsList>
-      <TabsContent value="tab1">Tab1 Content</TabsContent>
-      <TabsContent value="tab2">Tab2 Content</TabsContent>
-      <TabsContent value="tab3">Tab3 Content</TabsContent>
-    </Tabs>
+    <Tabs.Root {...args}>
+      <Tabs.List>
+        <Tabs.Trigger value="tab1">Tab1</Tabs.Trigger>
+        <Tabs.Trigger value="tab2">Tab2</Tabs.Trigger>
+        <Tabs.Trigger value="tab3">Tab3</Tabs.Trigger>
+      </Tabs.List>
+      <Tabs.Content value="tab1">Tab1 Content</Tabs.Content>
+      <Tabs.Content value="tab2">Tab2 Content</Tabs.Content>
+      <Tabs.Content value="tab3">Tab3 Content</Tabs.Content>
+    </Tabs.Root>
   )
 };
 
@@ -67,15 +66,15 @@ export function ControlledTabs() {
   };
 
   return (
-    <Tabs value={value} onValueChange={handleChangeTab}>
-      <TabsList>
-        <TabsTrigger value="tab1">Tab1</TabsTrigger>
-        <TabsTrigger value="tab2">Tab2</TabsTrigger>
-        <TabsTrigger value="tab3">Tab3</TabsTrigger>
-      </TabsList>
-      <TabsContent value="tab1">Tab1 Content</TabsContent>
-      <TabsContent value="tab2">Tab2 Content</TabsContent>
-      <TabsContent value="tab3">Tab3 Content</TabsContent>
-    </Tabs>
+    <Tabs.Root value={value} onValueChange={handleChangeTab}>
+      <Tabs.List>
+        <Tabs.Trigger value="tab1">Tab1</Tabs.Trigger>
+        <Tabs.Trigger value="tab2">Tab2</Tabs.Trigger>
+        <Tabs.Trigger value="tab3">Tab3</Tabs.Trigger>
+      </Tabs.List>
+      <Tabs.Content value="tab1">Tab1 Content</Tabs.Content>
+      <Tabs.Content value="tab2">Tab2 Content</Tabs.Content>
+      <Tabs.Content value="tab3">Tab3 Content</Tabs.Content>
+    </Tabs.Root>
   );
 }
