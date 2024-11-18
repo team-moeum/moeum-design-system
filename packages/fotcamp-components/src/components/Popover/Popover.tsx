@@ -5,6 +5,9 @@ export type PopoverRootProps = ComponentProps<typeof Root>;
 export type PopoverTriggerProps = ComponentProps<typeof Trigger>;
 export type PopoverContentProps = ComponentProps<typeof Content>;
 
+/**
+ * prop modal 이름 변경 -> locked
+ */
 const Popover = ({ ...props }: PopoverRootProps) => {
   return (
     <Root data-fotcamp-component="Popover" {...props}>

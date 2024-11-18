@@ -2,6 +2,9 @@ import cx from "classnames";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { DialogProps } from "./Dialog.type";
 
+/**
+ * prop modal 이름 변경 -> locked
+ */
 export const Dialog = ({
   open,
   onClose,
