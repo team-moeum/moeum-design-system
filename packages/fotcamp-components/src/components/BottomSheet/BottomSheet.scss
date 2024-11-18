@@ -1,0 +1,49 @@
+:root {
+  /* Radius tokens */
+  --bottomsheet-radius-none: 0;
+  --bottomsheet-radius-small: 10px;
+  --bottomsheet-radius-medium: 20px;
+  --bottomsheet-radius-large: 30px;
+}
+
+/** Default Style */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.drawer-content {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: fit-content;
+  background-color: #fff;
+  outline: none;
+  max-height: 95vh;
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+
+.drawer-handle {
+  margin-top: 10px;
+  width: 45px;
+}
+
+/** Tokens Style */
+.bottomsheet-container--radius-none {
+  border-top: var(--bottomsheet-radius-none);
+}
+
+.bottomsheet-container--radius-small {
+  border-radius: var(--bottomsheet-radius-small);
+}
+
+.bottomsheet-container--radius-medium {
+  border-radius: var(--bottomsheet-radius-medium);
+}
+
+.bottomsheet-container--radius-large {
+  border-radius: var(--bottomsheet-radius-large);
+}
