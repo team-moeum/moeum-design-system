@@ -1,20 +1,5 @@
-export interface SelectOption {
-  value: string;
-  label: string;
-  disabled?: boolean;
-}
+import * as SelectBase from "@radix-ui/react-select";
 
-export interface SelectGroup {
-  label: string;
-  options: SelectOption[];
-}
-
-export interface SelectProps {
-  placeholder?: string;
-  options?: SelectOption[];
-  groups?: SelectGroup[];
-  value?: string;
-  onChange?: (value: string) => void;
+export interface SelectProps extends SelectBase.SelectProps {
   className?: string;
-  disabled?: boolean;
 }
