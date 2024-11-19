@@ -1,3 +1,5 @@
+import * as DialogPropsBase from "@radix-ui/react-dialog";
+
 export const DialogSize = {
   SMALL: "small",
   MEDIUM: "medium",
@@ -16,13 +18,10 @@ type ValueOf<T> = T[keyof T];
 export type DialogSize = ValueOf<typeof DialogSize>;
 export type DialogRadius = ValueOf<typeof DialogRadius>;
 
-export interface DialogProps {
-  open?: boolean;
-  onClose?: () => void;
-  modal?: boolean;
+export type DialogProps = {
+  locked?: boolean;
   zIndex?: number;
   radius?: DialogSize;
   size?: DialogSize;
   className?: string;
-  children?: React.ReactNode;
-}
+} & Omit<DialogPropsBase.DialogProps, "modal">;

@@ -6,6 +6,10 @@ import { OverlayProvider } from "../../hooks/useOverlay/OverlayProvider";
 import { Flex } from "../layout/Flex";
 import { DialogRadius, DialogSize } from "./Dialog.type";
 
+/**
+ * **radix docs**
+ * https://www.radix-ui.com/primitives/docs/components/dialog
+ */
 const meta = {
   title: "Components/Dialog",
   component: Dialog,
@@ -22,7 +26,7 @@ const meta = {
       control: "select",
       options: Object.values(DialogRadius)
     },
-    modal: {
+    locked: {
       control: "boolean"
     }
   },
@@ -60,7 +64,7 @@ export const Primary: Story = {
         <Dialog
           {...args}
           open={isOpen}
-          onClose={() => {
+          onOpenChange={() => {
             close();
           }}
           children={<DialogContentA />}

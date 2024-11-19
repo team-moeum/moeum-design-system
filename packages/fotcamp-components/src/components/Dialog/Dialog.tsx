@@ -1,28 +1,26 @@
 import cx from "classnames";
-import * as DialogPrimitive from "@radix-ui/react-dialog";
+import * as DialogBase from "@radix-ui/react-dialog";
 import { DialogProps } from "./Dialog.type";
 
-/**
- * prop modal 이름 변경 -> locked
- */
 export const Dialog = ({
   open,
-  onClose,
-  modal = true,
-  radius,
   size,
+  radius,
   zIndex = 1,
+  locked = true,
+  children,
   className,
-  children
+  onOpenChange,
+  ...rest
 }: DialogProps) => (
-  <DialogPrimitive.Root open={open} onOpenChange={onClose} modal={modal}>
-    <DialogPrimitive.Portal>
-      <DialogPrimitive.Overlay
+  <DialogBase.Root open={open} onOpenChange={onOpenChange} modal={locked} {...rest}>
+    <DialogBase.Portal>
+      <DialogBase.Overlay
         className="overlay"
         data-fotcamp-component="DialogOverlay"
         style={{ zIndex }}
       />
-      <DialogPrimitive.Content
+      <DialogBase.Content
         className={cx(
           "dialog-content",
           {
@@ -35,7 +33,7 @@ export const Dialog = ({
         style={{ zIndex }}
       >
         {children}
-      </DialogPrimitive.Content>
-    </DialogPrimitive.Portal>
-  </DialogPrimitive.Root>
+      </DialogBase.Content>
+    </DialogBase.Portal>
+  </DialogBase.Root>
 );
