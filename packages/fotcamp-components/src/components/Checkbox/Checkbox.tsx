@@ -1,10 +1,21 @@
-import { Root, Indicator } from "@radix-ui/react-checkbox";
-import { CheckboxProps } from "./Checkbox.type";
+import * as CheckboxBase from "@radix-ui/react-checkbox";
+import classNames from "classnames";
 
-export function Checkbox({ children, ...props }: CheckboxProps) {
+const Root = ({ className, ...props }: CheckboxBase.CheckboxProps) => {
   return (
-    <Root className="checkbox" data-fotcamp-component="Checkbox" {...props}>
-      <Indicator>{children}</Indicator>
-    </Root>
+    <CheckboxBase.Root
+      className={classNames("checkbox", className)}
+      data-fotcamp-component="Checkbox"
+      {...props}
+    />
   );
-}
+};
+
+const Indicator = ({ ...props }: CheckboxBase.CheckboxIndicatorProps) => {
+  <CheckboxBase.Indicator data-fotcamp-component="CheckboxIndicator" {...props} />;
+};
+
+export default {
+  Root,
+  Indicator
+};
