@@ -13,7 +13,7 @@ export type BottomSheetRadius = ValueOf<typeof BottomSheetRadius>;
 export interface BottomSheetProps {
   open?: boolean;
   onClose?: () => void;
-  modal?: boolean;
+  locked?: boolean;
   showHandle?: boolean;
   handleOnly?: boolean;
   zIndex?: number;

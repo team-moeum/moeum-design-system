@@ -6,7 +6,7 @@ import { SwitchCase } from "../../shared/components/SwitchCase";
 export const BottomSheet = ({
   open,
   onClose,
-  modal = true,
+  locked = true,
   showHandle = true,
   handleOnly = false,
   radius,
@@ -15,7 +15,7 @@ export const BottomSheet = ({
   children
 }: BottomSheetProps) => {
   return (
-    <Drawer.Root open={open} onClose={onClose} modal={modal} handleOnly={handleOnly}>
+    <Drawer.Root open={open} onClose={onClose} modal={locked} handleOnly={handleOnly}>
       <Drawer.Portal>
         <Drawer.Overlay
           className="overlay"

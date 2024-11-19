@@ -5,6 +5,10 @@ import { Button } from "../Button";
 import { OverlayProvider } from "../../hooks/useOverlay/OverlayProvider";
 import { Flex } from "../layout/Flex";
 
+/**
+ * **vaul docs**
+ * https://vaul.emilkowal.ski/api
+ */
 const meta = {
   title: "Components/BottomSheet",
   component: BottomSheet,
@@ -13,7 +17,7 @@ const meta = {
   },
   tags: ["autodocs"],
   argTypes: {
-    modal: {
+    locked: {
       control: "boolean"
     }
   },
