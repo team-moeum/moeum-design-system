@@ -1,33 +1,18 @@
-import { Root, Trigger, Content, Portal } from "@radix-ui/react-popover";
-import { ComponentProps } from "react";
+import * as PopoverBase from "@radix-ui/react-popover";
+import * as PopoverPropsBase from "./Popover.type";
 
-export type PopoverRootProps = ComponentProps<typeof Root>;
-export type PopoverTriggerProps = ComponentProps<typeof Trigger>;
-export type PopoverContentProps = ComponentProps<typeof Content>;
-
-/**
- * prop modal 이름 변경 -> locked
- */
-const Popover = ({ ...props }: PopoverRootProps) => {
-  return (
-    <Root data-fotcamp-component="Popover" {...props}>
-      {props.children}
-    </Root>
-  );
+const Root = ({ locked, ...props }: PopoverPropsBase.RootProps) => {
+  return <PopoverBase.Root data-fotcamp-component="Popover" modal={locked} {...props} />;
 };
 
-const PopoverTrigger = ({ ...props }: PopoverTriggerProps) => {
-  return (
-    <Trigger data-fotcamp-component="PopoverTrigger" asChild {...props}>
-      {props.children}
-    </Trigger>
-  );
+const Trigger = ({ ...props }: PopoverPropsBase.TriggerProps) => {
+  return <PopoverBase.Trigger data-fotcamp-component="PopoverTrigger" asChild {...props} />;
 };
 
-const PopoverContent = ({ sideOffset = 4, align = "center", ...props }: PopoverContentProps) => {
+const Content = ({ sideOffset = 4, align = "center", ...props }: PopoverPropsBase.ContentProps) => {
   return (
-    <Portal data-fotcamp-component="PopoverPortal">
-      <Content
+    <PopoverBase.Portal data-fotcamp-component="PopoverPortal">
+      <PopoverBase.Content
         sideOffset={sideOffset}
         align={align}
         data-fotcamp-component="PopoverContent"
@@ -35,9 +20,9 @@ const PopoverContent = ({ sideOffset = 4, align = "center", ...props }: PopoverC
         {...props}
       >
         {props.children}
-      </Content>
-    </Portal>
+      </PopoverBase.Content>
+    </PopoverBase.Portal>
   );
 };
 
-export { Popover, PopoverTrigger, PopoverContent };
+export { Root, Trigger, Content };
