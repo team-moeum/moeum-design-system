@@ -3,7 +3,7 @@ import { Toggle } from ".";
 
 const meta = {
   title: "Toggle",
-  component: Toggle,
+  component: Toggle.Root,
   parameters: {
     layout: "centered"
   },
@@ -30,7 +30,7 @@ const meta = {
       description: "자식 엘리먼트를 토글의 루트 엘리먼트로 사용할지 여부"
     }
   }
-} satisfies Meta<typeof Toggle>;
+} satisfies Meta<typeof Toggle.Root>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
