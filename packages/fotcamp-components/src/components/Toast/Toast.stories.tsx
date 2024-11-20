@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import { Text } from "../Text";
+import { Flex } from "../layout/Flex";
+import { Grid } from "../layout/Grid";
 import { Toast } from "./Toast";
 import { Button } from "../Button";
-import { Flex } from "../layout/Flex";
-import { ToastProvider } from "./ToastProvider";
 import { useToast } from "./useToast";
-import { useEffect } from "react";
-import { Grid } from "../layout/Grid";
+import { ToastProvider } from "./ToastProvider";
 
 const meta = {
   title: "Components/Toast",
@@ -17,12 +17,25 @@ const meta = {
   argTypes: {
     position: {
       control: "select",
-      options: ["top-left", "top-right", "bottom-left", "bottom-right"]
+      options: [
+        "top-left",
+        "top-right",
+        "top-center",
+        "bottom-left",
+        "bottom-right",
+        "bottom-center"
+      ]
     }
   },
   decorators: [
     Story => (
-      <ToastProvider>
+      <ToastProvider
+        options={{
+          duration: 2000,
+          style: { background: "#FFF" },
+          offest: 0
+        }}
+      >
         <Story />
       </ToastProvider>
     )
@@ -34,8 +47,8 @@ type Story = StoryObj<typeof meta>;
 
 const ToastContentA = () => {
   return (
-    <Flex height={500} p={20} align="center" justify="center">
-      Toast
+    <Flex p="10px 8px" align="center" justify="center">
+      <Text color="#123123">Toast Content</Text>
     </Flex>
   );
 };
@@ -50,28 +63,26 @@ export const Primary: Story = {
 
     const handleAddTopLeftToast = () => {
       add({
-        message: "작업이 완료되었습니다!",
-        type: "success",
-        duration: 3000,
-        position: "top-left"
+        radius: "small",
+        position: "top-left",
+        content: <ToastContentA />
       });
     };
 
     const handleAddTopCenterToast = () => {
       add({
-        message: "작업이 완료되었습니다!",
-        type: "success",
         duration: 3000,
+        content: <ToastContentA />,
         position: "top-center"
       });
     };
 
     const handleAddTopRightToast = () => {
       add({
-        message: "작업이 완료되었습니다!",
-        type: "success",
-        duration: 3000,
-        position: "top-right"
+        position: "top-right",
+        radius: "large",
+        content: <ToastContentA />,
+        offest: 50
       });
     };
 
@@ -89,7 +100,8 @@ export const Primary: Story = {
         message: "작업이 완료되었습니다!",
         type: "success",
         duration: 3000,
-        position: "bottom-center"
+        position: "bottom-center",
+        offest: 50
       });
     };
 

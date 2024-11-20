@@ -2,25 +2,11 @@ import { useState, useCallback, useMemo } from "react";
 import { ToastType, ToastPosition } from "./Toast.type";
 import cx from "classnames";
 
-interface UseToastStackReturn {
-  getToasterProps: (
-    toast: ToastType,
-    index: number,
-    position: ToastPosition
-  ) => {
-    ref: (el: HTMLDivElement | null) => void;
-    style: {
-      transform: string;
-      transition: string;
-    };
-    className: string;
-  };
-  groupedToasts: Record<ToastPosition, ToastType[]>;
-}
+/** between the toasts spacing */
+const GAP = 8;
 
-export const useToastStack = (toasts: ToastType[]): UseToastStackReturn => {
+export const useToastStack = (toasts: ToastType[]) => {
   const [heights, setHeights] = useState<Record<string, number>>({});
-  const GAP = 8;
 
   const updateHeight = useCallback((id: string, height: number) => {
     setHeights(prev => ({
@@ -32,11 +18,11 @@ export const useToastStack = (toasts: ToastType[]): UseToastStackReturn => {
   const groupedToasts = useMemo(() => {
     const groups: Record<ToastPosition, ToastType[]> = {
       "top-left": [],
-      "top-center": [],
       "top-right": [],
+      "top-center": [],
       "bottom-left": [],
-      "bottom-center": [],
-      "bottom-right": []
+      "bottom-right": [],
+      "bottom-center": []
     };
 
     toasts.forEach(toast => {

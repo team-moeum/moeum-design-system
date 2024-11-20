@@ -2,9 +2,10 @@
 
 :root {
   /* Radius tokens */
-  --toast-radius-small: 10px;
-  --toast-radius-medium: 20px;
-  --toast-radius-large: 30px;
+  --seed-toast-radius-none: 0px;
+  --seed-toast-radius-small: 8px;
+  --seed-toast-radius-medium: 12px;
+  --seed-toast-radius-large: 20px;
 }
 
 /** Default Style */
@@ -18,15 +19,11 @@
   align-items: center;
   background: #fff;
   color: #363636;
-  line-height: 1.3;
   will-change: transform;
   box-shadow:
     0 3px 10px rgba(0, 0, 0, 0.1),
     0 3px 3px rgba(0, 0, 0, 0.05);
-  max-width: 350px;
   pointer-events: auto;
-  padding: 8px 10px;
-  border-radius: 8px;
   transition: transform 0.23s cubic-bezier(0.21, 1.02, 0.73, 1);
 
   &.top {
@@ -103,30 +100,18 @@
 }
 
 /** Tokens Style */
-.toast-content--size-small {
-  padding: var(--toast-size-padding-small);
+.toast--radius-none {
+  border-radius: var(--seed-toast-radius-none);
 }
 
-.toast-content--size-medium {
-  padding: var(--toast-size-padding-medium);
+.toast--radius-small {
+  border-radius: var(--seed-toast-radius-small);
 }
 
-.toast-content--size-large {
-  padding: var(--toast-size-padding-large);
+.toast--radius-medium {
+  border-radius: var(--seed-toast-radius-medium);
 }
 
-.toast-content--radius-none {
-  border-top: var(--toast-radius-none);
-}
-
-.toast-content--radius-small {
-  border-radius: var(--toast-radius-small);
-}
-
-.toast-content--radius-medium {
-  border-radius: var(--toast-radius-medium);
-}
-
-.toast-content--radius-large {
-  border-radius: var(--toast-radius-large);
+.toast--radius-large {
+  border-radius: var(--seed-toast-radius-large);
 }

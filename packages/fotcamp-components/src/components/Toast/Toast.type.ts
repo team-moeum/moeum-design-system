@@ -17,21 +17,34 @@ export type ToastPosition =
   | "bottom-center"
   | "bottom-right";
 
-export interface ToastType {
-  id: string;
-  message: string;
+export interface ToastOptions {
   type: "success" | "error" | "info";
+  offest: number;
+  message: string;
   duration: number;
   position: ToastPosition;
+
+  radius?: ToastRadius;
+  style?: React.CSSProperties;
+
+  content?: React.ReactNode;
+}
+
+export interface ToastType extends ToastOptions {
+  id: string;
+}
+
+export interface ToastProviderProps {
+  children: React.ReactNode;
+  options?: Partial<ToastOptions>;
 }
 
 export interface ToastContextValue {
   toasts: ToastType[];
-  add: (toast: ToastProps) => string;
-  update: (id: string, toast: Partial<ToastType>) => void;
+  add: (toast: Partial<ToastOptions>) => string;
   remove: (id: string) => void;
 }
 
-export type ToastProps = Partial<Omit<ToastType, "id">> & {
-  style?: React.CSSProperties;
-};
+export interface ToastProps extends Partial<ToastOptions> {
+  children?: React.ReactNode;
+}
