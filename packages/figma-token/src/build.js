@@ -12,11 +12,7 @@ StyleDictionary.registerFormat({
     const header = await fileHeader({ file });
 
     const filename = file.destination.split(".")[0].toLowerCase();
-    const selector = filename.includes("lite")
-      ? ".lite"
-      : filename.includes("dark")
-      ? ".dark"
-      : ":root";
+    const selector = ":root";
     const variables = formattedVariables({
       format: "css",
       dictionary,
