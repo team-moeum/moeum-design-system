@@ -18,8 +18,15 @@ StyleDictionary.registerFormat({
       dictionary,
       outputReferences,
     });
+    let style = "";
 
-    return `${header} ${selector} {\n${variables}\n}\n`;
+    if (filename.includes("other")) {
+      style += `@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css")\n\n`;
+    }
+
+    style += `${header} ${selector} {\n${variables}\n}\n`;
+
+    return style;
   },
 });
 
