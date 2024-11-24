@@ -1,13 +1,22 @@
+import { Toaster } from "./Toast";
+import { createPortal } from "react-dom";
 import { useIsMounted } from "@/hooks/useIsMounted";
 import { createContext, ReactNode, useState, useCallback, useMemo } from "react";
-import { createPortal } from "react-dom";
-import { Toaster } from "./Toast";
-import { ToastContextValue, ToastProps, ToastType } from "./Toast.type";
+import { ToastContextValue, ToastOptions, ToastProviderProps, ToastType } from "./Toast.type";
+
+const defaultToastValue: ToastOptions = {
+  type: "info",
+  style: {},
+  offest: 0,
+  radius: "none",
+  message: "",
+  duration: 3000,
+  position: "top-right"
+};
 
 export const ToastContext = createContext<ToastContextValue>({
   toasts: [],
   add: () => "",
-  update: () => {},
   remove: () => {}
 });
 
@@ -19,31 +28,36 @@ const ToastPortal = ({ children }: { children: ReactNode }) => {
   return createPortal(children, node);
 };
 
-export const ToastProvider = ({ children }: { children: ReactNode }) => {
+export const ToastProvider = ({ options, children }: ToastProviderProps) => {
   const [toasts, setToasts] = useState<ToastType[]>([]);
 
-  const add = useCallback((toast: ToastProps) => {
-    const id = Math.random().toString(36).substring(2, 9);
-    const newToast: ToastType = {
-      id,
-      message: toast.message || "",
-      duration: toast.duration ?? 3000,
-      type: toast.type ?? "info",
-      position: toast.position ?? "bottom-right"
-    };
+  const defaultOptions = useMemo(() => options, [options]);
 
-    setToasts(prev => [newToast, ...prev]);
+  const add = useCallback(
+    (toast: Partial<ToastOptions>) => {
+      const id = Math.random().toString(36).substring(2, 9);
+      const newToast: ToastType = {
+        ...toast,
+        id,
+        type: toast.type ?? defaultOptions?.type ?? defaultToastValue.type,
+        style: toast.style ?? defaultOptions?.style ?? defaultToastValue.style,
+        offest: toast.offest ?? defaultOptions?.offest ?? defaultToastValue.offest,
+        radius: toast.radius ?? defaultOptions?.radius ?? defaultToastValue.radius,
+        message: toast.message ?? defaultOptions?.message ?? defaultToastValue.message,
+        duration: toast.duration ?? defaultOptions?.duration ?? defaultToastValue.duration,
+        position: toast.position ?? defaultOptions?.position ?? defaultToastValue.position
+      };
 
-    if (newToast.duration > 0) {
-      setTimeout(() => remove(id), newToast.duration);
-    }
+      setToasts(prev => [newToast, ...prev]);
 
-    return id;
-  }, []);
+      if (newToast.duration > 0) {
+        setTimeout(() => remove(id), newToast.duration);
+      }
 
-  const update = useCallback((id: string, toast: Partial<ToastType>) => {
-    setToasts(prev => prev.map(t => (t.id === id ? { ...t, ...toast } : t)));
-  }, []);
+      return id;
+    },
+    [defaultOptions]
+  );
 
   const remove = useCallback((id: string) => {
     setToasts(prev => prev.filter(toast => toast.id !== id));
@@ -53,10 +67,9 @@ export const ToastProvider = ({ children }: { children: ReactNode }) => {
     () => ({
       toasts,
       add,
-      update,
       remove
     }),
-    [toasts, add, update, remove]
+    [toasts, add, remove]
   );
 
   return (

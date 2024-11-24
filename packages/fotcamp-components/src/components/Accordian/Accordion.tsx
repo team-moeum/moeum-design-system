@@ -1,26 +1,36 @@
-import { Root, Item, Header, Content, Trigger } from "@radix-ui/react-accordion";
-import { AccordionContentProps, AccordionItemProps, AccordionTriggerProps } from "./Accordion.type";
+import * as AccordionBase from "@radix-ui/react-accordion";
+import * as AccordinaProps from "./Accordion.type";
 
-const Accordion = Root;
-
-const AccordionItem = ({ children, ...props }: AccordionItemProps) => (
-  <Item className={"accordion-item"} data-fotcamp-component="AccordionItem" {...props}>
-    {children}
-  </Item>
+const Root = ({ ...props }: AccordinaProps.RootProps) => (
+  <AccordionBase.Root data-fotcamp-component="Accordion" {...props} />
 );
 
-const AccordionTrigger = ({ children, ...props }: AccordionTriggerProps) => (
-  <Header className="flex">
-    <Trigger className="accordion-trigger" data-fotcamp-component="AccordionTrigger" {...props}>
+const Item = ({ children, ...props }: AccordinaProps.ItemProps) => (
+  <AccordionBase.Item className="accordion-item" data-fotcamp-component="AccordionItem" {...props}>
+    {children}
+  </AccordionBase.Item>
+);
+
+const Trigger = ({ children, ...props }: AccordinaProps.TriggerProps) => (
+  <AccordionBase.Header className="flex">
+    <AccordionBase.Trigger
+      className="accordion-trigger"
+      data-fotcamp-component="AccordionTrigger"
+      {...props}
+    >
       {children}
-    </Trigger>
-  </Header>
+    </AccordionBase.Trigger>
+  </AccordionBase.Header>
 );
 
-const AccordionContent = ({ children, ...props }: AccordionContentProps) => (
-  <Content className="accordion-content" data-fotcamp-component="AccordionContent" {...props}>
+const Content = ({ children, ...props }: AccordinaProps.ContentProps) => (
+  <AccordionBase.Content
+    className="accordion-content"
+    data-fotcamp-component="AccordionContent"
+    {...props}
+  >
     {children}
-  </Content>
+  </AccordionBase.Content>
 );
 
-export { Accordion, AccordionItem, AccordionTrigger, AccordionContent };
+export { Root, Item, Trigger, Content };

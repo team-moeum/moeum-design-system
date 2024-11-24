@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Popover, PopoverContent, PopoverTrigger } from "./Popover";
+import * as Popover from "./Popover";
 import { Button } from "../Button";
 import { useState } from "react";
 
@@ -9,15 +9,15 @@ import { useState } from "react";
  */
 const meta = {
   title: "Components/Popover",
-  component: Popover,
+  component: Popover.Root,
   parameters: {
     layout: "centered"
   },
   tags: ["autodocs"],
   argTypes: {
-    modal: {
+    locked: {
       control: "boolean",
-      description: "(진행중)"
+      description: "popover 뒷 영역 잠금을 설정합니다."
     },
     open: {
       control: "boolean",
@@ -32,7 +32,7 @@ const meta = {
       description: "초기 open 값을 설정합니다."
     }
   }
-} satisfies Meta<typeof Popover>;
+} satisfies Meta<typeof Popover.Root>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -40,12 +40,12 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {},
   render: args => (
-    <Popover {...args}>
-      <PopoverTrigger>
+    <Popover.Root {...args}>
+      <Popover.Trigger>
         <Button>Open popover</Button>
-      </PopoverTrigger>
-      <PopoverContent>Popover Content</PopoverContent>
-    </Popover>
+      </Popover.Trigger>
+      <Popover.Content>Popover Content</Popover.Content>
+    </Popover.Root>
   )
 };
 
@@ -54,12 +54,12 @@ export const DefaultOpen: Story = {
     defaultOpen: true
   },
   render: args => (
-    <Popover {...args}>
-      <PopoverTrigger>
+    <Popover.Root {...args}>
+      <Popover.Trigger>
         <Button>Open popover</Button>
-      </PopoverTrigger>
-      <PopoverContent>Popover Content</PopoverContent>
-    </Popover>
+      </Popover.Trigger>
+      <Popover.Content>Popover Content</Popover.Content>
+    </Popover.Root>
   )
 };
 
@@ -75,12 +75,12 @@ export const WithCallBack: Story = {
     };
 
     return (
-      <Popover {...args} open={isOpen} onOpenChange={handleOpenChange}>
-        <PopoverTrigger asChild>
+      <Popover.Root {...args} open={isOpen} onOpenChange={handleOpenChange}>
+        <Popover.Trigger asChild>
           <Button>Open popover</Button>
-        </PopoverTrigger>
-        <PopoverContent>Popover Content</PopoverContent>
-      </Popover>
+        </Popover.Trigger>
+        <Popover.Content>Popover Content</Popover.Content>
+      </Popover.Root>
     );
   }
 };

@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "./Accordion";
+import * as Accordion from "./Accordion";
 
 const meta = {
   title: "Components/Accordian",
-  component: Accordion,
+  component: Accordion.Root,
   parameters: {
     layout: "centered"
   },
@@ -28,7 +28,7 @@ const meta = {
       description: "초기 값을 설정합니다."
     }
   }
-} satisfies Meta<typeof Accordion>;
+} satisfies Meta<typeof Accordion.Root>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -41,20 +41,20 @@ export const Default: Story = {
     defaultValue: "item-1"
   },
   render: args => (
-    <Accordion {...args}>
-      <AccordionItem value="item-1">
-        <AccordionTrigger>Item1</AccordionTrigger>
-        <AccordionContent>Item1 Content</AccordionContent>
-      </AccordionItem>
-      <AccordionItem value="item-2">
-        <AccordionTrigger>Item2</AccordionTrigger>
-        <AccordionContent>Items2 Content</AccordionContent>
-      </AccordionItem>
-      <AccordionItem value="item-3">
-        <AccordionTrigger>Item3</AccordionTrigger>
-        <AccordionContent>Item3 Content</AccordionContent>
-      </AccordionItem>
-    </Accordion>
+    <Accordion.Root {...args}>
+      <Accordion.Item value="item-1">
+        <Accordion.Trigger>Item1</Accordion.Trigger>
+        <Accordion.Content>Item1 Content</Accordion.Content>
+      </Accordion.Item>
+      <Accordion.Item value="item-2">
+        <Accordion.Trigger>Item2</Accordion.Trigger>
+        <Accordion.Content>Items2 Content</Accordion.Content>
+      </Accordion.Item>
+      <Accordion.Item value="item-3">
+        <Accordion.Trigger>Item3</Accordion.Trigger>
+        <Accordion.Content>Item3 Content</Accordion.Content>
+      </Accordion.Item>
+    </Accordion.Root>
   )
 };
 
@@ -63,17 +63,17 @@ export const Multiple: Story = {
     type: "multiple"
   },
   render: args => (
-    <Accordion {...args}>
-      <AccordionItem value="item-1">
-        <AccordionTrigger>Item1</AccordionTrigger>
-        <AccordionContent>Item1 Content</AccordionContent>
-      </AccordionItem>
+    <Accordion.Root {...args}>
+      <Accordion.Item value="item-1">
+        <Accordion.Trigger>Item1</Accordion.Trigger>
+        <Accordion.Content>Item1 Content</Accordion.Content>
+      </Accordion.Item>
 
-      <AccordionItem value="item-2">
-        <AccordionTrigger>Item2</AccordionTrigger>
-        <AccordionContent>Items2 Content</AccordionContent>
-      </AccordionItem>
-    </Accordion>
+      <Accordion.Item value="item-2">
+        <Accordion.Trigger>Item2</Accordion.Trigger>
+        <Accordion.Content>Items2 Content</Accordion.Content>
+      </Accordion.Item>
+    </Accordion.Root>
   )
 };
 
@@ -86,16 +86,16 @@ export const WithCallBack: Story = {
     }
   },
   render: args => (
-    <Accordion {...args}>
-      <AccordionItem value="item-1">
-        <AccordionTrigger>Item1</AccordionTrigger>
-        <AccordionContent>Item1 Content</AccordionContent>
-      </AccordionItem>
+    <Accordion.Root {...args}>
+      <Accordion.Item value="item-1">
+        <Accordion.Trigger>Item1</Accordion.Trigger>
+        <Accordion.Content>Item1 Content</Accordion.Content>
+      </Accordion.Item>
 
-      <AccordionItem value="item-2">
-        <AccordionTrigger>Item2</AccordionTrigger>
-        <AccordionContent>Items2 Content</AccordionContent>
-      </AccordionItem>
-    </Accordion>
+      <Accordion.Item value="item-2">
+        <Accordion.Trigger>Item2</Accordion.Trigger>
+        <Accordion.Content>Items2 Content</Accordion.Content>
+      </Accordion.Item>
+    </Accordion.Root>
   )
 };
