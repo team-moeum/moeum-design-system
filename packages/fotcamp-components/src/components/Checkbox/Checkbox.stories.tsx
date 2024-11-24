@@ -3,66 +3,44 @@ import { Checkbox } from ".";
 
 const meta = {
   title: "Checkbox",
-  component: Checkbox,
+  component: Checkbox.Root,
   parameters: {
     layout: "centered"
   },
-  tags: ["autodocs"],
-  argTypes: {
-    defaultChecked: {
-      control: "boolean",
-      description: "체크박스의 초기 상태를 설정합니다"
-    },
-    checked: {
-      control: "boolean",
-      description: "체크박스의 현재 상태를 설정합니다"
-    },
-    disabled: {
-      control: "boolean",
-      description: "체크박스의 비활성화 상태를 설정합니다"
-    },
-    required: {
-      control: "boolean",
-      description: "필수 입력 여부를 설정합니다"
-    },
-    onCheckedChange: {
-      action: "checked changed",
-      description: "체크박스 상태가 변경될 때 호출되는 콜백 함수"
-    }
-  }
-} satisfies Meta<typeof Checkbox>;
+  tags: ["autodocs"]
+} satisfies Meta<typeof Checkbox.Root>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
-  args: {
-    children: <span>✓</span>,
-    defaultChecked: false,
-    disabled: false
-  }
+  render: args => (
+    <Checkbox.Root defaultChecked={false}>
+      <span>✓</span>
+    </Checkbox.Root>
+  )
 };
 
 export const Checked: Story = {
-  args: {
-    children: <span>✓</span>,
-    defaultChecked: true,
-    disabled: false
-  }
+  render: args => (
+    <Checkbox.Root defaultChecked>
+      <span>✓</span>
+    </Checkbox.Root>
+  )
 };
 
 export const Disabled: Story = {
-  args: {
-    children: <span>✓</span>,
-    defaultChecked: false,
-    disabled: true
-  }
+  render: args => (
+    <Checkbox.Root defaultChecked disabled>
+      <span>✓</span>
+    </Checkbox.Root>
+  )
 };
 
 export const Required: Story = {
-  args: {
-    children: <span>✓</span>,
-    defaultChecked: false,
-    required: true
-  }
+  render: args => (
+    <Checkbox.Root defaultChecked required>
+      <span>✓</span>
+    </Checkbox.Root>
+  )
 };

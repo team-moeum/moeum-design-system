@@ -1,23 +1,26 @@
-import { Root, Item, Indicator } from "@radix-ui/react-radio-group";
-import { RadioGroupItemProps, RadioGroupProps } from "./RadioGroup.type";
+import * as RadioGroupBase from "@radix-ui/react-radio-group";
+import classNames from "classnames";
 
-function RadioGroupItem({ children, value, ...props }: RadioGroupItemProps) {
+function Root({ className, ...props }: RadioGroupBase.RadioGroupProps) {
   return (
-    <div className="radio-group-item" data-fotcamp-component="RadioGroupItem">
-      <Item value={value} id={value} {...props}>
-        <Indicator />
-      </Item>
-      <label htmlFor={value}>{children}</label>
-    </div>
+    <RadioGroupBase.Root
+      className={classNames("radio-group", className)}
+      data-fotcamp-component="RadioGroup"
+      {...props}
+    />
   );
 }
 
-export function RadioGroup({ children, ...props }: RadioGroupProps) {
-  return (
-    <Root className="radio-group" data-fotcamp-component="RadioGroup" {...props}>
-      {children}
-    </Root>
-  );
-}
+const Item = ({ children, value, ...props }: RadioGroupBase.RadioGroupItemProps) => {
+  return <RadioGroupBase.Item value={value} data-fotcamp-component="RadioGroupItem" {...props} />;
+};
 
-RadioGroup.Item = RadioGroupItem;
+const Indicator = ({ ...props }: RadioGroupBase.RadioGroupIndicatorProps) => {
+  return <RadioGroupBase.Indicator data-fotcamp-component="RadioGroupIndicator" {...props} />;
+};
+
+export default {
+  Root,
+  Item,
+  Indicator
+};

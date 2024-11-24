@@ -1,10 +1,14 @@
-import { Root } from "@radix-ui/react-toggle";
-import type { ToggleProps } from "./Toggle.type";
+import * as ToggleBase from "@radix-ui/react-toggle";
+import classNames from "classnames";
 
-export function Toggle({ children, ...props }: ToggleProps) {
+const Root = ({ className, ...props }: ToggleBase.ToggleProps) => {
   return (
-    <Root className="toggle" data-fotcamp-component="Toggle" {...props}>
-      {children}
-    </Root>
+    <ToggleBase.Root
+      className={classNames("toggle", className)}
+      data-fotcamp-component="Toggle"
+      {...props}
+    />
   );
-}
+};
+
+export default { Root };
