@@ -5,11 +5,6 @@ env:
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - refactor/components
-    paths:
-      - packages/fotcamp-components/**
   pull_request:
     branches:
       - refactor/components
@@ -17,31 +12,42 @@ on:
       - packages/fotcamp-components/**
 
 jobs:
-  chromatic:
-    name: Run Chromatic
+  chromatic-deployment:
+    name: Deploy Storybook to Chromatic
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout Repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Install pnpm
+      - name: Setup PNPM
         uses: pnpm/action-setup@v2
         with:
           version: 9
           run_install: false
 
-      - uses: actions/setup-node@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: 20.x
           cache: "pnpm"
 
-      - name: Install dependencies
+      - name: Install Dependencies
         run: pnpm install --filter "./packages/fotcamp-components" --no-frozen-lockfile
 
-      - name: Run Chromatic
+      - name: Publish to Chromatic
+        id: chromatic
         uses: chromaui/action@latest
         with:
           projectToken: ${{ env.CHROMATIC_PROJECT_TOKEN }}
           workingDir: packages/fotcamp-components
+
+      - name: Add Storybook URL Comment
+        uses: thollander/actions-comment-pull-request@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          message: |
+            📚 Storybook is ready for review!
+            🔗 Preview: ${{ steps.chromatic.outputs.storybookUrl }}
