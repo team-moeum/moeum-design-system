@@ -1,0 +1,129 @@
+:root {
+  // Size tokens
+  --button-large-padding-x: 24px;
+  --button-large-padding-y: 16px;
+  --button-large-font-size: 16px;
+  --button-large-height: 48px;
+
+  --button-medium-padding-x: 20px;
+  --button-medium-padding-y: 12px;
+  --button-medium-font-size: 14px;
+  --button-medium-height: 40px;
+
+  --button-small-padding-x: 16px;
+  --button-small-padding-y: 8px;
+  --button-small-font-size: 14px;
+  --button-small-height: 32px;
+
+  // Type tokens
+  --button-primary-background: #007aff;
+  --button-primary-color: #ffffff;
+  --button-primary-hover-background: #0062cc;
+  --button-primary-active-background: #0055b3;
+
+  --button-secondary-background: #f2f2f7;
+  --button-secondary-color: #000000;
+  --button-secondary-hover-background: #e5e5ea;
+  --button-secondary-active-background: #d8d8dd;
+
+  --button-danger-background: #ff3b30;
+  --button-danger-color: #ffffff;
+  --button-danger-hover-background: #ff1f13;
+  --button-danger-active-background: #ff0d00;
+
+  // Display tokens
+  --button-display-inline: inline;
+  --button-display-block: block;
+  --button-display-full: full;
+
+  // Style tokens
+  --button-style-fill: fill;
+  --button-style-outline: outline;
+  --button-style-flat: flat;
+}
+
+// Styles
+.button {
+  box-sizing: border-box;
+  position: relative;
+  cursor: pointer;
+  border: none;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.button--size-large {
+  padding: var(--button-large-padding-y) var(--button-large-padding-x);
+  font-size: var(--button-large-font-size);
+  height: var(--button-large-height);
+}
+
+.button--size-medium {
+  padding: var(--button-medium-padding-y) var(--button-medium-padding-x);
+  font-size: var(--button-medium-font-size);
+  height: var(--button-medium-height);
+}
+
+.button--size-small {
+  padding: var(--button-small-padding-y) var(--button-small-padding-x);
+  font-size: var(--button-small-font-size);
+  height: var(--button-small-height);
+}
+
+@each $type in ("primary", "secondary", "danger") {
+  .button--type-#{$type}.button--style-fill {
+    background-color: var(--button-#{$type}-background);
+    color: var(--button-#{$type}-color);
+
+    &:hover:not(:disabled) {
+      background-color: var(--button-#{$type}-hover-background);
+    }
+
+    &:active:not(:disabled) {
+      background-color: var(--button-#{$type}-active-background);
+    }
+  }
+
+  .button--type-#{$type}.button--style-outline {
+    background-color: transparent;
+    color: var(--button-#{$type}-background);
+    border: 1px solid var(--button-#{$type}-background);
+
+    &:hover:not(:disabled) {
+      background-color: color-mix(in srgb, var(--button-#{$type}-background) 10%, transparent);
+    }
+
+    &:active:not(:disabled) {
+      background-color: color-mix(in srgb, var(--button-#{$type}-background) 20%, transparent);
+    }
+  }
+
+  .button--type-#{$type}.button--style-flat {
+    background-color: transparent;
+    color: var(--button-#{$type}-background);
+
+    &:hover:not(:disabled) {
+      background-color: color-mix(in srgb, var(--button-#{$type}-background) 10%, transparent);
+    }
+
+    &:active:not(:disabled) {
+      background-color: color-mix(in srgb, var(--button-#{$type}-background) 20%, transparent);
+    }
+  }
+}
+
+.button--display-inline {
+  display: var(--button-display-inline);
+}
+
+.button--display-block {
+  display: var(--button-display-block);
+}
+
+.button--display-full {
+  display: var(--button-display-block);
+  width: 100%;
+}

@@ -1,0 +1,117 @@
+@use "./ToastAnimation.scss" as *;
+
+:root {
+  /* Radius tokens */
+  --seed-toast-radius-none: 0px;
+  --seed-toast-radius-small: 8px;
+  --seed-toast-radius-medium: 12px;
+  --seed-toast-radius-large: 20px;
+}
+
+/** Default Style */
+@include toast-animation("top");
+@include toast-animation("bottom");
+
+.toast-content {
+  opacity: 0;
+  display: flex;
+  position: relative;
+  align-items: center;
+  background: #fff;
+  color: #363636;
+  will-change: transform;
+  box-shadow:
+    0 3px 10px rgba(0, 0, 0, 0.1),
+    0 3px 3px rgba(0, 0, 0, 0.05);
+  pointer-events: auto;
+  transition: transform 0.23s cubic-bezier(0.21, 1.02, 0.73, 1);
+
+  &.top {
+    &.visible {
+      animation: toast-enter-top 0.35s cubic-bezier(0.21, 1.02, 0.73, 1) forwards;
+    }
+    &.hidden {
+      animation: toast-exit-top 0.4s cubic-bezier(0.06, 0.71, 0.55, 1) forwards;
+    }
+  }
+
+  &.bottom {
+    &.visible {
+      animation: toast-enter-bottom 0.35s cubic-bezier(0.21, 1.02, 0.73, 1) forwards;
+    }
+    &.hidden {
+      animation: toast-exit-bottom 0.4s cubic-bezier(0.06, 0.71, 0.55, 1) forwards;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &.visible {
+      animation: toast-fade-in 0.35s ease-in forwards;
+    }
+    &.hidden {
+      animation: toast-fade-out 0.4s ease-out forwards;
+    }
+  }
+}
+
+.toaster-content {
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+}
+
+.toast-wrapper {
+  position: absolute;
+
+  > * {
+    transition: all 0.23s cubic-bezier(0.21, 1.02, 0.73, 1);
+  }
+
+  &.toast-wrapper--top-right {
+    right: 0;
+  }
+
+  &.toast-wrapper--top-left {
+    left: 0;
+  }
+
+  &.toast-wrapper--top-center {
+    left: 50%;
+  }
+
+  &.toast-wrapper--bottom-right {
+    bottom: 0;
+    right: 0;
+  }
+
+  &.toast-wrapper--bottom-left {
+    bottom: 0;
+    left: 0;
+  }
+
+  &.toast-wrapper--bottom-center {
+    bottom: 0;
+    left: 50%;
+  }
+}
+
+/** Tokens Style */
+.toast--radius-none {
+  border-radius: var(--seed-toast-radius-none);
+}
+
+.toast--radius-small {
+  border-radius: var(--seed-toast-radius-small);
+}
+
+.toast--radius-medium {
+  border-radius: var(--seed-toast-radius-medium);
+}
+
+.toast--radius-large {
+  border-radius: var(--seed-toast-radius-large);
+}

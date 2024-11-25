@@ -1,0 +1,77 @@
+{/* Button.mdx */}
+
+import { Meta, Controls } from '@storybook/blocks';
+ 
+import * as ButtonStories from './Button.stories';
+
+<Meta of={ButtonStories} />
+ 
+# Button Tokens
+Button Tokens Guide
+## Rule
+
+```plain
+seed_button_{properties}_{value}_{theme}
+```
+
+## Size
+
+properties: size - \*
+
+```css
+seed_button_size_padding_x_large: 24px;
+seed_button_size_padding_y_large: 16px;
+seed_button_size_fontsize_large: 16px;
+seed_button_size_height_large: 48px;
+
+seed_button_size_padding_x_medium: 20px;
+seed_button_size_padding_y_medium: 12px;
+seed_button_size_font_size_medium: 14px;
+seed_button_size_height_medium: 40px;
+
+seed_button_size_padding_x_small: 16px;
+seed_button_size_padding_y_small: 8px;
+seed_button_size_font_size_small: 14px;
+seed_button_size_height_small: 32px;
+```
+
+## Style
+
+properties: style
+
+```css
+seed_button_style_fill: fill;
+seed_button_style_outline: outline;
+seed_button_style_flat: flat;
+```
+
+## Display
+
+properties: display
+
+```css
+seed_button_display_inline: inline;
+seed_button_display_block: block;
+seed_button_display_full: full;
+```
+
+## Type
+
+properties: type
+
+```css
+seed_button_background_primary: #007aff;
+seed_button_color_primary: #ffffff;
+seed_button_hover_background_primary: #0062cc;
+seed_button_active_background_primary: #0055b3;
+
+seed_button_background_secondary: #f2f2f7;
+seed_button_color_secondary: #000000;
+seed_button_hover_background_secondary: #e5e5ea;
+seed_button_active_background_secondary: #d8d8dd;
+
+seed_button_background_danger: #ff3b30;
+seed_button_color_danger: #ffffff;
+seed_button_hover_background_danger: #ff1f13;
+seed_button_active_background_danger: #ff0d00;
+```
