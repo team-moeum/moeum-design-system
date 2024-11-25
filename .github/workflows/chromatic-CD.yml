@@ -39,7 +39,9 @@ jobs:
 
       - name: depedency install
         if: steps.cache.outputs.cache-hit != 'true'
-        run: npm ci
+        run: |
+          cd packages/fotcamp-components
+          npm ci
 
       - name: Run Chromatic
         uses: chromaui/action@latest
