@@ -88,7 +88,7 @@ export const WithCallBack: Story = {
   render: args => (
     <Accordion.Root {...args}>
       <Accordion.Item value="item-1">
-        <Accordion.Trigger>Item1</Accordion.Trigger>
+        <Accordion.Trigger>Item1-test-action</Accordion.Trigger>
         <Accordion.Content>Item1 Content</Accordion.Content>
       </Accordion.Item>
 
