@@ -1,0 +1,43 @@
+name: Chromatic CD
+
+env:
+  CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - packages/fotcamp-components/**
+  pull_request:
+    paths:
+      - packages/fotcamp-components/**
+
+jobs:
+  chromatic:
+    name: Run Chromatic
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+
+      - name: cache dependencies
+        id: cache
+        uses: actions/cache@v3
+        with:
+          path: "**/node_modules"
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}-storybook-${{ hashFiles('packages/fotcamp-components/**') }}
+
+      - name: depedency install
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: npm ci
+
+      - name: Run Chromatic
+        uses: chromaui/action@latest
+        with:
+          projectToken: ${{ env.CHROMATIC_PROJECT_TOKEN }}
