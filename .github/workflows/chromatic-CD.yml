@@ -26,24 +26,22 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 9
+          run_install: false
+
       - uses: actions/setup-node@v4
         with:
           node-version: 20.x
+          cache: "pnpm"
 
-      - name: cache dependencies
-        id: cache
-        uses: actions/cache@v3
-        with:
-          path: "**/node_modules"
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}-storybook-${{ hashFiles('packages/fotcamp-components/**') }}
-
-      - name: depedency install
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: |
-          cd packages/fotcamp-components
-          npm ci
+      - name: Install dependencies
+        run: pnpm install
 
       - name: Run Chromatic
         uses: chromaui/action@latest
         with:
           projectToken: ${{ env.CHROMATIC_PROJECT_TOKEN }}
+          workingDir: packages/fotcamp-components # Chromatic 실행 디렉토리 지정
