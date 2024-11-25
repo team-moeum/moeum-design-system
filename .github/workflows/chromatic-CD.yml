@@ -1,4 +1,4 @@
-name: "Chromatic"
+name: Chromatic CD
 
 env:
   CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
@@ -6,6 +6,9 @@ env:
 on:
   workflow_dispatch:
   push:
+    paths:
+      - packages/fotcamp-components/**
+  pull_request:
     paths:
       - packages/fotcamp-components/**
 
