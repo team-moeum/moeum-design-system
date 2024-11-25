@@ -38,10 +38,10 @@ jobs:
           cache: "pnpm"
 
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --no-frozen-lockfile
 
       - name: Run Chromatic
         uses: chromaui/action@latest
         with:
           projectToken: ${{ env.CHROMATIC_PROJECT_TOKEN }}
-          workingDir: packages/fotcamp-components # Chromatic 실행 디렉토리 지정
+          workingDir: packages/fotcamp-components
