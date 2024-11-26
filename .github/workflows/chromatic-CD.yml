@@ -12,7 +12,7 @@ on:
   pull_request:
     types: [opened, synchronize]
     branches:
-      - chore/github-action-chromatic
+      - main
     paths:
       - packages/fotcamp-components/**
 
