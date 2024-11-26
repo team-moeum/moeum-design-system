@@ -1,0 +1,39 @@
+name: Storybook CD
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - chore/storybook-cd
+    paths:
+      - packages/fotcamp-components/**
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v2
+        with:
+          version: 9
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          cache: "pnpm"
+
+      - name: Build and Deploy Storybook
+        uses: bitovi/github-actions-storybook-to-github-pages@v1.0.3
+        with:
+          install_command: pnpm install --filter "./packages/fotcamp-components" --no-frozen-lockfile
+          build_command: cd packages/fotcamp-components && pnpm run build-storybook
+          path: packages/fotcamp-components/storybook-static
