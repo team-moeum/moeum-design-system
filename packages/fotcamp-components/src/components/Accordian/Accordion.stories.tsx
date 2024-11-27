@@ -43,7 +43,7 @@ export const Default: Story = {
   render: args => (
     <Accordion.Root {...args}>
       <Accordion.Item value="item-1">
-        <Accordion.Trigger>Item1</Accordion.Trigger>
+        <Accordion.Trigger>Item1-1127-cd-test</Accordion.Trigger>
         <Accordion.Content>Item1 Content</Accordion.Content>
       </Accordion.Item>
       <Accordion.Item value="item-2">
