@@ -52,7 +52,7 @@ jobs:
         run: |
           git config --local user.email "fotcamp[bot]@users.noreply.github.com"
           git config --local user.name "fotcamp[bot]"
-          pnpm run publish-version:fotcamp-icon
+          pnpm run publish-version:moeum-icon
           git add .
           git commit -m "update version"
 
