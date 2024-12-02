@@ -7,7 +7,7 @@ on:
     branches:
       - main
     paths:
-      - packages/fotcamp-icons/**
+      - packages/moeum-icons/**
 permissions:
   contents: write
 jobs:
@@ -46,7 +46,7 @@ jobs:
         run: pnpm install --no-frozen-lockfile
 
       - name: Install dependencies
-        run: pnpm run build:fotcamp-icons
+        run: pnpm run build:moeum-icons
 
       - name: Increment version
         run: |
@@ -64,7 +64,7 @@ jobs:
 
       - name: Configure npm
         run: |
-          cat << EOF > "packages/fotcamp-icons/.npmrc"
+          cat << EOF > "packages/moeum-icons/.npmrc"
             email=minseok121512@gmail.com
             //registry.npmjs.org/:_authToken=$NPM_TOKEN 
           EOF
@@ -72,6 +72,6 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Deploy
-        run: pnpm run publish:fotcamp-icons
+        run: pnpm run publish:moeum-icons
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
