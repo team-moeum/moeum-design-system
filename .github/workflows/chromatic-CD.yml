@@ -14,7 +14,7 @@ on:
     branches:
       - main
     paths:
-      - packages/fotcamp-components/**
+      - packages/moeum-components/**
 
 jobs:
   chromatic-deployment:
@@ -39,14 +39,14 @@ jobs:
           cache: "pnpm"
 
       - name: Install Dependencies
-        run: pnpm install --filter "./packages/fotcamp-components" --no-frozen-lockfile
+        run: pnpm install --filter "./packages/moeum-components" --no-frozen-lockfile
 
       - name: Publish to Chromatic
         id: chromatic
         uses: chromaui/action@latest
         with:
           projectToken: ${{ env.CHROMATIC_PROJECT_TOKEN }}
-          workingDir: packages/fotcamp-components
+          workingDir: packages/moeum-components
 
       - name: Add Storybook URL Comment
         uses: thollander/actions-comment-pull-request@v1
