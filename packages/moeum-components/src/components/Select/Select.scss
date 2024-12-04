@@ -1,12 +1,11 @@
 :root {
-  --seed-color-violet-1: hsl(255, 65%, 99%);
-  --seed-color-violet-6: hsl(255, 25%, 84%);
-  --seed-color-violet-9: hsl(255, 45%, 65%);
-  --seed-color-violet-11: hsl(255, 30%, 45%);
-  --seed-color-mauve-3: hsl(300, 5%, 96%);
-  --seed-color-mauve-8: hsl(300, 10%, 60%);
-  --seed-color-mauve-11: hsl(300, 15%, 35%);
-  --seed-color-black-a7: rgba(0, 0, 0, 0.07);
+  --seed-palette-color-base-100: #ffffff;
+  --seed-palette-color-base-500: #c6ccd1;
+  --seed-palette-color-base-800: #494f54;
+  --seed-palette-color-base-1000: #191b1c;
+  --seed-palette-color-blue-200: #e0f2fe;
+  --seed-palette-color-blue-800: #0369a1;
+  --seed-palette-color-blue-1000: #0c4a6e;
 }
 
 button {
@@ -27,11 +26,11 @@ button {
   height: 35px;
   gap: 5px;
   background-color: white;
-  color: var(--seed-color-violet-11);
-  box-shadow: 0 2px 10px var(--seed-color-black-a7);
+  color: var(--seed-palette-color-base-1000);
+  box-shadow: 0 2px 10px var(--seed-palette-color-base-1000);
 
   &:hover {
-    background-color: var(--seed-color-mauve-3);
+    background-color: var(--seed-palette-color-blue-200);
   }
 
   &:focus {
@@ -39,12 +38,12 @@ button {
   }
 
   &[data-placeholder] {
-    color: var(--seed-color-violet-9);
+    color: var(--seed-palette-color-base-800);
   }
 }
 
 .SelectIcon {
-  color: var(--seed-color-violet-11);
+  color: var(--seed-palette-color-base-1000);
 }
 
 .SelectContent {
@@ -63,7 +62,7 @@ button {
 .SelectItem {
   font-size: 13px;
   line-height: 1;
-  color: var(--seed-color-violet-11);
+  color: var(--seed-palette-color-base-1000);
   border-radius: 3px;
   display: flex;
   align-items: center;
@@ -73,13 +72,13 @@ button {
   user-select: none;
 
   &[data-disabled] {
-    color: var(--seed-color-mauve-8);
+    color: var(--seed-palette-color-blue-800);
     pointer-events: none;
   }
 
   &[data-highlighted] {
     outline: none;
-    background-color: var(--seed-color-violet-9);
+    background-color: var(--seed-palette-color-base-800);
     color: var(--seed-color-violet-1);
   }
 }
@@ -88,12 +87,12 @@ button {
   padding: 0 25px;
   font-size: 12px;
   line-height: 25px;
-  color: var(--seed-color-mauve-11);
+  color: var(--seed-palette-color-blue-1000);
 }
 
 .SelectSeparator {
   height: 1px;
-  background-color: var(--seed-color-violet-6);
+  background-color: var(--seed-palette-color-base-500);
   margin: 5px;
 }
 
@@ -112,6 +111,6 @@ button {
   justify-content: center;
   height: 25px;
   background-color: white;
-  color: var(--seed-color-violet-11);
+  color: var(--seed-palette-color-base-1000);
   cursor: default;
 }
