@@ -15,7 +15,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  render: args => (
+  render: () => (
     <RadioGroup.Root defaultValue="option1">
       <RadioGroup.Item value="option1">Option 1</RadioGroup.Item>
       <RadioGroup.Item value="option2">Option 2</RadioGroup.Item>
@@ -25,7 +25,7 @@ export const Default: Story = {
 };
 
 export const Orientation: Story = {
-  render: args => (
+  render: () => (
     <RadioGroup.Root defaultValue="option1" orientation="horizontal">
       <RadioGroup.Item value="option1">Option 1</RadioGroup.Item>
       <RadioGroup.Item value="option2">Option 2</RadioGroup.Item>
@@ -35,7 +35,7 @@ export const Orientation: Story = {
 };
 
 export const Disabled: Story = {
-  render: args => (
+  render: () => (
     <RadioGroup.Root defaultValue="option1" disabled>
       <RadioGroup.Item value="option1">Option 1</RadioGroup.Item>
       <RadioGroup.Item value="option2">Option 2</RadioGroup.Item>
@@ -45,7 +45,7 @@ export const Disabled: Story = {
 };
 
 export const ItemDisabled: Story = {
-  render: args => (
+  render: () => (
     <RadioGroup.Root defaultValue="option1">
       <RadioGroup.Item value="option1">Option 1</RadioGroup.Item>
       <RadioGroup.Item value="option2" disabled>
