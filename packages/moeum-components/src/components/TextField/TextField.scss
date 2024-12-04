@@ -1,38 +1,26 @@
 :root {
   /* Size tokens */
-  --textfield-large-height: 48px;
-  --textfield-large-padding-x: 16px;
-  --textfield-large-font-size: 16px;
+  --seed-spacing-300: 8px;
+  --seed-spacing-400: 12px;
+  --seed-spacing-500: 16px;
 
-  --textfield-medium-height: 40px;
-  --textfield-medium-padding-x: 12px;
-  --textfield-medium-font-size: 14px;
+  --seed-font-line-height-3xl: 32px;
+  --seed-font-line-height-4xl: 40px;
+  --seed-font-line-height-5xl: 48px;
 
-  --textfield-small-height: 32px;
-  --textfield-small-padding-x: 8px;
-  --textfield-small-font-size: 14px;
+  --seed-font-size-s: 14px;
+  --seed-font-size-sm: 16px;
 
   /* Variant tokens */
-  --textfield-classic-border: 1px solid var(--gray-300);
-  --textfield-classic-background: white;
-
-  --textfield-surface-background: var(--gray-100);
-  --textfield-surface-border: 1px solid transparent;
-
-  --textfield-soft-background: var(--gray-50);
-  --textfield-soft-border: 1px solid transparent;
-
-  /* Radius tokens */
-  --textfield-radius-none: 0;
-  --textfield-radius-small: 4px;
-  --textfield-radius-medium: 6px;
-  --textfield-radius-large: 8px;
-  --textfield-radius-full: 9999px;
+  --seed-palette-color-base-100: #fff;
+  --seed-palette-color-base-200: #f6f7f9;
+  --seed-palette-color-base-300: #edf0f3;
+  --seed-palette-color-base-400: #e0e5ea;
 
   /* State tokens */
-  --textfield-focus-ring: 0 0 0 2px var(--blue-200);
-  --textfield-error-color: var(--red-500);
-  --textfield-error-ring: 0 0 0 2px var(--red-200);
+  --seed-palette-color-blue-200: #e0f2fe;
+  --seed-palette-color-red-200: #fee2e2;
+  --seed-palette-color-red-500: #f87171;
 }
 
 .textfield-container {
@@ -53,71 +41,71 @@
 }
 
 .textfield-container--size-large {
-  height: var(--textfield-large-height);
+  height: var(--seed-font-line-height-5xl);
 }
 .textfield-container--size-large .textfield {
-  font-size: var(--textfield-large-font-size);
-  padding: 0 var(--textfield-large-padding-x);
+  font-size: var(--seed-font-size-sm);
+  padding: 0 var(--seed-spacing-500);
 }
 
 .textfield-container--size-medium {
-  height: var(--textfield-medium-height);
+  height: var(--seed-font-line-height-4xl);
 }
 .textfield-container--size-medium .textfield {
-  font-size: var(--textfield-medium-font-size);
-  padding: 0 var(--textfield-medium-padding-x);
+  font-size: var(--seed-font-size-s);
+  padding: 0 var(--seed-spacing-400);
 }
 
 .textfield-container--size-small {
-  height: var(--textfield-small-height);
+  height: var(--seed-font-line-height-3xl);
 }
 .textfield-container--size-small .textfield {
-  font-size: var(--textfield-small-font-size);
-  padding: 0 var(--textfield-small-padding-x);
+  font-size: var(--seed-font-size-s);
+  padding: 0 var(--seed-spacing-300);
 }
 
 .textfield-container--variant-classic {
-  border: var(--textfield-classic-border);
-  background: var(--textfield-classic-background);
+  border: 1px solid transparent;
+  background: var(--seed-palette-color-base-100);
 }
 
 .textfield-container--variant-surface {
-  border: var(--textfield-surface-border);
-  background: var(--textfield-surface-background);
+  border: 1px solid transparent;
+  background: var(--seed-palette-color-base-300);
 }
 
 .textfield-container--variant-soft {
-  border: var(--textfield-soft-border);
-  background: var(--textfield-soft-background);
+  border: 1px solid transparent;
+  background: var(--seed-palette-color-base-200);
 }
 
 .textfield-container--radius-none {
-  border-radius: var(--textfield-radius-none);
+  border-radius: 0;
 }
 
 .textfield-container--radius-small {
-  border-radius: var(--textfield-radius-small);
+  border-radius: 4px;
 }
 
 .textfield-container--radius-medium {
-  border-radius: var(--textfield-radius-medium);
+  border-radius: 6px;
 }
 
 .textfield-container--radius-large {
-  border-radius: var(--textfield-radius-large);
+  border-radius: 8px;
 }
 
 .textfield-container--radius-full {
-  border-radius: var(--textfield-radius-full);
+  border-radius: 9999px;
 }
 
 .textfield-container:focus-within:not(.textfield-container--error) {
-  box-shadow: var(--textfield-focus-ring);
+  box-shadow: 0 0 0 2px var(--seed-palette-color-blue-200);
 }
 
 .textfield-container--error {
-  border-color: var(--textfield-error-color);
-  box-shadow: var(--textfield-error-ring);
+  border-color: var(--seed-palette-color-red-500);
+  box-shadow: 0 0 0 2px var(--seed-palette-color-red-200);
 }
 
 .textfield-container--disabled {
