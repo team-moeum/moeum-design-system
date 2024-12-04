@@ -24,7 +24,7 @@ export const BottomSheet = ({
         />
         <Drawer.Content
           className={cx(
-            "drawer-content",
+            "bottomsheet-content",
             {
               [`bottomsheet-container--radius-${radius}`]: radius
             },
@@ -36,7 +36,7 @@ export const BottomSheet = ({
           <SwitchCase
             value={String(showHandle)}
             caseBy={{
-              true: <Drawer.Handle className="drawer-handle" />
+              true: <Drawer.Handle className="bottomsheet-handle" />
             }}
           ></SwitchCase>
           {children}
