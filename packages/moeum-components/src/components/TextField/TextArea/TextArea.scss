@@ -1,38 +1,26 @@
 :root {
   /* Size tokens */
-  --textarea-large-height: 48px;
-  --textarea-large-padding-x: 16px;
-  --textarea-large-font-size: 16px;
+  --seed-spacing-300: 8px;
+  --seed-spacing-400: 12px;
+  --seed-spacing-500: 16px;
 
-  --textarea-medium-height: 40px;
-  --textarea-medium-padding-x: 12px;
-  --textarea-medium-font-size: 14px;
+  --seed-font-line-height-3xl: 32px;
+  --seed-font-line-height-4xl: 40px;
+  --seed-font-line-height-5xl: 48px;
 
-  --textarea-small-height: 32px;
-  --textarea-small-padding-x: 8px;
-  --textarea-small-font-size: 14px;
+  --seed-font-size-s: 14px;
+  --seed-font-size-sm: 16px;
 
   /* Variant tokens */
-  --textarea-classic-border: 1px solid var(--gray-300);
-  --textarea-classic-background: white;
-
-  --textarea-surface-background: var(--gray-100);
-  --textarea-surface-border: 1px solid transparent;
-
-  --textarea-soft-background: var(--gray-50);
-  --textarea-soft-border: 1px solid transparent;
-
-  /* Radius tokens */
-  --textarea-radius-none: 0;
-  --textarea-radius-small: 4px;
-  --textarea-radius-medium: 6px;
-  --textarea-radius-large: 8px;
-  --textarea-radius-full: 9999px;
+  --seed-palette-color-base-100: #fff;
+  --seed-palette-color-base-200: #f6f7f9;
+  --seed-palette-color-base-300: #edf0f3;
+  --seed-palette-color-base-400: #e0e5ea;
 
   /* State tokens */
-  --textarea-focus-ring: 0 0 0 2px var(--blue-200);
-  --textarea-error-color: var(--red-500);
-  --textarea-error-ring: 0 0 0 2px var(--red-200);
+  --seed-palette-color-blue-200: #e0f2fe;
+  --seed-palette-color-red-200: #fee2e2;
+  --seed-palette-color-red-500: #f87171;
 }
 
 .textarea-container {
@@ -54,71 +42,71 @@
 }
 
 .textarea-container--size-large {
-  height: var(--textarea-large-height);
+  height: var(--seed-font-line-height-5xl);
 }
 .textarea-container--size-large .textarea {
-  font-size: var(--textarea-large-font-size);
-  padding: 0 var(--textarea-large-padding-x);
+  font-size: var(--seed-font-size-sm);
+  padding: 0 var(--seed-spacing-500);
 }
 
 .textarea-container--size-medium {
-  height: var(--textarea-medium-height);
+  height: var(--seed-font-line-height-4xl);
 }
 .textarea-container--size-medium .textarea {
-  font-size: var(--textarea-medium-font-size);
-  padding: 0 var(--textarea-medium-padding-x);
+  font-size: var(--seed-font-size-s);
+  padding: 0 var(--seed-spacing-400);
 }
 
 .textarea-container--size-small {
-  height: var(--textarea-small-height);
+  height: var(--seed-font-line-height-3xl);
 }
 .textarea-container--size-small .textarea {
-  font-size: var(--textarea-small-font-size);
-  padding: 0 var(--textarea-small-padding-x);
+  font-size: var(--seed-font-size-s);
+  padding: 0 var(--seed-spacing-300);
 }
 
 .textarea-container--variant-classic {
-  border: var(--textarea-classic-border);
-  background: var(--textarea-classic-background);
+  border: 1px solid transparent;
+  background: var(--seed-palette-color-base-100);
 }
 
 .textarea-container--variant-surface {
-  border: var(--textarea-surface-border);
-  background: var(--textarea-surface-background);
+  border: 1px solid transparent;
+  background: var(--seed-palette-color-base-300);
 }
 
 .textarea-container--variant-soft {
-  border: var(--textarea-soft-border);
-  background: var(--textarea-soft-background);
+  border: 1px solid transparent;
+  background: var(--seed-palette-color-base-200);
 }
 
 .textarea-container--radius-none {
-  border-radius: var(--textarea-radius-none);
+  border-radius: 0;
 }
 
 .textarea-container--radius-small {
-  border-radius: var(--textarea-radius-small);
+  border-radius: 4px;
 }
 
 .textarea-container--radius-medium {
-  border-radius: var(--textarea-radius-medium);
+  border-radius: 6px;
 }
 
 .textarea-container--radius-large {
-  border-radius: var(--textarea-radius-large);
+  border-radius: 8px;
 }
 
 .textarea-container--radius-full {
-  border-radius: var(--textarea-radius-full);
+  border-radius: 9999px;
 }
 
 .textarea-container:focus-within:not(.textarea-container--error) {
-  box-shadow: var(--textarea-focus-ring);
+  box-shadow: 0 0 0 2px var(--seed-palette-color-blue-200);
 }
 
 .textarea-container--error {
-  border-color: var(--textarea-error-color);
-  box-shadow: var(--textarea-error-ring);
+  border-color: var(--seed-palette-color-red-500);
+  box-shadow: 0 0 0 2px var(--seed-palette-color-red-200);
 }
 
 .textarea-container--disabled {
