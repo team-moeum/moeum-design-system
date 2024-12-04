@@ -14,7 +14,7 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
-  render: args => (
+  render: () => (
     <Checkbox.Root defaultChecked={false}>
       <span>✓</span>
     </Checkbox.Root>
@@ -22,7 +22,7 @@ export const Primary: Story = {
 };
 
 export const Checked: Story = {
-  render: args => (
+  render: () => (
     <Checkbox.Root defaultChecked>
       <span>✓</span>
     </Checkbox.Root>
@@ -30,7 +30,7 @@ export const Checked: Story = {
 };
 
 export const Disabled: Story = {
-  render: args => (
+  render: () => (
     <Checkbox.Root defaultChecked disabled>
       <span>✓</span>
     </Checkbox.Root>
@@ -38,7 +38,7 @@ export const Disabled: Story = {
 };
 
 export const Required: Story = {
-  render: args => (
+  render: () => (
     <Checkbox.Root defaultChecked required>
       <span>✓</span>
     </Checkbox.Root>
