@@ -1,9 +1,13 @@
 :root {
+  /* Color tokens */
+  --seed-palette-color-base-100: #ffffff;
+  --seed-palette-color-base-800: #494f54;
+
   /* Radius tokens */
-  --bottomsheet-radius-none: 0;
-  --bottomsheet-radius-small: 10px;
-  --bottomsheet-radius-medium: 20px;
-  --bottomsheet-radius-large: 30px;
+  --seed-spacing-100: 0px;
+  --seed-spacing-300: 8px;
+  --seed-spacing-600: 20px;
+  --seed-spacing-900: 32px;
 }
 
 /** Default Style */
@@ -33,17 +37,25 @@
 
 /** Tokens Style */
 .bottomsheet-container--radius-none {
-  border-top: var(--bottomsheet-radius-none);
+  border-top: var(--seed-spacing-100);
 }
 
 .bottomsheet-container--radius-small {
-  border-radius: var(--bottomsheet-radius-small);
+  border-radius: var(--seed-spacing-300);
 }
 
 .bottomsheet-container--radius-medium {
-  border-radius: var(--bottomsheet-radius-medium);
+  border-radius: var(--seed-spacing-600);
 }
 
 .bottomsheet-container--radius-large {
-  border-radius: var(--bottomsheet-radius-large);
+  border-radius: var(--seed-spacing-900);
+}
+
+.bottomsheet-container--theme-light {
+  background-color: var(--seed-palette-color-base-100);
+}
+
+.bottomsheet-container--theme-dark {
+  background-color: var(--seed-palette-color-base-800);
 }

@@ -18,7 +18,16 @@ const meta = {
   tags: ["autodocs"],
   argTypes: {
     locked: {
-      control: "boolean"
+      control: "boolean",
+      description: "외부 요소와의 상호작용을 설정합니다."
+    },
+    radius: {
+      control: "select",
+      options: ["none", "small", "medium", "large"]
+    },
+    theme: {
+      control: "select",
+      options: ["light", "dark"]
     }
   },
   decorators: [
@@ -66,24 +75,3 @@ export const Primary: Story = {
     return <Button onClick={openOverlay}>Open</Button>;
   }
 };
-
-// export const SnapPointsExample = () => {
-//   const snapPoints = ['100px', '200px', 1];
-//   const overlay = useOverlay();
-
-//   const openOverlay = () => {
-//     overlay.open(({ isOpen, close }) => (
-//       <BottomSheet
-//         open={isOpen}
-//         onClose={() => {
-//           close();
-//         }}
-//         children={<BottomSheetContentA />}
-//       />
-//     ));
-//   };
-
-//   return (
-//     <Button onClick={openOverlay}>Open</Button>
-//   )
-// }

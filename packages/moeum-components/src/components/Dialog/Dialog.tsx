@@ -4,7 +4,7 @@ import { DialogProps } from "./Dialog.type";
 
 export const Dialog = ({
   open,
-  size,
+  theme = "light",
   radius,
   zIndex = 1,
   locked = true,
@@ -24,7 +24,7 @@ export const Dialog = ({
         className={cx(
           "dialog-content",
           {
-            [`dialog-content--size-${size}`]: size,
+            [`dialog-content--theme-${theme}`]: theme,
             [`dialog-content--radius-${radius}`]: radius
           },
           className

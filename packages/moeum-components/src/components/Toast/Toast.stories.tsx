@@ -6,6 +6,7 @@ import { Toast } from "./Toast";
 import { Button } from "../Button";
 import { useToast } from "./useToast";
 import { ToastProvider } from "./ToastProvider";
+import { ToastRadius } from "./Toast.type";
 
 const meta = {
   title: "Components/Toast",
@@ -25,6 +26,10 @@ const meta = {
         "bottom-right",
         "bottom-center"
       ]
+    },
+    radius: {
+      control: "select",
+      options: Object.values(ToastRadius)
     }
   },
   decorators: [
@@ -63,7 +68,7 @@ export const Primary: Story = {
 
     const handleAddTopLeftToast = () => {
       add({
-        radius: "small",
+        radius: args.radius,
         position: "top-left",
         content: <ToastContentA />
       });
@@ -71,6 +76,7 @@ export const Primary: Story = {
 
     const handleAddTopCenterToast = () => {
       add({
+        radius: args.radius,
         duration: 3000,
         content: <ToastContentA />,
         position: "top-center"
@@ -79,8 +85,8 @@ export const Primary: Story = {
 
     const handleAddTopRightToast = () => {
       add({
+        radius: args.radius,
         position: "top-right",
-        radius: "large",
         content: <ToastContentA />,
         offest: 50
       });
@@ -88,6 +94,7 @@ export const Primary: Story = {
 
     const handleAddBottomLeftToast = () => {
       add({
+        radius: args.radius,
         message: "작업이 완료되었습니다!",
         type: "success",
         duration: 3000,
@@ -97,6 +104,7 @@ export const Primary: Story = {
 
     const handleAddBottomCenterToast = () => {
       add({
+        radius: args.radius,
         message: "작업이 완료되었습니다!",
         type: "success",
         duration: 3000,
@@ -107,6 +115,7 @@ export const Primary: Story = {
 
     const handleAddBottomRightToast = () => {
       add({
+        radius: args.radius,
         message: "작업이 완료되었습니다!",
         type: "success",
         duration: 3000,
