@@ -10,6 +10,7 @@ export const BottomSheet = ({
   showHandle = true,
   handleOnly = false,
   radius,
+  theme = "light",
   zIndex = 1,
   className,
   children
@@ -26,7 +27,8 @@ export const BottomSheet = ({
           className={cx(
             "drawer-content",
             {
-              [`bottomsheet-container--radius-${radius}`]: radius
+              [`bottomsheet-container--radius-${radius}`]: radius,
+              [`bottomsheet-container--theme-${theme}`]: theme
             },
             className
           )}
