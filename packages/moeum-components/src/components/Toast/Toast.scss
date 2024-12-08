@@ -2,10 +2,10 @@
 
 :root {
   /* Radius tokens */
-  --seed-toast-radius-none: 0px;
-  --seed-toast-radius-small: 8px;
-  --seed-toast-radius-medium: 12px;
-  --seed-toast-radius-large: 20px;
+  --seed-spacing-100: 0px;
+  --seed-spacing-300: 8px;
+  --seed-spacing-600: 20px;
+  --seed-spacing-full: 9999px; //token 논의
 }
 
 /** Default Style */
@@ -101,17 +101,17 @@
 
 /** Tokens Style */
 .toast--radius-none {
-  border-radius: var(--seed-toast-radius-none);
+  border-radius: var(--seed-spacing-100);
 }
 
 .toast--radius-small {
-  border-radius: var(--seed-toast-radius-small);
+  border-radius: var(--seed-spacing-300);
 }
 
 .toast--radius-medium {
-  border-radius: var(--seed-toast-radius-medium);
+  border-radius: var(--seed-spacing-600);
 }
 
 .toast--radius-large {
-  border-radius: var(--seed-toast-radius-large);
+  border-radius: var(--seed-spacing-full);
 }
