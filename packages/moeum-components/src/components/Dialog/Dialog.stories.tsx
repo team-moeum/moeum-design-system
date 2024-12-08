@@ -4,7 +4,7 @@ import { useOverlay } from "../../hooks/useOverlay/useOverlay";
 import { Button } from "../Button";
 import { OverlayProvider } from "../../hooks/useOverlay/OverlayProvider";
 import { Flex } from "../layout/Flex";
-import { DialogRadius, DialogSize } from "./Dialog.type";
+import { DialogRadius, DialogTheme } from "./Dialog.type";
 
 /**
  * **radix docs**
@@ -18,9 +18,9 @@ const meta = {
   },
   tags: ["autodocs"],
   argTypes: {
-    size: {
+    theme: {
       control: "select",
-      options: Object.values(DialogSize)
+      options: Object.values(DialogTheme)
     },
     radius: {
       control: "select",
@@ -52,7 +52,6 @@ const DialogContentA = () => {
 
 export const Primary: Story = {
   args: {
-    size: "medium",
     radius: "medium"
   },
   render: args => {

@@ -1,13 +1,13 @@
 :root {
-  /* size tokens */
-  --dialog-size-padding-small: 12px;
-  --dialog-size-padding-medium: 24px;
-  --dialog-size-padding-large: 32px;
+  /* Color tokens */
+  --seed-palette-color-base-100: #ffffff;
+  --seed-palette-color-base-900: #25292c;
 
   /* Radius tokens */
-  --dialog-radius-small: 10px;
-  --dialog-radius-medium: 20px;
-  --dialog-radius-large: 30px;
+  --seed-spacing-100: 0px;
+  --seed-spacing-300: 8px;
+  --seed-spacing-600: 20px;
+  --seed-spacing-900: 32px;
 }
 
 /** Default Style */
@@ -63,30 +63,26 @@
 }
 
 /** Tokens Style */
-.dialog-content--size-small {
-  padding: var(--dialog-size-padding-small);
+.dialog-content--theme-light {
+  background-color: var(--seed-palette-color-base-100);
 }
 
-.dialog-content--size-medium {
-  padding: var(--dialog-size-padding-medium);
-}
-
-.dialog-content--size-large {
-  padding: var(--dialog-size-padding-large);
+.dialog-content--theme-dark {
+  background-color: var(--seed-palette-color-base-900);
 }
 
 .dialog-content--radius-none {
-  border-top: var(--dialog-radius-none);
+  border-radius: var(--seed-spacing-100);
 }
 
 .dialog-content--radius-small {
-  border-radius: var(--dialog-radius-small);
+  border-radius: var(--seed-spacing-300);
 }
 
 .dialog-content--radius-medium {
-  border-radius: var(--dialog-radius-medium);
+  border-radius: var(--seed-spacing-600);
 }
 
 .dialog-content--radius-large {
-  border-radius: var(--dialog-radius-large);
+  border-radius: var(--seed-spacing-900);
 }
