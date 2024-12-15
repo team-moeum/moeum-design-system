@@ -56,3 +56,43 @@ jobs:
           message: |
             📚 Storybook is ready for review!
             🔗 Preview: ${{ steps.chromatic.outputs.storybookUrl }}
+
+      - name: Send Slack Success Notification
+        if: success()
+        uses: slackapi/slack-github-action@v1.26.0
+        with:
+          payload: |
+            {
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "✨ **Storybook 배포가 완료되었습니다!** \n\n🔍 PR: ${{ github.event.pull_request.html_url }}\n📚 Storybook: ${{ steps.chromatic.outputs.storybookUrl }}\n\n💬 피드백 부탁드립니다!"
+                  }
+                }
+              ]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_PR_WEBHOOK_URL }}
+          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
+
+      - name: Send Slack Failure Notification
+        if: failure()
+        uses: slackapi/slack-github-action@v1.26.0
+        with:
+          payload: |
+            {
+              "blocks": [
+                {
+                  "type": "section",
+                  "text": {
+                    "type": "mrkdwn",
+                    "text": "❌ **Storybook 배포에 실패했습니다!** \n\n🔍 PR: ${{ github.event.pull_request.html_url }}\n\n🚨 확인이 필요합니다."
+                  }
+                }
+              ]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_PR_WEBHOOK_URL }}
+          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
