@@ -1,41 +1,26 @@
 import { PropsWithChildren } from "react";
 
-export enum ButtonSize {
-  LARGE = "large",
-  MEDIUM = "medium",
-  SMALL = "small"
-}
+export type ButtonTypes =
+  | "solid-green"
+  | "solid-red"
+  | "solid-gray"
+  | "outline-green"
+  | "outline-red"
+  | "outline-gray"
+  | "text-none";
 
-export enum ButtonType {
-  Primary = "primary",
-  Danger = "danger",
-  Secondary = "secondary",
-  Success = "success",
-  Warning = "warning",
-  Info = "info"
-}
+export type ButtonStates = "active" | "inactive" | "loading" | "pressed";
 
-export enum ButtonStyle {
-  Fill = "fill",
-  Outline = "outline",
-  Flat = "flat"
-}
+export type ButtonSizes = "lg" | "md";
 
-export enum ButtonDisplay {
-  Inline = "inline",
-  Block = "block",
-  Full = "full"
-}
+export type ButtonDisplay = "inline" | "full" | "block";
 
 export type ButtonProps = PropsWithChildren<{
-  type?: ButtonType;
-  style?: ButtonStyle;
-  display?: ButtonDisplay;
-  size?: ButtonSize;
+  type?: ButtonTypes;
+  size?: ButtonSizes;
+  loading?: boolean;
+  disabled?: boolean;
   className?: string;
   onClick?: React.MouseEventHandler<HTMLElement>;
-  disabled?: boolean;
-  loading?: boolean;
-  leftContent?: React.ReactNode;
-  rightContent?: React.ReactNode;
+  display?: ButtonDisplay;
 }>;
