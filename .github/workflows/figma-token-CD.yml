@@ -1,8 +1,5 @@
 name: Design Token CD
-env:
-  AWS_REGION: ap-northeast-2
-  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
 on:
   workflow_dispatch:
   push:
@@ -14,26 +11,31 @@ jobs:
   Deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-
-      - name: Use Node.js 20.x
-        uses: actions/setup-node@v2
+      - name: 📦 Checkout Repository
+        uses: actions/checkout@v4
         with:
-          node-version: 20.x
+          fetch-depth: 0
+          ref: ${{ github.ref }}
 
-      - name: Install pnpm
+      - name: ⚙️ Setup PNPM
         uses: pnpm/action-setup@v2
         with:
           version: 9
           run_install: false
 
-      - name: Get pnpm store directory
+      - name: ⚙️ Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+          cache: "pnpm"
+
+      - name: 💾 Get pnpm store directory
         id: pnpm-store-dir-path
         shell: bash
         run: |
           echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
 
-      - name: Setup pnpm cache
+      - name: 📥 Setup pnpm cache
         uses: actions/cache@v3
         id: pnpm-cache
         with:
@@ -42,19 +44,35 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
 
-      - name: Install dependencies
-        run: pnpm install --no-frozen-lockfile
+      - name: 📦 Install dependencies
+        run: pnpm install --filter "@moeum/figma-token" --no-frozen-lockfile
 
-      - name: Install dependencies
+      - name: 🛠️ Build token files
         run: pnpm run build:figma-token
 
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ env.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ env.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ env.AWS_REGION }}
+      - name: 📂 Create Token Directory
+        run: mkdir -p packages/moeum-components/style/design-token
 
-      - name: Upload AWS S3
+      - name: 📋 Copy CSS files
         run: |
-          aws s3 sync packages/figma-token/build/css s3://finhub-bucket/design-token
+          cp packages/figma-token/build/css/*.css packages/moeum-components/style/design-token/
+
+      - name: 🚀 Generate Token Index
+        run: |
+          # 파일 초기화
+          > packages/moeum-components/style/design-token/index.scss
+
+          # design-token 폴더의 모든 CSS 파일을 찾아서 @use 구문 생성
+          for file in packages/moeum-components/style/design-token/*.css; do
+            filename=$(basename "$file")
+            echo "@use \"./${filename}\";" >> packages/moeum-components/style/design-token/index.scss
+          done
+
+      - name: 🚀 Commit and push changes
+        run: |
+          git config --local user.email "moeum[bot]@users.noreply.github.com"
+          git config --local user.name "moeum[bot]"
+
+          git add packages/moeum-components/style/design-token/
+          git commit -m "🎨 chore: Update design token files" || echo "No changes to commit"
+          git push origin ${{ github.ref }}
