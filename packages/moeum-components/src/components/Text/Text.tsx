@@ -8,7 +8,7 @@ export function Text({
   ellipsisLines,
   typography = Typography.Body,
   fontWeight = FontWeight.Regular,
-  color = "#000",
+  color,
   display = "inline-block",
   textAlign,
   style,
