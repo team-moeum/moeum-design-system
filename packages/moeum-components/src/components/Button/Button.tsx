@@ -5,13 +5,16 @@ import { ButtonDisplay, ButtonProps, ButtonSizes, ButtonTypes } from "./Button.t
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
-      type = "solid-green",
+      type = "solid-base",
       display = "inline",
       disabled = false,
       loading = false,
       size = "md",
       className,
       children,
+      color,
+      backgroundColor,
+      borderColor,
       ...rest
     },
     ref
@@ -31,6 +34,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           className
         )}
         disabled={disabled || loading}
+        style={{ color, backgroundColor, borderColor }}
         {...rest}
       >
         <span className={cx("button--content", { "button--content--hidden": loading })}>
