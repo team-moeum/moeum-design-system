@@ -1,6 +1,7 @@
 import type { StorybookConfig } from "@storybook/react-vite";
 
 import path, { join, dirname } from "path";
+import svgr from "vite-plugin-svgr";
 
 /**
  * This function is used to resolve the absolute path of a package.
@@ -26,6 +27,7 @@ const config: StorybookConfig = {
   async viteFinal(config) {
     return {
       ...config,
+      plugins: [...(config.plugins || []), svgr({ include: "**/*.svg?react" })],
       resolve: {
         ...config.resolve,
         alias: {
