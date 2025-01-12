@@ -7,7 +7,8 @@ export type ButtonTypes =
   | "outline-green"
   | "outline-red"
   | "outline-gray"
-  | "text-none";
+  | "text-none"
+  | "solid-base";
 
 export type ButtonStates = "active" | "inactive" | "loading" | "pressed";
 
@@ -23,4 +24,7 @@ export type ButtonProps = PropsWithChildren<{
   className?: string;
   onClick?: React.MouseEventHandler<HTMLElement>;
   display?: ButtonDisplay;
+  color?: string;
+  backgroundColor?: string;
+  borderColor?: string;
 }>;

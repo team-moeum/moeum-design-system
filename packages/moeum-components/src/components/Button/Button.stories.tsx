@@ -1,6 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
+import Google from "./assets/google.svg?react";
+import Apple from "./assets/apple.svg?react";
+import Kakao from "./assets/kakao.svg?react";
 
 import { Button } from ".";
+import { Text } from "../Text";
+import { Flex } from "../layout/Flex";
 
 const meta = {
   title: "Button",
@@ -33,6 +38,7 @@ const meta = {
 
 export default meta;
 type Story = StoryObj<typeof meta>;
+
 export const ButtonSNS: Story = {
   args: {},
   render: () => (
@@ -44,14 +50,23 @@ export const ButtonSNS: Story = {
         alignItems: "center"
       }}
     >
-      <Button type="solid-green" size="md">
-        Kakao로 로그인
+      <Button type="solid-base" size="md" color="#391B1B" backgroundColor="#FAE300">
+        <Flex direction="row" align="center" justify="center" gap={8}>
+          <Kakao />
+          <Text>Kakao로 로그인</Text>
+        </Flex>
       </Button>
-      <Button type="solid-green" size="md">
-        Apple로 로그인
+      <Button type="solid-base" size="md" color="#FFFFFF" backgroundColor="#191B1C">
+        <Flex direction="row" align="center" justify="center" gap={8}>
+          <Apple />
+          <Text>Apple로 로그인</Text>
+        </Flex>
       </Button>
-      <Button type="solid-green" size="md">
-        Google로 로그인
+      <Button type="solid-base" size="md" color="#191B1C" backgroundColor="#FFFFFF">
+        <Flex direction="row" align="center" justify="center" gap={8}>
+          <Google />
+          <Text> Google로 로그인</Text>
+        </Flex>
       </Button>
     </div>
   )
