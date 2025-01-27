@@ -8,7 +8,7 @@ export type ButtonTypes =
   | "outline-red"
   | "outline-gray"
   | "text-none"
-  | "solid-base";
+  | "base";
 
 export type ButtonStates = "active" | "inactive" | "loading" | "pressed";
 

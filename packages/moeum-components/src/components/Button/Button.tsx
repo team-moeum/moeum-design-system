@@ -5,7 +5,7 @@ import { ButtonDisplay, ButtonProps, ButtonSizes, ButtonTypes } from "./Button.t
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
-      type = "solid-base",
+      type = "base",
       display = "inline",
       disabled = false,
       loading = false,
