@@ -48,7 +48,7 @@
 // Type Variants - Solid
 .button--type-solid-green {
   background-color: var(--seed-brand-color-primary);
-  color: var(--seed-palette-color-base-100);
+  color: var(--seed-ui-color-line-white);
 
   &:hover:not(:disabled) {
     background-color: var(--seed-palette-color-green-700);
@@ -59,13 +59,15 @@
   }
 
   &.disabled {
-    background-color: var(--seed-palette-color-base-400);
+    background-color: var(--seed-ui-color-background-guide);
+    border-color: var(--seed-ui-color-background-guide);
+    color: var(--seed-ui-color-text-disabled);
   }
 }
 
 .button--type-solid-red {
   background-color: var(--seed-brand-color-point2);
-  color: var(--seed-palette-color-base-100);
+  color: var(--seed-ui-color-line-white);
 
   &:hover:not(:disabled) {
     background-color: var(--seed-palette-color-red-600);
@@ -76,8 +78,9 @@
   }
 
   &.disabled {
-    background-color: var(--seed-palette-color-base-400);
-    color: var(--seed-palette-color-base-600);
+    background-color: var(--seed-ui-color-background-guide);
+    border-color: var(--seed-ui-color-background-guide);
+    color: var(--seed-ui-color-text-disabled);
   }
 }
 
@@ -86,7 +89,7 @@
 
 // Type Variants - Outline
 .button--type-outline-green {
-  background-color: transparent;
+  background-color: var(--seed-ui-color-background-container);
   border: 1px solid var(--seed-brand-color-primary);
   color: var(--seed-brand-color-primary);
 
@@ -99,14 +102,14 @@
   }
 
   &.disabled {
-    background-color: var(--seed-palette-color-base-100);
-    border-color: var(--seed-palette-color-base-300);
+    background-color: var(--seed-ui-color-background-white);
+    border-color: var(---seed-ui-color-line-lite);
     color: var(--seed-ui-color-text-disabled);
   }
 }
 
 .button--type-outline-gray {
-  background-color: transparent;
+  background-color: var(--seed-ui-color-background-white);
   border: 1px solid var(--seed-ui-color-line-dark);
   color: var(--seed-ui-color-text-black);
 
@@ -119,8 +122,8 @@
   }
 
   &.disabled {
-    background-color: var(--seed-palette-color-base-100);
-    border-color: var(--seed-palette-color-base-300);
+    background-color: var(--seed-ui-color-background-white);
+    border-color: var(---seed-ui-color-line-lite);
     color: var(--seed-ui-color-text-disabled);
   }
 }
