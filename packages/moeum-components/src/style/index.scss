@@ -1,4 +1,5 @@
 @use "./normalize.css";
+@use "./design-token/index.scss";
 
 @use "../components/layout/Box/Box.scss";
 @use "../components/layout/Container/Container.scss";
