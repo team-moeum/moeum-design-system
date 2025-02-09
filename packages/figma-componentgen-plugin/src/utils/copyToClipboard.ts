@@ -1,6 +1,7 @@
-export const copyToClipboard = (data: string) => {
+export const copyToClipboard = (data: string, json = true) => {
   const textarea = document.createElement("textarea");
-  textarea.value = JSON.stringify(data, null, 2);
+
+  textarea.value = json ? JSON.stringify(data) : data;
 
   document.body.appendChild(textarea);
   textarea.select();
