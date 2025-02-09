@@ -32,3 +32,9 @@ figma.on("selectionchange", () => {
     figma.ui.postMessage(data);
   }
 });
+
+figma.ui.onmessage = (msg) => {
+  if (msg.type === "notify") {
+    figma.notify(msg.message);
+  }
+};

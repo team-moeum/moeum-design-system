@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { notify } from "./utils/notify";
+import { copyToClipboard } from "./utils/copyToClipboard";
 
 export const Main = () => {
   const [data, setData] = useState(null);
@@ -9,15 +11,16 @@ export const Main = () => {
     };
   }, []);
 
-  const copyToClipboard = () => {
+  const handleCopyToClipboard = () => {
     if (data) {
-      navigator.clipboard.writeText(JSON.stringify(data, null, 2));
+      copyToClipboard(data);
+      notify("복사 성공");
     }
   };
 
   return (
     <div style={{ padding: "20px" }}>
-      <button onClick={copyToClipboard} style={{ marginBottom: "10px" }}>
+      <button onClick={handleCopyToClipboard} style={{ marginBottom: "10px" }}>
         Copy JSON
       </button>
       <pre
