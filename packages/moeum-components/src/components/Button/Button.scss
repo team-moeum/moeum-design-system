@@ -94,11 +94,11 @@
   color: var(--seed-brand-color-primary);
 
   &:hover:not(:disabled) {
-    background-color: var(--seed-ui-color-background-gray);
+    background-color: var(--seed-brand-color-secondary2);
   }
 
   &:active:not(:disabled) {
-    background-color: var(--seed-ui-color-background-gray);
+    background-color: var(--seed-brand-color-secondary2);
   }
 
   &.disabled {
