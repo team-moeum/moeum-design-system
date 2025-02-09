@@ -1,0 +1,13 @@
+{
+  "name": "figma-component-gen-plugin",
+  "id": "figma-component-gen-plugin",
+  "api": "1.0.0",
+  "editorType": ["figma"],
+  "main": "dist/code.js",
+  "ui": "dist/ui.html",
+  "enablePrivatePluginApi": true,
+  "documentAccess": "dynamic-page",
+  "networkAccess": {
+    "allowedDomains": ["https://api.github.com"]
+  }
+}
