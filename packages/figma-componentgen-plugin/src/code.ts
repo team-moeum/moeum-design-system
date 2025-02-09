@@ -13,14 +13,21 @@ function getLayerInfo(node: SceneNode) {
     .with({ componentProperties: P.any }, (node) => {
       info.property = node.componentProperties;
     })
+    .otherwise(() => {});
+
+  match(node)
     .with({ type: "TEXT" }, (node) => {
       info.text = node.characters;
       info.fontSize = node.fontSize;
       info.fontName = node.fontName;
     })
+    .otherwise(() => {});
+
+  match(node)
     .with({ children: P.array() }, (node) => {
       info.children = node.children.map((child) => getLayerInfo(child));
-    });
+    })
+    .otherwise(() => {});
 
   return info;
 }

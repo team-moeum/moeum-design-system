@@ -1,5 +1,5 @@
 {
-  "name": "figma-componentgen-plugin",
+  "name": "@moeum/figma-componentgen-plugin",
   "version": "1.0.0",
   "description": "",
   "main": "code.js",
