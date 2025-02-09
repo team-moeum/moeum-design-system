@@ -28,11 +28,22 @@ export const Main = () => {
           background: "#f5f5f5",
           padding: "10px",
           overflow: "auto",
-          height: "400px",
+          height: "200px",
         }}
       >
         {data ? JSON.stringify(data, null, 2) : "레이어를 선택하세요"}
       </pre>
+      <pre
+        style={{
+          marginTop: 16,
+          background: "#f5f5f5",
+          padding: "10px",
+          overflow: "auto",
+          height: "200px",
+        }}
+      >{`
+        <Button></Button>
+      `}</pre>
     </div>
   );
 };
