@@ -1,0 +1,63 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
+
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+
+ :root {
+  --seed-font-family-head: pretendard;
+  --seed-font-family-title: pretendard;
+  --seed-font-family-body: pretendard;
+  --seed-font-family-paragraph: pretendard;
+  --seed-font-family-caption: pretendard;
+  --seed-font-weight-400: regular;
+  --seed-font-weight-500: medium;
+  --seed-font-weight-700: bold;
+  --seed-font-size-xs: 12px;
+  --seed-font-size-s: 14px;
+  --seed-font-size-sm: 16px;
+  --seed-font-size-md: 18px;
+  --seed-font-size-lg: 20px;
+  --seed-font-size-xl: 22px;
+  --seed-font-size-2xl: 24px;
+  --seed-font-size-4xl: 32px;
+  --seed-font-size-5xl: 40px;
+  --seed-font-size-6xl: 48px;
+  --seed-font-size-3xl: 28px;
+  --seed-font-line-height-sm: 16px;
+  --seed-font-line-height-2xl: 24px;
+  --seed-font-line-height-4xl: 32px;
+  --seed-font-line-height-5xl: 40px;
+  --seed-font-line-height-6xl: 48px;
+  --seed-font-line-height-lg: 20px;
+  --seed-font-line-height-3xl: 28px;
+  --seed-font-line-height-s: 14px;
+  --seed-spacing-100: 0px;
+  --seed-spacing-200: 4px;
+  --seed-spacing-300: 8px;
+  --seed-spacing-400: 12px;
+  --seed-spacing-500: 16px;
+  --seed-spacing-600: 20px;
+  --seed-spacing-700: 24px;
+  --seed-spacing-800: 28px;
+  --seed-spacing-900: 32px;
+  --seed-spacing-1000: 40px;
+  --seed-spacing-1100: 48px;
+  --seed-spacing-1200: 56px;
+  --seed-spacing-1300: 64px;
+  --seed-spacing-1400: 72px;
+  --seed-rounding-100: 0px;
+  --seed-rounding-200: 4px;
+  --seed-rounding-300: 8px;
+  --seed-rounding-400: 12px;
+  --seed-rounding-500: 16px;
+  --seed-rounding-600: 20px;
+  --seed-rounding-700: 24px;
+  --seed-rounding-800: 28px;
+  --seed-rounding-900: 32px;
+  --seed-rounding-1000: 40px;
+  --seed-rounding-1100: 48px;
+  --seed-rounding-1200: 56px;
+  --seed-rounding-1300: 64px;
+  --seed-rounding-1400: 72px;
+}
