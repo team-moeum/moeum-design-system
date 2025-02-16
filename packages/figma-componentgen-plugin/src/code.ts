@@ -32,11 +32,19 @@ function getLayerInfo(node: SceneNode) {
   return info;
 }
 
+function init() {
+  figma.clientStorage
+    .getAsync("mappingTable")
+    .then((data) =>
+      figma.ui.postMessage({ type: "getMappingTable", payload: data })
+    );
+}
+
 figma.on("selectionchange", () => {
   const selection = figma.currentPage.selection;
   if (selection.length > 0) {
     const data = selection.map((node) => getLayerInfo(node));
-    figma.ui.postMessage(data);
+    figma.ui.postMessage({ type: "selectionchange", payload: data });
   }
 });
 
@@ -44,4 +52,16 @@ figma.ui.onmessage = (msg) => {
   if (msg.type === "notify") {
     figma.notify(msg.message);
   }
+
+  if (msg.type === "setMappingTable") {
+    figma.clientStorage.setAsync("mappingTable", msg.data).then(() => {
+      figma.clientStorage
+        .getAsync("mappingTable")
+        .then((data) =>
+          figma.ui.postMessage({ type: "getMappingTable", payload: data })
+        );
+    });
+  }
 };
+
+init();

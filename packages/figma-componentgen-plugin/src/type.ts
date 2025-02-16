@@ -1,5 +1,6 @@
 type MappingTableType = {
-  [key: string]: string | Record<string, string>;
-};
+  key: string;
+  value: string | Record<string, string>;
+}[];
 
 export { MappingTableType };

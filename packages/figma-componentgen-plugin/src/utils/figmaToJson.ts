@@ -1,5 +1,4 @@
 import { MappingTableType } from "../type";
-import MappingTable from "../mappingTable.json";
 
 type FigmaVariant = {
   value: string;
@@ -43,10 +42,13 @@ type ComponentNodeType = {
   style?: ComponentStyle;
 };
 
-export const figmaToJson = (figmaData: FigmaNode[]): ComponentNodeType => {
+export const figmaToJson = (
+  figmaData: FigmaNode[],
+  mappingTable: MappingTableType
+): ComponentNodeType => {
   const processNode = (node: FigmaNode): ComponentNodeType => {
     const componentNode: ComponentNodeType = {
-      component: getComponentType(node, MappingTable),
+      component: getComponentType(node, mappingTable),
     };
 
     // Process properties
@@ -78,8 +80,9 @@ export const figmaToJson = (figmaData: FigmaNode[]): ComponentNodeType => {
   ): string => {
     const type = node.type;
     const name = node.name;
-    const value = table[type];
-    const defaultValue = table["default"] as string;
+    const value = table.find((item) => item.key === type).value;
+    const defaultValue = table.find((item) => item.key === "DEFAULT")
+      .value as string;
 
     if (!value) return defaultValue;
 

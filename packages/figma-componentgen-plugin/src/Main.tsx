@@ -1,104 +1,102 @@
-import { useState, useEffect, useMemo } from "react";
-import { notify } from "./utils/notify";
-import { copyToClipboard } from "./utils/copyToClipboard";
-import { FigmaNode, figmaToJson } from "./utils/figmaToJson";
-import { jsonToComponent } from "./utils/jsonToCompoenent";
+import "./style/global.css";
+import { useEffect, useState } from "react";
+import { Tab1 } from "./components/Tab1";
+import { Box, Tabs, Theme } from "@radix-ui/themes";
+import { Tab2 } from "./components/Tab2";
+import { MappingTableType } from "./type";
+
+const isDarkMode =
+  window.matchMedia &&
+  window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+type TabType = "info" | "setting";
+
+const defaultKeyValues: MappingTableType = [
+  { key: "DEFAULT", value: "" },
+  { key: "SLICE", value: "" },
+  { key: "FRAME", value: "" },
+  { key: "GROUP", value: "" },
+  { key: "COMPONENT_SET", value: "" },
+  { key: "COMPONENT", value: "" },
+  { key: "INSTANCE", value: {} },
+  { key: "BOOLEAN_OPERATION", value: "" },
+  { key: "VECTOR", value: "" },
+  { key: "STAR", value: "" },
+  { key: "LINE", value: "" },
+  { key: "ELLIPSE", value: "" },
+  { key: "RECTANGLE", value: "" },
+  { key: "TEXT", value: "" },
+  { key: "STICKY", value: "" },
+  { key: "CONNECTOR", value: "" },
+  { key: "SHAPE_WITH_TEXT", value: "" },
+  { key: "CODE_BLOCK", value: "" },
+  { key: "STAMP", value: "" },
+  { key: "WIDGET", value: "" },
+  { key: "EMBED", value: "" },
+  { key: "LINK_UNFURL", value: "" },
+  { key: "MEDIA", value: "" },
+  { key: "SECTION", value: "" },
+  { key: "HIGHLIGHT", value: "" },
+  { key: "WASHI_TAPE", value: "" },
+  { key: "TABLE", value: "" },
+];
 
 export const Main = () => {
-  const [data, setData] = useState<any | null>(null);
-  const toJson = useMemo(
-    () =>
-      data ? JSON.stringify(figmaToJson(data as FigmaNode[]), null, 2) : null,
-    [data]
-  );
+  const [mappingTable, setMappingTable] =
+    useState<MappingTableType>(defaultKeyValues);
+  const [layerData, setLayerData] = useState();
+  const [currentTab, setCurrentTab] = useState<TabType>("info");
 
-  const toComponent = useMemo(
-    () => (toJson ? jsonToComponent(JSON.parse(toJson)) : null),
-    [toJson]
-  );
-
-  const handleCopyToClipboard = () => {
-    if (data) {
-      copyToClipboard(data);
-      notify("복사 성공");
-    }
-  };
-
-  const handleCopyToClipboardForJson = () => {
-    if (toJson) {
-      copyToClipboard(JSON.parse(toJson));
-      notify("복사 성공");
-    }
-  };
-
-  const handleCopyToClipboardForComponent = () => {
-    if (toComponent) {
-      const codeBlock = toComponent
-        .replace(/\\n/g, "") // 개행문자 처리
-        .replace(/\\"/g, '"') // 따옴표 처리
-        .replace(/^"|"$/g, "") // 문자열 시작/끝의 따옴표 제거
-        .trim();
-      copyToClipboard(codeBlock, false);
-      notify("복사 성공");
-    }
+  const handleTabChange = (value: TabType) => {
+    setCurrentTab(value);
   };
 
   useEffect(() => {
     window.onmessage = (event) => {
-      setData(event.data.pluginMessage);
+      const message = event.data.pluginMessage;
+      console.log(message);
+      if (message.type === "getMappingTable") {
+        const data = message.payload || defaultKeyValues;
+        console.log(data);
+        setMappingTable(data);
+      }
+
+      if (message.type === "selectionchange") {
+        setLayerData(message.payload);
+      }
     };
   }, []);
 
   return (
-    <div style={{ padding: "20px" }}>
-      <button onClick={handleCopyToClipboard} style={{ marginBottom: "10px" }}>
-        Copy JSON
-      </button>
-      <pre
-        style={{
-          background: "#f5f5f5",
-          padding: "10px",
-          overflow: "auto",
-          height: "200px",
-        }}
+    <Theme appearance={"light"}>
+      <Tabs.Root
+        defaultValue="setting"
+        onValueChange={handleTabChange}
+        value={currentTab}
       >
-        {data ? JSON.stringify(data, null, 2) : "레이어를 선택하세요"}
-      </pre>
-      <button
-        onClick={handleCopyToClipboardForJson}
-        style={{ marginBottom: "10px" }}
-      >
-        Copy JSON
-      </button>
-      <pre
-        style={{
-          marginTop: 16,
-          background: "#f5f5f5",
-          padding: "10px",
-          overflow: "auto",
-          height: "200px",
-        }}
-      >
-        {toJson}
-      </pre>
-      <button
-        onClick={handleCopyToClipboardForComponent}
-        style={{ marginBottom: "10px" }}
-      >
-        Copy Component
-      </button>
-      <pre
-        style={{
-          marginTop: 16,
-          background: "#f5f5f5",
-          padding: "10px",
-          overflow: "auto",
-          height: "200px",
-          whiteSpace: "break-spaces",
-        }}
-      >
-        {toComponent}
-      </pre>
-    </div>
+        <Tabs.List
+          style={{
+            position: "fixed",
+            left: 0,
+            right: 0,
+            zIndex: 1,
+            backgroundColor: "#FFF",
+          }}
+        >
+          <Tabs.Trigger value="info">Setting</Tabs.Trigger>
+          <Tabs.Trigger value="setting">Publish</Tabs.Trigger>
+        </Tabs.List>
+
+        <Box pt="8">
+          <Tabs.Content value="info">
+            <Tab1 data={layerData} mappingTable={mappingTable} />
+          </Tabs.Content>
+
+          <Tabs.Content value="setting">
+            <Tab2 mappingTable={mappingTable} />
+          </Tabs.Content>
+        </Box>
+      </Tabs.Root>
+    </Theme>
   );
 };
