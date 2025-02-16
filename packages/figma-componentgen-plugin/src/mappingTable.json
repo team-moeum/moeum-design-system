@@ -1,0 +1,33 @@
+{
+  "_comment": "https://www.figma.com/plugin-docs/api/s/",
+  "default": "Box",
+  "SLICE": {},
+  "FRAME": {},
+  "GROUP": {},
+  "COMPONENT_SET": {},
+  "COMPONENT": {},
+  "INSTANCE": {
+    "button": "Button",
+    "popup": "Popup"
+  },
+  "BOOLEAN_OPERATION": {},
+  "VECTOR": {},
+  "STAR": {},
+  "LINE": {},
+  "ELLIPSE": {},
+  "RECTANGLE": {},
+  "TEXT": "Text",
+  "STICKY": {},
+  "CONNECTOR": {},
+  "SHAPE_WITH_TEXT": {},
+  "CODE_BLOCK": {},
+  "STAMP": {},
+  "WIDGET": {},
+  "EMBED": {},
+  "LINK_UNFURL": {},
+  "MEDIA": {},
+  "SECTION": {},
+  "HIGHLIGHT": {},
+  "WASHI_TAPE": {},
+  "TABLE": {}
+}
