@@ -1,3 +1,5 @@
+import { MappingTableType } from "../type";
+
 type FigmaVariant = {
   value: string;
   type: string;
@@ -40,10 +42,13 @@ type ComponentNodeType = {
   style?: ComponentStyle;
 };
 
-export const figmaToJson = (figmaData: FigmaNode[]): ComponentNodeType => {
+export const figmaToJson = (
+  figmaData: FigmaNode[],
+  mappingTable: MappingTableType
+): ComponentNodeType => {
   const processNode = (node: FigmaNode): ComponentNodeType => {
     const componentNode: ComponentNodeType = {
-      component: getComponentType(node),
+      component: getComponentType(node, mappingTable),
     };
 
     // Process properties
@@ -69,23 +74,23 @@ export const figmaToJson = (figmaData: FigmaNode[]): ComponentNodeType => {
     return componentNode;
   };
 
-  const getComponentType = (node: FigmaNode): string => {
-    if (node.type === "INSTANCE") {
-      if (node.name.toLowerCase().includes("button")) {
-        return "Button";
-      }
-      return "Popup";
+  const getComponentType = (
+    node: FigmaNode,
+    table: MappingTableType
+  ): string => {
+    const type = node.type;
+    const name = node.name;
+    const value = table.find((item) => item.key === type).value;
+    const defaultValue = table.find((item) => item.key === "DEFAULT")
+      .value as string;
+
+    if (!value) return defaultValue;
+
+    if (typeof value === "string") {
+      return value;
     }
 
-    if (node.type === "FRAME") {
-      return "Frame";
-    }
-
-    if (node.type === "TEXT") {
-      return "Text";
-    }
-
-    return node.type;
+    return value[name] || defaultValue;
   };
 
   const processProperties = (
