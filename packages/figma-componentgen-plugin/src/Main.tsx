@@ -11,39 +11,8 @@ const isDarkMode =
 
 type TabType = "info" | "setting";
 
-const defaultKeyValues: MappingTableType = [
-  { key: "DEFAULT", value: "" },
-  { key: "SLICE", value: "" },
-  { key: "FRAME", value: "" },
-  { key: "GROUP", value: "" },
-  { key: "COMPONENT_SET", value: "" },
-  { key: "COMPONENT", value: "" },
-  { key: "INSTANCE", value: {} },
-  { key: "BOOLEAN_OPERATION", value: "" },
-  { key: "VECTOR", value: "" },
-  { key: "STAR", value: "" },
-  { key: "LINE", value: "" },
-  { key: "ELLIPSE", value: "" },
-  { key: "RECTANGLE", value: "" },
-  { key: "TEXT", value: "" },
-  { key: "STICKY", value: "" },
-  { key: "CONNECTOR", value: "" },
-  { key: "SHAPE_WITH_TEXT", value: "" },
-  { key: "CODE_BLOCK", value: "" },
-  { key: "STAMP", value: "" },
-  { key: "WIDGET", value: "" },
-  { key: "EMBED", value: "" },
-  { key: "LINK_UNFURL", value: "" },
-  { key: "MEDIA", value: "" },
-  { key: "SECTION", value: "" },
-  { key: "HIGHLIGHT", value: "" },
-  { key: "WASHI_TAPE", value: "" },
-  { key: "TABLE", value: "" },
-];
-
 export const Main = () => {
-  const [mappingTable, setMappingTable] =
-    useState<MappingTableType>(defaultKeyValues);
+  const [mappingTable, setMappingTable] = useState<MappingTableType>([]);
   const [layerData, setLayerData] = useState();
   const [currentTab, setCurrentTab] = useState<TabType>("info");
 
@@ -54,10 +23,8 @@ export const Main = () => {
   useEffect(() => {
     window.onmessage = (event) => {
       const message = event.data.pluginMessage;
-      console.log(message);
       if (message.type === "getMappingTable") {
-        const data = message.payload || defaultKeyValues;
-        console.log(data);
+        const data = message.payload;
         setMappingTable(data);
       }
 
