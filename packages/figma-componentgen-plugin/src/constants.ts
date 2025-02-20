@@ -7,7 +7,13 @@ export const defaultKeyValues: MappingTableType = [
   { key: "GROUP", value: "" },
   { key: "COMPONENT_SET", value: "" },
   { key: "COMPONENT", value: "" },
-  { key: "INSTANCE", value: {} },
+  {
+    key: "INSTANCE",
+    value: {
+      popup: "Popup",
+      button: "Button",
+    },
+  },
   { key: "BOOLEAN_OPERATION", value: "" },
   { key: "VECTOR", value: "" },
   { key: "STAR", value: "" },

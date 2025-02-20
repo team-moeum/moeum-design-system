@@ -1,13 +1,11 @@
+import { CSSProperties } from "react";
+
 export type ComponentNodeType = {
   component: string;
   props?: Record<string, string>;
   children?: ComponentNodeType[];
   text?: string;
-  style?: {
-    fontSize?: number;
-    fontFamily?: string;
-    fontWeight?: string;
-  };
+  style?: CSSProperties;
 };
 
 export const jsonToComponent = (json: ComponentNodeType): string => {
@@ -33,6 +31,13 @@ export const jsonToComponent = (json: ComponentNodeType): string => {
         .map(([key, value]) => `${key}="${value}"`)
         .join(" ");
       result += ` ${propsStr}`;
+    } else if (node.style) {
+      result += ` style={{ ${Object.entries(node.style)
+        .map(
+          ([key, value]) =>
+            `${key}: ${typeof value === "number" ? value : `'${value}'`}`
+        )
+        .join(", ")} }}`;
     }
 
     // Close opening tag

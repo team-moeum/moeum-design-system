@@ -1,3 +1,4 @@
+import { CSSProperties } from "react";
 import { MappingTableType } from "../type";
 
 type FigmaVariant = {
@@ -13,25 +14,13 @@ type FigmaProperty = {
   [key: string]: FigmaVariant | undefined;
 };
 
-type FigmaFontName = {
-  family: string;
-  style: string;
-};
-
 export type FigmaNode = {
   name: string;
   type: string;
   property?: FigmaProperty;
   children?: FigmaNode[];
   text?: string;
-  fontSize?: number;
-  fontName?: FigmaFontName;
-};
-
-type ComponentStyle = {
-  fontSize?: number;
-  fontFamily?: string;
-  fontWeight?: string;
+  style?: CSSProperties;
 };
 
 type ComponentNodeType = {
@@ -39,7 +28,7 @@ type ComponentNodeType = {
   props?: Record<string, string>;
   children?: ComponentNodeType[];
   text?: string;
-  style?: ComponentStyle;
+  style?: CSSProperties;
 };
 
 export const figmaToJson = (
@@ -59,11 +48,11 @@ export const figmaToJson = (
     // Process text nodes
     if (node.type === "TEXT") {
       componentNode.text = node.text;
-      componentNode.style = {
-        fontSize: node.fontSize,
-        fontFamily: node.fontName?.family,
-        fontWeight: node.fontName?.style === "Bold" ? "bold" : "normal",
-      };
+    }
+
+    // base styling
+    if (node.style) {
+      componentNode.style = node.style;
     }
 
     // Process children
