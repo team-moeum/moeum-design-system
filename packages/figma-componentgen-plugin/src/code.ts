@@ -1,4 +1,5 @@
 import { match, P } from "ts-pattern";
+import { defaultKeyValues } from "./constants";
 
 figma.showUI(__html__, { width: 400, height: 500 });
 
@@ -36,7 +37,10 @@ function init() {
   figma.clientStorage
     .getAsync("mappingTable")
     .then((data) =>
-      figma.ui.postMessage({ type: "getMappingTable", payload: data })
+      figma.ui.postMessage({
+        type: "getMappingTable",
+        payload: data || defaultKeyValues,
+      })
     );
 }
 
