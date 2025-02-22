@@ -4,12 +4,14 @@ import { MappingTableType } from "@moeum/shared/type/component";
 import { PublishTabContainer } from "@moeum/features/(tabs)/publish/PublishTabContainer";
 import { SettingTabContainer } from "@moeum/features/(tabs)/setting/SettingTabContainer";
 import "@moeum/common/style/global.css";
+import { defaultKeyValues } from "./shared/constants";
 
 type TabType = "info" | "setting";
 
 export const App = () => {
-  const [mappingTable, setMappingTable] = useState<MappingTableType>([]);
-  const [layerData, setLayerData] = useState();
+  const [mappingTable, setMappingTable] =
+    useState<MappingTableType>(defaultKeyValues);
+  const [layerData, setLayerData] = useState<SceneNode[]>([]);
   const [currentTab, setCurrentTab] = useState<TabType>("info");
 
   const handleTabChange = (value: TabType) => {
@@ -25,7 +27,7 @@ export const App = () => {
           setMappingTable(message.payload);
           break;
         case "selectionchange":
-          setLayerData(message.payload);
+          setLayerData(message.payload || []);
           break;
       }
     };

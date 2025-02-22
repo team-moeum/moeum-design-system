@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-import { notify } from "@moeum/utils/notify";
 import { MappingTableType } from "@moeum/shared/type/component";
-import { setStorage } from "@moeum/utils/figmaStorage";
 import { SettingTabPage, ObjectValueList } from "./SettingTabPage";
+import { FigmaService } from "@moeum/shared/service/FigmaService";
 
 export const SettingTabContainer = ({
   mappingTable,
@@ -22,7 +21,7 @@ export const SettingTabContainer = ({
   };
 
   const saveMappingTable = (data: MappingTableType) => {
-    setStorage(data);
+    FigmaService.setStorage("mappingTable", data);
   };
 
   const addValueToPair = () => {
@@ -40,7 +39,7 @@ export const SettingTabContainer = ({
           })
         );
       } else {
-        notify("invalid input type!");
+        FigmaService.notify("invalid input type!");
       }
     } else {
       if (selectedKey && subValue) {
@@ -55,7 +54,7 @@ export const SettingTabContainer = ({
           })
         );
       } else {
-        notify("invalid input type!");
+        FigmaService.notify("invalid input type!");
       }
     }
 

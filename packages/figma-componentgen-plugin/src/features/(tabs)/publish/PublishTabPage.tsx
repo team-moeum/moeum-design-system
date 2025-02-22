@@ -1,23 +1,26 @@
 interface PublishTabPageProps {
-  nodeToJson: string | null;
-  jsonToLayer: string | null;
-  layerToComponent: string | null;
-  onCopyToClipboard: () => void;
-  onCopyToClipboardForJson: () => void;
+  layerNode: string | null;
+  componentNode: string | null;
+  componentString: string;
+  onCopyToClipboardForLayerNode: () => void;
+  onCopyToClipboardForComponentNode: () => void;
   onCopyToClipboardForComponent: () => void;
 }
 
 export function PublishTabPage({
-  nodeToJson,
-  jsonToLayer,
-  layerToComponent,
-  onCopyToClipboard,
-  onCopyToClipboardForJson,
+  layerNode,
+  componentNode,
+  componentString,
+  onCopyToClipboardForLayerNode,
+  onCopyToClipboardForComponentNode,
   onCopyToClipboardForComponent,
 }: PublishTabPageProps) {
   return (
     <div style={{ padding: "20px" }}>
-      <button onClick={onCopyToClipboard} style={{ marginBottom: "10px" }}>
+      <button
+        onClick={onCopyToClipboardForLayerNode}
+        style={{ marginBottom: "10px" }}
+      >
         Copy JSON
       </button>
       <pre
@@ -28,10 +31,10 @@ export function PublishTabPage({
           height: "200px",
         }}
       >
-        {nodeToJson ?? "영역을 선택하세요"}
+        {layerNode ?? "영역을 선택하세요"}
       </pre>
       <button
-        onClick={onCopyToClipboardForJson}
+        onClick={onCopyToClipboardForComponentNode}
         style={{ marginBottom: "10px" }}
       >
         Copy JSON
@@ -45,7 +48,7 @@ export function PublishTabPage({
           height: "200px",
         }}
       >
-        {jsonToLayer ?? "영역을 선택하세요"}
+        {componentNode ?? "영역을 선택하세요"}
       </pre>
       <button
         onClick={onCopyToClipboardForComponent}
@@ -63,7 +66,7 @@ export function PublishTabPage({
           whiteSpace: "break-spaces",
         }}
       >
-        {layerToComponent ?? "영역을 선택하세요"}
+        {componentString ?? "영역을 선택하세요"}
       </pre>
     </div>
   );

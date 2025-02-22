@@ -1,81 +1,70 @@
-import { useMemo } from "react";
-import { notify } from "@moeum/utils/notify";
-import { copyToClipboard } from "@moeum/utils/copyToClipboard";
-import { FigmaNode, figmaToJson } from "@moeum/utils/figmaToJson";
-import { jsonToComponent } from "@moeum/utils/jsonToCompoenent";
 import { MappingTableType } from "@moeum/shared/type/component";
+import { useMemo } from "react";
+import { PublishService } from "./service/PublishService";
 import { PublishTabPage } from "./PublishTabPage";
 
 export const PublishTabContainer = ({
   data,
   mappingTable,
 }: {
-  data: any;
+  data: SceneNode[];
   mappingTable: MappingTableType;
 }) => {
-  const nodeToJson = useMemo(
+  const publishService = useMemo(
+    () => new PublishService(mappingTable),
+    [mappingTable]
+  );
+
+  // FigmaNode -> LayerNode (JSON)
+  const layerNode = useMemo(
+    () => (data ? publishService.figmaNodeToLayerNode(data) : null),
+    [data, publishService]
+  );
+
+  // LayerNode -> ComponentNode (JSON)
+  const componentNode = useMemo(
     () =>
-      data
-        ? JSON.stringify(
-            figmaToJson(data as FigmaNode[], mappingTable),
-            null,
-            2
-          )
-        : null,
-    [data]
+      layerNode ? publishService.layerNodeToComponentNode(layerNode) : null,
+    [layerNode, publishService]
   );
 
-  const jsonToLayer = useMemo(
-    () =>
-      data
-        ? JSON.stringify(
-            figmaToJson(data as FigmaNode[], mappingTable),
-            null,
-            2
-          )
-        : null,
-    [data]
+  // ComponentNode -> String
+  const componentString = useMemo(
+    () => (layerNode ? publishService.componentNodeToString(layerNode) : null),
+    [layerNode, publishService]
   );
 
-  const layerToComponent = useMemo(
-    () => (jsonToLayer ? jsonToComponent(JSON.parse(jsonToLayer)) : null),
-    [jsonToLayer]
-  );
-
-  const handleCopyToClipboard = () => {
-    if (nodeToJson) {
-      copyToClipboard(nodeToJson);
-      notify("복사 성공");
+  const handleCopyLayerNode = () => {
+    if (layerNode) {
+      publishService.copyToClipboard(JSON.parse(layerNode));
     }
   };
 
-  const handleCopyToClipboardForJson = () => {
-    if (jsonToLayer) {
-      copyToClipboard(JSON.parse(jsonToLayer));
-      notify("복사 성공");
+  const handleCopyComponentNode = () => {
+    if (componentNode) {
+      publishService.copyToClipboard(JSON.parse(componentNode));
     }
   };
 
-  const handleCopyToClipboardForComponent = () => {
-    if (layerToComponent) {
-      const codeBlock = layerToComponent
-        .replace(/\\n/g, "") // 개행문자 처리
-        .replace(/\\"/g, '"') // 따옴표 처리
-        .replace(/^"|"$/g, "") // 문자열 시작/끝의 따옴표 제거
+  const handleCopyComponentString = () => {
+    if (componentString) {
+      const formattedCode = componentString
+        .replace(/\\n/g, "")
+        .replace(/\\"/g, '"')
+        .replace(/^"|"$/g, "")
         .trim();
-      copyToClipboard(codeBlock, false);
-      notify("복사 성공");
+      publishService.copyToClipboard(formattedCode, false);
     }
   };
 
   return (
     <PublishTabPage
-      nodeToJson={nodeToJson}
-      jsonToLayer={jsonToLayer}
-      layerToComponent={layerToComponent}
-      onCopyToClipboard={handleCopyToClipboard}
-      onCopyToClipboardForJson={handleCopyToClipboardForJson}
-      onCopyToClipboardForComponent={handleCopyToClipboardForComponent}
+      layerNode={layerNode}
+      componentNode={componentNode}
+      componentString={componentString}
+      onCopyToClipboardForLayerNode={handleCopyLayerNode}
+      onCopyToClipboardForComponentNode={handleCopyComponentNode}
+      onCopyToClipboardForComponent={handleCopyComponentString}
     />
   );
 };
