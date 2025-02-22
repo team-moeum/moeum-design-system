@@ -1,11 +1,11 @@
 import { useMemo } from "react";
-import { notify } from "../utils/notify";
-import { copyToClipboard } from "../utils/copyToClipboard";
-import { FigmaNode, figmaToJson } from "../utils/figmaToJson";
-import { jsonToComponent } from "../utils/jsonToCompoenent";
-import { MappingTableType } from "../type";
+import { notify } from "@moeum/utils/notify";
+import { copyToClipboard } from "@moeum/utils/copyToClipboard";
+import { FigmaNode, figmaToJson } from "@moeum/utils/figmaToJson";
+import { jsonToComponent } from "@moeum/utils/jsonToCompoenent";
+import { MappingTableType } from "@moeum/shared/type/component";
 
-export const Tab1 = ({
+export const PublishTabContainer = ({
   data,
   mappingTable,
 }: {

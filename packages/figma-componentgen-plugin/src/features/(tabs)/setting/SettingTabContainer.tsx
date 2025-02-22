@@ -8,13 +8,17 @@ import {
 } from "@radix-ui/themes";
 import { useEffect, useState } from "react";
 import { match } from "ts-pattern";
-import { notify } from "../utils/notify";
-import { MappingTableType } from "../type";
-import { setStorage } from "../utils/figmaStorage";
+import { notify } from "@moeum/utils/notify";
+import { MappingTableType } from "@moeum/shared/type/component";
+import { setStorage } from "@moeum/utils/figmaStorage";
 
 const ObjectValueList = ["INSTANCE"];
 
-export const Tab2 = ({ mappingTable }: { mappingTable: MappingTableType }) => {
+export const SettingTabContainer = ({
+  mappingTable,
+}: {
+  mappingTable: MappingTableType;
+}) => {
   const [keyValuePairs, setKeyValuePairs] =
     useState<MappingTableType>(mappingTable);
   const [selectedKey, setSelectedKey] = useState<string>("");

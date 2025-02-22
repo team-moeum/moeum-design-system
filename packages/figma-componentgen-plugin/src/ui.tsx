@@ -1,8 +1,7 @@
-import React from "react";
 import { createRoot } from "react-dom/client";
-import "./ui.css";
 import { Theme } from "@radix-ui/themes";
-import { Main } from "./Main";
+import { App } from "./App";
+import "./ui.css";
 
 const container = document.getElementById("root") as HTMLElement;
 const root = createRoot(container);
@@ -13,6 +12,6 @@ const isDarkMode =
 
 root.render(
   <Theme appearance={isDarkMode ? "dark" : "light"}>
-    <Main />
+    <App />
   </Theme>
 );
