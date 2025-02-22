@@ -6,97 +6,38 @@ import {
   ScrollArea,
   Select,
 } from "@radix-ui/themes";
-import { useEffect, useState } from "react";
 import { match } from "ts-pattern";
-import { notify } from "../utils/notify";
-import { MappingTableType } from "../type";
-import { setStorage } from "../utils/figmaStorage";
+import { MappingTableType } from "@moeum/shared/type/component";
 
-const ObjectValueList = ["INSTANCE"];
+interface SettingTabPageProps {
+  keyValuePairs: MappingTableType;
+  selectedKey: string;
+  subKey: string;
+  subValue: string;
+  onChangeSelectedKey: (value: string) => void;
+  onChangeSubKey: (value: string) => void;
+  onChangeSubValue: (value: string) => void;
+  addValueToPair: () => void;
+  removeSubValue: (key: string, subKey: string) => void;
+}
 
-export const Tab2 = ({ mappingTable }: { mappingTable: MappingTableType }) => {
-  const [keyValuePairs, setKeyValuePairs] =
-    useState<MappingTableType>(mappingTable);
-  const [selectedKey, setSelectedKey] = useState<string>("");
-  const [subKey, setSubKey] = useState("");
-  const [subValue, setSubValue] = useState("");
+export const ObjectValueList = ["INSTANCE"];
 
-  const saveMappingTable = (data: MappingTableType) => {
-    setStorage(data);
-  };
-
-  useEffect(() => {
-    saveMappingTable(keyValuePairs);
-  }, [keyValuePairs]);
-
-  const handleChangeSelectedKey = (value: string) => {
-    setSelectedKey(value);
-    setSubKey("");
-    setSubValue("");
-  };
-
-  const addValueToPair = () => {
-    if (ObjectValueList.includes(selectedKey)) {
-      if (selectedKey && subKey && subValue) {
-        setKeyValuePairs((pairs) =>
-          pairs.map((pair) => {
-            if (pair.key === selectedKey) {
-              if (typeof pair.value === "object") {
-                const newValue = { ...pair.value, [subKey]: subValue };
-                return { ...pair, value: newValue };
-              }
-            }
-            return pair;
-          })
-        );
-      } else {
-        notify("invalid input type!");
-      }
-    } else {
-      if (selectedKey && subValue) {
-        setKeyValuePairs((pairs) =>
-          pairs.map((pair) => {
-            if (pair.key === selectedKey) {
-              if (typeof pair.value === "string") {
-                return { ...pair, value: subValue };
-              }
-            }
-            return pair;
-          })
-        );
-      } else {
-        notify("invalid input type!");
-      }
-    }
-
-    setSubKey("");
-    setSubValue("");
-  };
-
-  const removeSubValue = (key: string, subKeyToRemove: string) => {
-    setKeyValuePairs((pairs) =>
-      pairs.map((pair) => {
-        if (pair.key === key && typeof pair.value === "string") {
-          return { ...pair, value: "" };
-        }
-
-        if (pair.key === key && typeof pair.value === "object") {
-          const newValue = { ...pair.value };
-          delete newValue[subKeyToRemove];
-          return { ...pair, value: newValue };
-        }
-        return pair;
-      })
-    );
-  };
-
+export function SettingTabPage({
+  keyValuePairs,
+  selectedKey,
+  subKey,
+  subValue,
+  onChangeSelectedKey,
+  onChangeSubKey,
+  onChangeSubValue,
+  addValueToPair,
+  removeSubValue,
+}: SettingTabPageProps) {
   return (
     <Flex direction="column" gap="3" p="4">
       <Flex gap="3" align="center">
-        <Select.Root
-          value={selectedKey}
-          onValueChange={handleChangeSelectedKey}
-        >
+        <Select.Root value={selectedKey} onValueChange={onChangeSelectedKey}>
           <Select.Trigger placeholder="Select key" />
           <Select.Content>
             {keyValuePairs.map((pair) => (
@@ -113,13 +54,13 @@ export const Tab2 = ({ mappingTable }: { mappingTable: MappingTableType }) => {
                 size="2"
                 placeholder="Sub key"
                 value={subKey}
-                onChange={(e) => setSubKey(e.target.value)}
+                onChange={(e) => onChangeSubKey(e.target.value)}
               />
               <TextField.Root
                 size="2"
                 placeholder="Value"
                 value={subValue}
-                onChange={(e) => setSubValue(e.target.value)}
+                onChange={(e) => onChangeSubValue(e.target.value)}
               />
               <Button onClick={addValueToPair}>Add Value</Button>
             </>
@@ -130,7 +71,7 @@ export const Tab2 = ({ mappingTable }: { mappingTable: MappingTableType }) => {
                 size="2"
                 placeholder="Value"
                 value={subValue}
-                onChange={(e) => setSubValue(e.target.value)}
+                onChange={(e) => onChangeSubValue(e.target.value)}
               />
               <Button onClick={addValueToPair}>Add Value</Button>
             </>
@@ -187,4 +128,4 @@ export const Tab2 = ({ mappingTable }: { mappingTable: MappingTableType }) => {
       </ScrollArea>
     </Flex>
   );
-};
+}

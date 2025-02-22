@@ -5,7 +5,11 @@
     "typeRoots": ["./node_modules/@types", "./node_modules/@figma"],
     "allowSyntheticDefaultImports": true,
     "moduleResolution": "node",
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "baseUrl": ".",
+    "paths": {
+      "@moeum/*": ["src/*"]
+    }
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"]
 }
