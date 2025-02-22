@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { MappingTableType } from "@moeum/shared/type/component";
 import { SettingTabPage, ObjectValueList } from "./SettingTabPage";
 import { FigmaService } from "@moeum/shared/service/FigmaService";
+import { MappingTableService } from "./service/MappingTableService";
+import { SettingException } from "./exception/SettingException";
 
 export const SettingTabContainer = ({
   mappingTable,
@@ -25,58 +27,50 @@ export const SettingTabContainer = ({
   };
 
   const addValueToPair = () => {
-    if (ObjectValueList.includes(selectedKey)) {
-      if (selectedKey && subKey && subValue) {
-        setKeyValuePairs((pairs) =>
-          pairs.map((pair) => {
-            if (pair.key === selectedKey) {
-              if (typeof pair.value === "object") {
-                const newValue = { ...pair.value, [subKey]: subValue };
-                return { ...pair, value: newValue };
-              }
-            }
-            return pair;
-          })
+    try {
+      if (ObjectValueList.includes(selectedKey)) {
+        const updatedTable = MappingTableService.addSubValueToMapping(
+          keyValuePairs,
+          selectedKey,
+          subKey,
+          subValue
         );
+        setKeyValuePairs(updatedTable);
+        FigmaService.notify("정상 반영되었습니다.");
       } else {
-        FigmaService.notify("invalid input type!");
+        const updatedTable = MappingTableService.addSubValueToMapping(
+          keyValuePairs,
+          selectedKey,
+          "",
+          subValue
+        );
+        setKeyValuePairs(updatedTable);
+        FigmaService.notify("정상 반영되었습니다.");
       }
-    } else {
-      if (selectedKey && subValue) {
-        setKeyValuePairs((pairs) =>
-          pairs.map((pair) => {
-            if (pair.key === selectedKey) {
-              if (typeof pair.value === "string") {
-                return { ...pair, value: subValue };
-              }
-            }
-            return pair;
-          })
-        );
+      // reset
+      setSubKey("");
+      setSubValue("");
+    } catch (error) {
+      if (error instanceof SettingException) {
+        FigmaService.notify(error.message);
       } else {
-        FigmaService.notify("invalid input type!");
+        FigmaService.notify("An unexpected error occurred");
       }
     }
-
-    setSubKey("");
-    setSubValue("");
   };
 
   const removeSubValue = (key: string, subKeyToRemove: string) => {
-    setKeyValuePairs((pairs) =>
-      pairs.map((pair) => {
-        if (pair.key === key && typeof pair.value === "string") {
-          return { ...pair, value: "" };
-        }
+    try {
+      const updatedTable = MappingTableService.removeSubValueFromMapping(
+        keyValuePairs,
+        key,
+        subKeyToRemove
+      );
 
-        if (pair.key === key && typeof pair.value === "object") {
-          const newValue = { ...pair.value };
-          delete newValue[subKeyToRemove];
-          return { ...pair, value: newValue };
-        }
-        return pair;
-      })
-    );
+      setKeyValuePairs(updatedTable);
+    } catch (error) {
+      FigmaService.notify(error.message);
+    }
   };
 
   useEffect(() => {
