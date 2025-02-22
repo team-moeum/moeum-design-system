@@ -1,18 +1,8 @@
-import {
-  TextField,
-  Flex,
-  Box,
-  Button,
-  ScrollArea,
-  Select,
-} from "@radix-ui/themes";
 import { useEffect, useState } from "react";
-import { match } from "ts-pattern";
 import { notify } from "@moeum/utils/notify";
 import { MappingTableType } from "@moeum/shared/type/component";
 import { setStorage } from "@moeum/utils/figmaStorage";
-
-const ObjectValueList = ["INSTANCE"];
+import { SettingTabPage, ObjectValueList } from "./SettingTabPage";
 
 export const SettingTabContainer = ({
   mappingTable,
@@ -25,18 +15,14 @@ export const SettingTabContainer = ({
   const [subKey, setSubKey] = useState("");
   const [subValue, setSubValue] = useState("");
 
-  const saveMappingTable = (data: MappingTableType) => {
-    setStorage(data);
-  };
-
-  useEffect(() => {
-    saveMappingTable(keyValuePairs);
-  }, [keyValuePairs]);
-
   const handleChangeSelectedKey = (value: string) => {
     setSelectedKey(value);
     setSubKey("");
     setSubValue("");
+  };
+
+  const saveMappingTable = (data: MappingTableType) => {
+    setStorage(data);
   };
 
   const addValueToPair = () => {
@@ -94,101 +80,21 @@ export const SettingTabContainer = ({
     );
   };
 
-  return (
-    <Flex direction="column" gap="3" p="4">
-      <Flex gap="3" align="center">
-        <Select.Root
-          value={selectedKey}
-          onValueChange={handleChangeSelectedKey}
-        >
-          <Select.Trigger placeholder="Select key" />
-          <Select.Content>
-            {keyValuePairs.map((pair) => (
-              <Select.Item key={pair.key} value={pair.key}>
-                {pair.key}
-              </Select.Item>
-            ))}
-          </Select.Content>
-        </Select.Root>
-        {match(ObjectValueList.includes(selectedKey))
-          .with(true, () => (
-            <>
-              <TextField.Root
-                size="2"
-                placeholder="Sub key"
-                value={subKey}
-                onChange={(e) => setSubKey(e.target.value)}
-              />
-              <TextField.Root
-                size="2"
-                placeholder="Value"
-                value={subValue}
-                onChange={(e) => setSubValue(e.target.value)}
-              />
-              <Button onClick={addValueToPair}>Add Value</Button>
-            </>
-          ))
-          .otherwise(() => (
-            <>
-              <TextField.Root
-                size="2"
-                placeholder="Value"
-                value={subValue}
-                onChange={(e) => setSubValue(e.target.value)}
-              />
-              <Button onClick={addValueToPair}>Add Value</Button>
-            </>
-          ))}
-      </Flex>
+  useEffect(() => {
+    saveMappingTable(keyValuePairs);
+  }, [keyValuePairs]);
 
-      <ScrollArea style={{ height: 376 }}>
-        <Flex direction="column" gap="2">
-          {keyValuePairs.map((pair) =>
-            match(JSON.stringify(pair.value))
-              .with("{}", () => null)
-              .with('""', () => null)
-              .otherwise(() => (
-                <Flex key={pair.key} direction="column" gap="2">
-                  <Box>
-                    <strong>{pair.key}:</strong>
-                  </Box>
-                  {typeof pair.value === "object" ? (
-                    Object.entries(pair.value).map(([subKey, value]) => (
-                      <Flex
-                        key={subKey}
-                        justify="between"
-                        align="center"
-                        pl="4"
-                      >
-                        <Box>
-                          {subKey}: {value}
-                        </Box>
-                        <Button
-                          color="red"
-                          variant="soft"
-                          onClick={() => removeSubValue(pair.key, subKey)}
-                        >
-                          Remove
-                        </Button>
-                      </Flex>
-                    ))
-                  ) : (
-                    <Flex key={subKey} justify="between" align="center" pl="4">
-                      <Box>{pair.value}</Box>
-                      <Button
-                        color="red"
-                        variant="soft"
-                        onClick={() => removeSubValue(pair.key, "")}
-                      >
-                        Remove
-                      </Button>
-                    </Flex>
-                  )}
-                </Flex>
-              ))
-          )}
-        </Flex>
-      </ScrollArea>
-    </Flex>
+  return (
+    <SettingTabPage
+      keyValuePairs={keyValuePairs}
+      selectedKey={selectedKey}
+      subKey={subKey}
+      subValue={subValue}
+      onChangeSelectedKey={handleChangeSelectedKey}
+      onChangeSubKey={setSubKey}
+      onChangeSubValue={setSubValue}
+      addValueToPair={addValueToPair}
+      removeSubValue={removeSubValue}
+    />
   );
 };
