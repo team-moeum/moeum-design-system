@@ -2,6 +2,8 @@ import { MappingTableType } from "@moeum/shared/type/component";
 import { useMemo } from "react";
 import { PublishService } from "./service/PublishService";
 import { PublishTabPage } from "./PublishTabPage";
+import { FigmaService } from "@moeum/shared/service/FigmaService";
+import { PublishException } from "./exception/PublishException";
 
 export const PublishTabContainer = ({
   data,
@@ -35,25 +37,46 @@ export const PublishTabContainer = ({
   );
 
   const handleCopyLayerNode = () => {
-    if (layerNode) {
-      publishService.copyToClipboard(JSON.parse(layerNode));
+    try {
+      if (layerNode) {
+        publishService.copyToClipboard(JSON.parse(layerNode));
+        FigmaService.notify("복사 성공");
+      }
+    } catch (error) {
+      if (error instanceof PublishException) {
+        FigmaService.notify(error.message);
+      }
     }
   };
 
   const handleCopyComponentNode = () => {
-    if (componentNode) {
-      publishService.copyToClipboard(JSON.parse(componentNode));
+    try {
+      if (componentNode) {
+        publishService.copyToClipboard(JSON.parse(componentNode));
+        FigmaService.notify("복사 성공");
+      }
+    } catch (error) {
+      if (error instanceof PublishException) {
+        FigmaService.notify(error.message);
+      }
     }
   };
 
   const handleCopyComponentString = () => {
-    if (componentString) {
-      const formattedCode = componentString
-        .replace(/\\n/g, "")
-        .replace(/\\"/g, '"')
-        .replace(/^"|"$/g, "")
-        .trim();
-      publishService.copyToClipboard(formattedCode, false);
+    try {
+      if (componentString) {
+        const formattedCode = componentString
+          .replace(/\\n/g, "")
+          .replace(/\\"/g, '"')
+          .replace(/^"|"$/g, "")
+          .trim();
+        publishService.copyToClipboard(formattedCode, false);
+        FigmaService.notify("복사 성공");
+      }
+    } catch (error) {
+      if (error instanceof PublishException) {
+        FigmaService.notify(error.message);
+      }
     }
   };
 

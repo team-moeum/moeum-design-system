@@ -1,24 +1,22 @@
 import { Component } from "@moeum/shared/entity/Component";
 import { Layer } from "@moeum/shared/entity/Layer";
-import { FigmaService } from "@moeum/shared/service/FigmaService";
 import { MappingTableType } from "@moeum/shared/type/component";
+import { PublishException } from "../exception/PublishException";
 
 export class PublishService {
   constructor(private readonly mappingTable: MappingTableType) {}
 
   figmaNodeToLayerNode(nodes: SceneNode[]): string | null {
-    try {
-      const layers = nodes?.map((node) => Layer.fromFigmaNode(node));
-
-      return JSON.stringify(
-        layers?.map((layer) => layer.toJSON()),
-        null,
-        2
-      );
-    } catch (error) {
-      FigmaService.notify("변환 실패: " + error.message);
-      return null;
+    if (!nodes || nodes.length === 0) {
+      return JSON.stringify({}, null, 2);
     }
+
+    const layers = nodes.map((node) => Layer.fromFigmaNode(node));
+    return JSON.stringify(
+      layers.map((layer) => layer.toJSON()),
+      null,
+      2
+    );
   }
 
   layerNodeToComponentNode(layerNodeJson: string): string {
@@ -52,10 +50,8 @@ export class PublishService {
 
       document.execCommand("copy");
       document.body.removeChild(textarea);
-
-      FigmaService.notify("복사 성공");
     } catch (error) {
-      FigmaService.notify("복사 실패");
+      throw new PublishException("복사 실패");
     }
   }
 }
