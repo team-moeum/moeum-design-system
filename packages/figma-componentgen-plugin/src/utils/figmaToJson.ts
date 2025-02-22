@@ -1,5 +1,5 @@
 import { CSSProperties } from "react";
-import { MappingTableType } from "../type";
+import { MappingTableType } from "@moeum/shared/type/component";
 
 type FigmaVariant = {
   value: string;

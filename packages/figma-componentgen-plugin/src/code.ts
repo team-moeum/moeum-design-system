@@ -1,5 +1,5 @@
 import { match, P } from "ts-pattern";
-import { defaultKeyValues } from "./constants";
+import { defaultKeyValues } from "@moeum/shared/constants";
 
 figma.showUI(__html__, { width: 400, height: 500 });
 
