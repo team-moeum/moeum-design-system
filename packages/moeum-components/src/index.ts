@@ -12,6 +12,7 @@ export { RadioGroup } from "./components/RadioGroup";
 export { Checkbox } from "./components/Checkbox";
 export { Toggle } from "./components/Toggle";
 export { Select } from "./components/Select";
+export { Input } from "./components/Input";
 
 export { safeLocalStorage, safeSessionStorage } from "./shared/storage";
 export { RouterProvider, useRouter } from "./hooks/useRouter";
