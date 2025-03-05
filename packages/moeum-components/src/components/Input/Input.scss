@@ -61,9 +61,10 @@
 
 .input {
   width: 100%;
-  padding: 18px var(--seed-spacing-500);
+  padding: 17px var(--seed-spacing-500);
+  height: var(--seed-font-line-height-lg);
   font-size: var(--seed-font-size-sm);
-  line-height: var(--seed-font-line-height-lg);
+  line-height: var(--seed-font-size-sm);
   background: var(--seed-ui-color-background-white);
   color: var(--seed-ui-color-text-black);
   transition: all var(--input-transition);
