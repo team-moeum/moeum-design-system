@@ -1,0 +1,40 @@
+:root {
+}
+
+.toggle {
+  width: 52px;
+  height: 28px;
+  background-color: var(--seed-palette-color-base-400);
+  border-radius: var(--seed-rounding-500);
+  position: relative;
+
+  &[data-state="checked"] {
+    background-color: var(--seed-brand-color-primary);
+  }
+
+  &[data-disabled] {
+    background-color: var(--seed-ui-color-icon-dark);
+    cursor: not-allowed;
+  }
+}
+
+.toggle-thumb {
+  display: block;
+  width: 22px;
+  height: 22px;
+  background-color: var(--seed-ui-color-icon-white);
+  border-radius: var(--seed-rounding-400);
+  transition: transform 100ms;
+  transform: translateX(4px);
+  will-change: transform;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.15);
+
+  &[data-state="checked"] {
+    transform: translateX(26px);
+  }
+
+  .toggle[data-disabled] & {
+    background-color: var(--seed-ui-color-icon-lite);
+    box-shadow: none;
+  }
+}
