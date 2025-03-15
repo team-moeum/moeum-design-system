@@ -1,0 +1,95 @@
+.popup {
+  background-color: var(--seed-ui-color-background-white);
+  border-radius: 16px;
+  box-shadow: 0px 4px 16px 0px rgba(109, 109, 109, 0.07);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  max-width: 450px;
+  max-height: 85vh;
+  padding: 24px 16px;
+  animation: popup-content-show 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  overflow-y: auto;
+
+  &:focus {
+    outline: none;
+  }
+
+  // Layout variants
+  &--layout-typeA {
+    // Default popup layout
+  }
+
+  &--layout-typeB {
+    // Add padding at the bottom for fixed buttons
+  }
+
+  // Popup body
+  &--body {
+  }
+
+  // Actions container for Type A
+  &--actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 24px;
+
+    > * {
+      flex: 1;
+    }
+
+    &-typeB {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    &-left {
+      min-width: 76px;
+      flex: 0 0 auto;
+    }
+
+    &-right {
+      flex: 1 1 auto;
+    }
+  }
+
+  &--overlay {
+  }
+}
+
+@keyframes popup-overlay-show {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes popup-content-show {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -48%) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+.visually-hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  white-space: nowrap;
+  word-wrap: normal;
+}
