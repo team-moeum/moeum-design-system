@@ -25,14 +25,16 @@
   height: fit-content;
   background-color: #fff;
   outline: none;
-  max-height: 95vh;
+  max-height: calc(100dvh - 32px);
   border-bottom-left-radius: 0 !important;
   border-bottom-right-radius: 0 !important;
+  overflow-y: hidden;
 }
 
-.drawer-handle {
-  margin-top: 10px;
-  width: 45px;
+.drawer-content-inner {
+  max-height: calc(100dvh - 68px); /* 핸들 높이(36px)를 고려하여 조정 */
+  overflow-y: auto; /* 스크롤 추가 */
+  -webkit-overflow-scrolling: touch; /* iOS에서 부드러운 스크롤 */
 }
 
 /** Tokens Style */
@@ -45,7 +47,7 @@
 }
 
 .bottomsheet-container--radius-medium {
-  border-radius: var(--seed-spacing-600);
+  border-radius: var(--seed-spacing-700);
 }
 
 .bottomsheet-container--radius-large {
@@ -58,4 +60,9 @@
 
 .bottomsheet-container--theme-dark {
   background-color: var(--seed-palette-color-base-800);
+}
+
+.drawer-handle {
+  height: 36px;
+  width: 100%;
 }
