@@ -1,5 +1,3 @@
-import { CSSProperties } from "react";
-
 export const BottomSheetRadius = {
   NONE: "none",
   SMALL: "small",
