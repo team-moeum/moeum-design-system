@@ -14,14 +14,14 @@
     "deploy:version": "pnpm version patch"
   },
   "keywords": [
-    "fotcamp",
+    "moeum",
     "figma",
     "plugin",
     "icons",
     "svg"
   ],
   "bugs": {
-    "url": "https://github.com/fotcamp/fotcamp-design-system/issues"
+    "url": "https://github.com/team-moeum/moeum-design-system/issues"
   },
   "contributors": [
     {
