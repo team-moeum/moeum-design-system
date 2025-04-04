@@ -14,6 +14,7 @@ export { Checkbox } from "./components/Checkbox";
 export { Toggle } from "./components/Toggle";
 export { Select } from "./components/Select";
 export { Popup } from "./components/Popup";
+export { BottomSheet } from "./components/BottomSheet";
 
 export { safeLocalStorage, safeSessionStorage } from "./shared/storage";
 export { RouterProvider, useRouter } from "./hooks/useRouter";
