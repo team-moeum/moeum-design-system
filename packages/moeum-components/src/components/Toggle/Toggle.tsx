@@ -1,14 +1,23 @@
-import * as ToggleBase from "@radix-ui/react-toggle";
-import classNames from "classnames";
+import { forwardRef } from "react";
+import { Switch } from "radix-ui";
+import cx from "classnames";
+import { ToggleProps } from "./Toggle.type";
+import "./Toggle.scss";
 
-const Root = ({ className, ...props }: ToggleBase.ToggleProps) => {
-  return (
-    <ToggleBase.Root
-      className={classNames("toggle", className)}
-      data-fotcamp-component="Toggle"
-      {...props}
-    />
-  );
-};
+export const Toggle = forwardRef<HTMLButtonElement, ToggleProps>(
+  ({ className, states = "active", onChange }, ref) => {
+    return (
+      <Switch.Root
+        ref={ref}
+        onCheckedChange={onChange}
+        checked={states === "active"}
+        className={cx("toggle", className)}
+        data-moeum-component="Toggle"
+      >
+        <Switch.Thumb className="toggle-thumb" />
+      </Switch.Root>
+    );
+  }
+);
 
-export default { Root };
+Toggle.displayName = "Toggle";
