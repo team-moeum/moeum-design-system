@@ -3,6 +3,8 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Popup } from ".";
 import { Button } from "../Button";
 import { OverlayProvider, useOverlay } from "@/hooks/useOverlay";
+import { Text } from "../Text";
+import { FontWeight } from "../Text/Text.type";
 
 const meta = {
   title: "Popup",
@@ -32,12 +34,12 @@ const PopupsComponent = () => {
         buttonLayoutType="typeB"
         leftButton={
           <Button onClick={exit} type="text-none" size="lg" display="full">
-            버튼
+            <Text fontWeight={FontWeight.Regular}>버튼</Text>
           </Button>
         }
         rightButton={
           <Button onClick={exit} type="solid-red" size="lg" display="full">
-            버튼
+            <Text fontWeight={FontWeight.Regular}>버튼</Text>
           </Button>
         }
       >
@@ -72,12 +74,12 @@ const PopupsComponent = () => {
         buttonLayoutType="typeB"
         leftButton={
           <Button onClick={exit} type="text-none" size="lg" display="full">
-            버튼
+            <Text fontWeight={FontWeight.Regular}>버튼</Text>
           </Button>
         }
         rightButton={
           <Button onClick={exit} type="solid-green" size="lg" display="full">
-            버튼
+            <Text fontWeight={FontWeight.Regular}>버튼</Text>
           </Button>
         }
       >
@@ -112,7 +114,7 @@ const PopupsComponent = () => {
         buttonLayoutType="typeA"
         button={
           <Button onClick={exit} type="solid-green" size="lg" display="full">
-            버튼
+            <Text fontWeight={FontWeight.Regular}>버튼</Text>
           </Button>
         }
       >
