@@ -9,13 +9,9 @@ const meta = {
   },
   tags: ["autodocs"],
   argTypes: {
-    status: {
-      control: ["on", "off"],
+    states: {
+      control: ["active", "inactive"],
       description: "토글의 현재 상태를 설정합니다"
-    },
-    disabled: {
-      control: "boolean",
-      description: "토글의 비활성화 상태를 설정합니다"
     },
     onChange: {
       action: "pressed changed",
@@ -38,9 +34,8 @@ export const Toggles: Story = {
         alignItems: "center"
       }}
     >
-      <Toggle status="on" />
-      <Toggle status="off" />
-      <Toggle disabled="on" />
+      <Toggle states="active" />
+      <Toggle states="inactive" />
     </div>
   )
 };

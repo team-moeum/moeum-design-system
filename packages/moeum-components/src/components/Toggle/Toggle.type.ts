@@ -1,8 +1,7 @@
-export type ToggleStatus = "on" | "off";
+export type ToggleStates = "active" | "inactive";
 
 export interface ToggleProps {
   className?: string;
-  status?: ToggleStatus;
-  disabled?: ToggleStatus;
+  states?: ToggleStates;
   onChange?: (checked: boolean) => void;
 }

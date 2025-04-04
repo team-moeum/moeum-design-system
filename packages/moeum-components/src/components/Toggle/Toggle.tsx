@@ -5,13 +5,12 @@ import { ToggleProps } from "./Toggle.type";
 import "./Toggle.scss";
 
 export const Toggle = forwardRef<HTMLButtonElement, ToggleProps>(
-  ({ className, status = "on", disabled = "off", onChange }, ref) => {
+  ({ className, states = "active", onChange }, ref) => {
     return (
       <Switch.Root
         ref={ref}
         onCheckedChange={onChange}
-        checked={status === "on"}
-        disabled={disabled === "on"}
+        checked={states === "active"}
         className={cx("toggle", className)}
         data-moeum-component="Toggle"
       >

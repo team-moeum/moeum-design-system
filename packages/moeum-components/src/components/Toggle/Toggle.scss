@@ -1,6 +1,3 @@
-:root {
-}
-
 .toggle {
   width: 52px;
   height: 28px;
@@ -10,11 +7,6 @@
 
   &[data-state="checked"] {
     background-color: var(--seed-brand-color-primary);
-  }
-
-  &[data-disabled] {
-    background-color: var(--seed-ui-color-icon-dark);
-    cursor: not-allowed;
   }
 }
 
@@ -31,10 +23,5 @@
 
   &[data-state="checked"] {
     transform: translateX(26px);
-  }
-
-  .toggle[data-disabled] & {
-    background-color: var(--seed-ui-color-icon-lite);
-    box-shadow: none;
   }
 }
