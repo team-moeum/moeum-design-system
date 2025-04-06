@@ -4,7 +4,7 @@ import { PublishTabContainer } from "./publish/PublishTabContainer";
 import { SettingTabContainer } from "./setting/SettingTabContainer";
 import { MappingTableType } from "@moeum/shared/type/component";
 
-type TabType = "info" | "setting";
+type TabType = "setting" | "publish";
 
 export const MainScreen = ({
   layerData,
@@ -13,7 +13,7 @@ export const MainScreen = ({
   layerData: SceneNode[];
   mappingTable: MappingTableType;
 }) => {
-  const [currentTab, setCurrentTab] = useState<TabType>("info");
+  const [currentTab, setCurrentTab] = useState<TabType>("setting");
 
   const handleTabChange = (value: TabType) => {
     setCurrentTab(value);
@@ -34,16 +34,16 @@ export const MainScreen = ({
           backgroundColor: "#FFF",
         }}
       >
-        <Tabs.Trigger value="info">Setting</Tabs.Trigger>
-        <Tabs.Trigger value="setting">Publish</Tabs.Trigger>
+        <Tabs.Trigger value="setting">Setting</Tabs.Trigger>
+        <Tabs.Trigger value="publish">Publish</Tabs.Trigger>
       </Tabs.List>
 
       <Box pt="8">
-        <Tabs.Content value="info">
+        <Tabs.Content value="setting">
           <PublishTabContainer data={layerData} mappingTable={mappingTable} />
         </Tabs.Content>
 
-        <Tabs.Content value="setting">
+        <Tabs.Content value="publish">
           <SettingTabContainer mappingTable={mappingTable} />
         </Tabs.Content>
       </Box>
