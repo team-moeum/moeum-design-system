@@ -1,4 +1,4 @@
-interface PublishTabPageProps {
+interface PublishTabScreenProps {
   layerNode: string | null;
   componentNode: string | null;
   componentString: string;
@@ -7,14 +7,14 @@ interface PublishTabPageProps {
   onCopyToClipboardForComponent: () => void;
 }
 
-export function PublishTabPage({
+export function PublishTabScreen({
   layerNode,
   componentNode,
   componentString,
   onCopyToClipboardForLayerNode,
   onCopyToClipboardForComponentNode,
   onCopyToClipboardForComponent,
-}: PublishTabPageProps) {
+}: PublishTabScreenProps) {
   return (
     <div style={{ padding: "20px" }}>
       <button
