@@ -40,11 +40,10 @@ export const MainScreen = ({
 
       <Box pt="8">
         <Tabs.Content value="setting">
-          <PublishTabContainer data={layerData} mappingTable={mappingTable} />
-        </Tabs.Content>
-
-        <Tabs.Content value="publish">
           <SettingTabContainer mappingTable={mappingTable} />
+        </Tabs.Content>
+        <Tabs.Content value="publish">
+          <PublishTabContainer data={layerData} mappingTable={mappingTable} />
         </Tabs.Content>
       </Box>
     </Tabs.Root>
