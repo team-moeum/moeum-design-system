@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { MappingTableType } from "@moeum/shared/type/component";
-import { SettingTabPage, ObjectValueList } from "./SettingTabPage";
+import { SettingTabScreen, ObjectValueList } from "./SettingTabScreen";
 import { FigmaService } from "@moeum/shared/service/FigmaService";
 import { MappingTableService } from "./service/MappingTableService";
 import { SettingException } from "./exception/SettingException";
@@ -78,7 +78,7 @@ export const SettingTabContainer = ({
   }, [keyValuePairs]);
 
   return (
-    <SettingTabPage
+    <SettingTabScreen
       keyValuePairs={keyValuePairs}
       selectedKey={selectedKey}
       subKey={subKey}

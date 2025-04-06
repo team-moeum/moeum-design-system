@@ -1,7 +1,7 @@
 import { MappingTableType } from "@moeum/shared/type/component";
 import { useMemo } from "react";
 import { PublishService } from "./service/PublishService";
-import { PublishTabPage } from "./PublishTabPage";
+import { PublishTabScreen } from "./PublishTabScreen";
 import { FigmaService } from "@moeum/shared/service/FigmaService";
 import { PublishException } from "./exception/PublishException";
 
@@ -81,7 +81,7 @@ export const PublishTabContainer = ({
   };
 
   return (
-    <PublishTabPage
+    <PublishTabScreen
       layerNode={layerNode}
       componentNode={componentNode}
       componentString={componentString}

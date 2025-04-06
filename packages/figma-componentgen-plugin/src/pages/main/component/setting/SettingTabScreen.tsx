@@ -9,7 +9,7 @@ import {
 import { match } from "ts-pattern";
 import { MappingTableType } from "@moeum/shared/type/component";
 
-interface SettingTabPageProps {
+interface SettingTabScreenProps {
   keyValuePairs: MappingTableType;
   selectedKey: string;
   subKey: string;
@@ -23,7 +23,7 @@ interface SettingTabPageProps {
 
 export const ObjectValueList = ["INSTANCE"];
 
-export function SettingTabPage({
+export function SettingTabScreen({
   keyValuePairs,
   selectedKey,
   subKey,
@@ -33,7 +33,7 @@ export function SettingTabPage({
   onChangeSubValue,
   addValueToPair,
   removeSubValue,
-}: SettingTabPageProps) {
+}: SettingTabScreenProps) {
   return (
     <Flex direction="column" gap="3" p="4">
       <Flex gap="3" align="center">
