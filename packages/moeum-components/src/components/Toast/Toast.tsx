@@ -1,8 +1,12 @@
 import cx from "classnames";
+import { SwitchCase } from "@/shared/components/SwitchCase";
 import { useIsMounted } from "@/hooks/useIsMounted";
 import { useToastStack } from "./useToastStack";
 import { ToastPosition, ToastProps, ToastType } from "./Toast.type";
 import { Fragment, useEffect, useMemo, useState } from "react";
+import SuccessIcon from "./assets/toast-success.svg?react";
+import WarningIcon from "./assets/toast-warning.svg?react";
+import ErrorIcon from "./assets/toast-error.svg?react";
 
 export const Toaster = ({ toasts }: { toasts: ToastType[] }) => {
   const { getToasterProps, groupedToasts } = useToastStack(toasts);
@@ -30,16 +34,30 @@ export const Toaster = ({ toasts }: { toasts: ToastType[] }) => {
 };
 
 export const Toast = ({ ...toast }: ToastProps) => {
+  const {
+    width,
+    type,
+    action,
+    position,
+    offest,
+    duration,
+    style,
+    message,
+    buttonText,
+    linkAction,
+    buttonAction
+  } = toast;
+
   const isMounted = useIsMounted();
   const [visible, setVisible] = useState(false);
-  const isTop = toast.position?.includes("top");
+  const isTop = position?.includes("top");
   const positionClass = isTop ? "top" : "bottom";
 
   const offsetStyle = useMemo(() => {
-    const offsetValue = toast.offest;
+    const offsetValue = offest;
 
     return isTop ? { top: offsetValue + "px" } : { bottom: offsetValue + "px" };
-  }, [isTop, toast.offest]);
+  }, [isTop, offest]);
 
   useEffect(() => {
     if (isMounted) {
@@ -50,32 +68,56 @@ export const Toast = ({ ...toast }: ToastProps) => {
 
     const timer = setTimeout(() => {
       setVisible(false);
-    }, toast.duration! - 500);
+    }, duration! - 500);
 
     return () => clearTimeout(timer);
   }, [isMounted]);
 
   return (
     <div
-      className={cx(
-        "toast-content",
-        positionClass,
-        {
-          visible: visible,
-          hidden: !visible
-        },
-        {
-          [`toast--radius-${toast.radius}`]: toast.radius
-        }
-      )}
+      data-mouem-component="Toast"
+      className={cx("toast--content", positionClass, {
+        visible: visible,
+        hidden: !visible
+      })}
       style={{
+        width: width,
         visibility: visible ? "visible" : "hidden",
         ...offsetStyle,
-        ...toast.style
+        ...style
       }}
     >
-      {toast.message}
-      {toast.content}
+      <div className="toast--type-message">
+        <div className="toast--type-icon" data-toast-type={type}>
+          <SwitchCase
+            value={type || "default"}
+            caseBy={{
+              success: <SuccessIcon />,
+              warning: <WarningIcon />,
+              error: <ErrorIcon />
+            }}
+            defaultComponent={null}
+          />
+        </div>
+        <div className="toast--message">{message}</div>
+      </div>
+
+      <SwitchCase
+        value={action || "defualt"}
+        caseBy={{
+          "icon-link": (
+            <button className="toast--action-link" onClick={linkAction}>
+              링크→
+            </button>
+          ),
+          "icon-button": (
+            <button className="toast--action-button" onClick={buttonAction}>
+              {buttonText}
+            </button>
+          )
+        }}
+        defaultComponent={null}
+      />
     </div>
   );
 };

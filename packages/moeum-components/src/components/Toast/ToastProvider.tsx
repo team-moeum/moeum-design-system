@@ -5,10 +5,10 @@ import { createContext, ReactNode, useState, useCallback, useMemo } from "react"
 import { ToastContextValue, ToastOptions, ToastProviderProps, ToastType } from "./Toast.type";
 
 const defaultToastValue: ToastOptions = {
-  type: "info",
+  type: "default",
+  action: "defualt",
   style: {},
   offest: 0,
-  radius: "none",
   message: "",
   duration: 3000,
   position: "top-right"
@@ -40,6 +40,7 @@ export const ToastProvider = ({ options, children }: ToastProviderProps) => {
         ...toast,
         id,
         type: toast.type ?? defaultOptions?.type ?? defaultToastValue.type,
+        action: toast.action ?? defaultOptions?.action ?? defaultToastValue.action,
         style: toast.style ?? defaultOptions?.style ?? defaultToastValue.style,
         offest: toast.offest ?? defaultOptions?.offest ?? defaultToastValue.offest,
         radius: toast.radius ?? defaultOptions?.radius ?? defaultToastValue.radius,
