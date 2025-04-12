@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, RefObject } from "react";
 import { UseTabsIndicatorProps } from "./Tabs.type";
 
 /**
@@ -6,14 +6,12 @@ import { UseTabsIndicatorProps } from "./Tabs.type";
  * @param {UseTabsIndicatorProps} props - 탭 인디케이터 설정
  * @returns {Object} indicatorStyle - 인디케이터의 스타일 객체
  */
-const useTabsIndicator = ({ listRef, tabItems }: UseTabsIndicatorProps) => {
+const useTabsIndicator = ({ listRef }: UseTabsIndicatorProps) => {
   const [indicatorStyle, setIndicatorStyle] = useState<React.CSSProperties>({});
 
   // 활성화된 탭의 위치를 기반으로 인디케이터의 위치를 계산합니다.
-  const updateIndicatorPosition = useCallback(() => {
-    if (!listRef.current) return;
-
-    const activeTab = listRef.current.querySelector('[data-state="active"]');
+  const updateIndicatorPosition = useCallback((listRef: RefObject<HTMLDivElement>) => {
+    const activeTab = listRef.current?.querySelector('[data-state="active"]');
     if (!activeTab) return;
 
     const { offsetLeft, offsetWidth } = activeTab as HTMLElement;
@@ -21,13 +19,13 @@ const useTabsIndicator = ({ listRef, tabItems }: UseTabsIndicatorProps) => {
       transform: `translateX(${offsetLeft}px)`,
       width: `${offsetWidth}px`
     });
-  }, [listRef]);
+  }, []);
 
   useEffect(() => {
     if (!listRef.current) return;
 
     // 초기 인디케이터 위치 설정
-    updateIndicatorPosition();
+    updateIndicatorPosition(listRef);
 
     /**
      * 탭의 상태 변화를 감지하는 MutationObserver
@@ -36,7 +34,7 @@ const useTabsIndicator = ({ listRef, tabItems }: UseTabsIndicatorProps) => {
     const mutationObserver = new MutationObserver(mutations => {
       mutations.forEach(mutation => {
         if (mutation.type === "attributes" && mutation.attributeName === "data-state") {
-          updateIndicatorPosition();
+          updateIndicatorPosition(listRef);
         }
       });
     });
@@ -46,7 +44,7 @@ const useTabsIndicator = ({ listRef, tabItems }: UseTabsIndicatorProps) => {
      * 윈도우 리사이즈나 탭 크기 변경 시 인디케이터 위치를 업데이트합니다.
      */
     const resizeObserver = new ResizeObserver(() => {
-      updateIndicatorPosition();
+      updateIndicatorPosition(listRef);
     });
 
     // 모든 탭 트리거에 옵저버 적용
@@ -60,7 +58,7 @@ const useTabsIndicator = ({ listRef, tabItems }: UseTabsIndicatorProps) => {
       mutationObserver.disconnect();
       resizeObserver.disconnect();
     };
-  }, [listRef, updateIndicatorPosition, tabItems.length]);
+  }, [listRef, updateIndicatorPosition]);
 
   return {
     indicatorStyle

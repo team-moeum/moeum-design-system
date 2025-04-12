@@ -6,7 +6,7 @@ import { useTabsIndicator } from "./useTabsIndicator";
 const Tabs: React.FC<TabsProps> = props => {
   const { width = "100%", tabItems, value, ...rest } = props;
   const listRef = useRef<HTMLDivElement>(null);
-  const { indicatorStyle } = useTabsIndicator({ listRef, tabItems });
+  const { indicatorStyle } = useTabsIndicator({ listRef });
 
   return (
     <Root value={value} {...rest} style={{ width }}>

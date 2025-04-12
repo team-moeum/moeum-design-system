@@ -14,7 +14,6 @@ interface TabsProps extends Omit<TabsBase.TabsProps, "children"> {
 
 interface UseTabsIndicatorProps {
   listRef: RefObject<HTMLDivElement>;
-  tabItems: TabsProps["tabItems"];
 }
 
 export { TabsProps, TabItem, UseTabsIndicatorProps };
