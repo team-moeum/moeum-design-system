@@ -2,6 +2,7 @@ import cx from "classnames";
 import { Drawer } from "vaul";
 import { BottomSheetProps } from "./BottomSheet.type";
 import { SwitchCase } from "../../shared/components/SwitchCase";
+import { Flex } from "../layout/Flex";
 
 export const BottomSheet = ({
   open,
@@ -32,16 +33,20 @@ export const BottomSheet = ({
             },
             className
           )}
-          data-fotcamp-component="BottomSheet"
+          data-moeum-component="BottomSheet"
           style={{ zIndex }}
         >
           <SwitchCase
             value={String(showHandle)}
             caseBy={{
-              true: <Drawer.Handle className="drawer-handle" />
+              true: (
+                <Flex className="drawer-handle" align="center" justify="center">
+                  <Drawer.Handle style={{ width: 36 }} />
+                </Flex>
+              )
             }}
           ></SwitchCase>
-          {children}
+          <div className="drawer-content-inner">{children}</div>
         </Drawer.Content>
       </Drawer.Portal>
     </Drawer.Root>

@@ -9,7 +9,7 @@ import { Flex } from "../layout/Flex";
  * **vaul docs**
  * https://vaul.emilkowal.ski/api
  */
-const meta = {
+const meta: Meta<typeof BottomSheet> = {
   title: "Components/BottomSheet",
   component: BottomSheet,
   parameters: {
@@ -42,15 +42,23 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-const BottomSheetContentA = () => {
+const BottomSheetNoScroll = () => {
   return (
-    <Flex height={500} p={20} align="center" justify="center">
+    <Flex height={240} py={24} px={16} align="center" justify="center">
       BottomSheet
     </Flex>
   );
 };
 
-export const Primary: Story = {
+const BottomSheetScroll = () => {
+  return (
+    <Flex height={2000} py={24} px={16} align="center" justify="center">
+      BottomSheet
+    </Flex>
+  );
+};
+
+export const BottomSheets: Story = {
   args: {
     showHandle: true,
     radius: "medium"
@@ -59,7 +67,7 @@ export const Primary: Story = {
     // eslint-disable-next-line
     const overlay = useOverlay();
 
-    const openOverlay = () => {
+    const openNoScrollBottomSheet = () => {
       overlay.open(({ isOpen, close }) => (
         <BottomSheet
           {...args}
@@ -67,11 +75,36 @@ export const Primary: Story = {
           onClose={() => {
             close();
           }}
-          children={<BottomSheetContentA />}
+          children={<BottomSheetNoScroll />}
         />
       ));
     };
 
-    return <Button onClick={openOverlay}>Open</Button>;
+    const openScrollBottomSheet = () => {
+      overlay.open(({ isOpen, close }) => (
+        <BottomSheet
+          {...args}
+          open={isOpen}
+          onClose={() => {
+            close();
+          }}
+          children={<BottomSheetScroll />}
+        />
+      ));
+    };
+
+    return (
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: 16,
+          alignItems: "center"
+        }}
+      >
+        <Button onClick={openNoScrollBottomSheet}>Open(No Scroll)</Button>
+        <Button onClick={openScrollBottomSheet}>Open(Scroll)</Button>
+      </div>
+    );
   }
 };
