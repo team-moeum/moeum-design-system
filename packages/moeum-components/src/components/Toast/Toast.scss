@@ -1,29 +1,28 @@
 @use "./ToastAnimation.scss" as *;
 
-:root {
-  /* Radius tokens */
-  --seed-spacing-100: 0px;
-  --seed-spacing-300: 8px;
-  --seed-spacing-600: 20px;
-  --seed-spacing-full: 9999px; //token 논의
-}
-
 /** Default Style */
 @include toast-animation("top");
 @include toast-animation("bottom");
 
-.toast-content {
+.toast--content {
   opacity: 0;
   display: flex;
   position: relative;
+  display: flex;
+  box-sizing: border-box;
   align-items: center;
-  background: #fff;
+  justify-content: space-between;
+  gap: var(--seed-spacing-600);
+  border-radius: var(--seed-rounding-300);
+  min-height: 56px;
+  padding: var(--seed-spacing-500);
+  background: var(--seed-ui-color-misc-black-70);
   color: #363636;
-  will-change: transform;
   box-shadow:
     0 3px 10px rgba(0, 0, 0, 0.1),
     0 3px 3px rgba(0, 0, 0, 0.05);
   pointer-events: auto;
+  will-change: transform;
   transition: transform 0.23s cubic-bezier(0.21, 1.02, 0.73, 1);
 
   &.top {
@@ -52,6 +51,52 @@
       animation: toast-fade-out 0.4s ease-out forwards;
     }
   }
+}
+
+.toast--type-message {
+  display: flex;
+  align-items: center;
+  gap: var(--seed-spacing-300);
+}
+
+.toast--type-icon {
+  display: flex;
+  align-items: center;
+
+  &[data-toast-type="default"] {
+    display: none;
+  }
+}
+
+.toast--message {
+  font-size: var(--seed-font-size-s);
+  font-weight: var(--seed-font-weight-400);
+  color: var(--seed-ui-color-text-white);
+  line-height: var(--seed-font-line-height-sm);
+}
+
+.toast--action-link {
+  flex-shrink: 0;
+  font-size: var(--seed-font-size-xs);
+  font-weight: var(--seed-font-weight-400);
+  color: var(--seed-ui-color-text-white);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+}
+
+.toast--action-button {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  padding: var(--seed-spacing-200) var(--seed-spacing-300);
+  background-color: var(--seed-brand-color-primary);
+  border-radius: var(--seed-rounding-400);
+  font-size: var(--seed-font-size-xs);
+  font-weight: var(--seed-font-weight-400);
+  color: var(--seed-ui-color-text-white);
+  cursor: pointer;
 }
 
 .toaster-content {
@@ -97,21 +142,4 @@
     bottom: 0;
     left: 50%;
   }
-}
-
-/** Tokens Style */
-.toast--radius-none {
-  border-radius: var(--seed-spacing-100);
-}
-
-.toast--radius-small {
-  border-radius: var(--seed-spacing-300);
-}
-
-.toast--radius-medium {
-  border-radius: var(--seed-spacing-600);
-}
-
-.toast--radius-large {
-  border-radius: var(--seed-spacing-full);
 }

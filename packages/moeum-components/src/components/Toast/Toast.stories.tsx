@@ -1,14 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { Text } from "../Text";
-import { Flex } from "../layout/Flex";
 import { Grid } from "../layout/Grid";
 import { Toast } from "./Toast";
 import { Button } from "../Button";
 import { useToast } from "./useToast";
 import { ToastProvider } from "./ToastProvider";
-import { ToastRadius } from "./Toast.type";
 
-const meta = {
+const meta: Meta<typeof Toast> = {
   title: "Components/Toast",
   component: Toast,
   parameters: {
@@ -27,36 +24,27 @@ const meta = {
         "bottom-center"
       ]
     },
-    radius: {
+    type: {
       control: "select",
-      options: Object.values(ToastRadius)
+      options: ["default", "success", "error", "warning"]
     }
   },
   decorators: [
     Story => (
       <ToastProvider
         options={{
-          duration: 2000,
-          style: { background: "#FFF" },
-          offest: 0
+          duration: 3000,
+          offest: 24
         }}
       >
         <Story />
       </ToastProvider>
     )
   ]
-} satisfies Meta<typeof Toast>;
+};
 
 export default meta;
 type Story = StoryObj<typeof meta>;
-
-const ToastContentA = () => {
-  return (
-    <Flex p="10px 8px" align="center" justify="center">
-      <Text color="#123123">Toast Content</Text>
-    </Flex>
-  );
-};
 
 export const Primary: Story = {
   args: {
@@ -68,58 +56,59 @@ export const Primary: Story = {
 
     const handleAddTopLeftToast = () => {
       add({
-        radius: args.radius,
-        position: "top-left",
-        content: <ToastContentA />
+        message: "토스트팝업 메시지",
+        position: "top-left"
       });
     };
 
     const handleAddTopCenterToast = () => {
       add({
-        radius: args.radius,
-        duration: 3000,
-        content: <ToastContentA />,
+        type: "success",
+        message: "토스트팝업 메시지",
         position: "top-center"
       });
     };
 
     const handleAddTopRightToast = () => {
       add({
-        radius: args.radius,
-        position: "top-right",
-        content: <ToastContentA />,
-        offest: 50
+        width: "240px",
+        type: "warning",
+        action: "icon-link",
+        message: "토스트팝업 메시지",
+        position: "top-right"
       });
     };
 
     const handleAddBottomLeftToast = () => {
       add({
-        radius: args.radius,
-        message: "작업이 완료되었습니다!",
-        type: "success",
-        duration: 3000,
+        width: "326px",
+        action: "icon-link",
+        onAction: () => console.log("link click"),
+        type: "warning",
+        message: "토스트팝업 메시지 두줄유형 토스트팝업 메시지 두줄유형 최대글씨는 이만큼",
         position: "bottom-left"
       });
     };
 
     const handleAddBottomCenterToast = () => {
       add({
-        radius: args.radius,
-        message: "작업이 완료되었습니다!",
-        type: "success",
-        duration: 3000,
+        width: "240px",
+        type: "error",
+        action: "icon-button",
+        message: "토스트팝업 메시지",
         position: "bottom-center",
-        offest: 50
+        buttonText: "버튼"
       });
     };
 
     const handleAddBottomRightToast = () => {
       add({
-        radius: args.radius,
-        message: "작업이 완료되었습니다!",
+        width: "240px",
         type: "success",
-        duration: 3000,
-        position: "bottom-right"
+        action: "icon-button",
+        message: "토스트팝업 메시지",
+        position: "bottom-right",
+        buttonText: "버튼"
       });
     };
 

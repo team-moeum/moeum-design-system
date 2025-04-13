@@ -1,13 +1,5 @@
-export const ToastRadius = {
-  NONE: "none",
-  SMALL: "small",
-  MEDIUM: "medium",
-  LARGE: "large"
-} as const;
-
-type ValueOf<T> = T[keyof T];
-
-export type ToastRadius = ValueOf<typeof ToastRadius>;
+export type ToastTypes = "default" | "success" | "error" | "warning";
+export type ToastActionTypes = "defualt" | "icon-link" | "icon-button";
 
 export type ToastPosition =
   | "top-left"
@@ -18,16 +10,17 @@ export type ToastPosition =
   | "bottom-right";
 
 export interface ToastOptions {
-  type: "success" | "error" | "info";
+  type: ToastTypes;
+  action: ToastActionTypes;
   offest: number;
   message: string;
   duration: number;
   position: ToastPosition;
-
-  radius?: ToastRadius;
+  width?: string;
+  radius?: number;
   style?: React.CSSProperties;
-
-  content?: React.ReactNode;
+  buttonText?: string;
+  onAction?: () => void;
 }
 
 export interface ToastType extends ToastOptions {

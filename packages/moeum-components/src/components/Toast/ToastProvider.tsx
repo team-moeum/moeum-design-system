@@ -5,10 +5,10 @@ import { createContext, ReactNode, useState, useCallback, useMemo } from "react"
 import { ToastContextValue, ToastOptions, ToastProviderProps, ToastType } from "./Toast.type";
 
 const defaultToastValue: ToastOptions = {
-  type: "info",
+  type: "default",
+  action: "defualt",
   style: {},
   offest: 0,
-  radius: "none",
   message: "",
   duration: 3000,
   position: "top-right"
@@ -31,21 +31,20 @@ const ToastPortal = ({ children }: { children: ReactNode }) => {
 export const ToastProvider = ({ options, children }: ToastProviderProps) => {
   const [toasts, setToasts] = useState<ToastType[]>([]);
 
-  const defaultOptions = useMemo(() => options, [options]);
-
   const add = useCallback(
     (toast: Partial<ToastOptions>) => {
       const id = Math.random().toString(36).substring(2, 9);
       const newToast: ToastType = {
         ...toast,
         id,
-        type: toast.type ?? defaultOptions?.type ?? defaultToastValue.type,
-        style: toast.style ?? defaultOptions?.style ?? defaultToastValue.style,
-        offest: toast.offest ?? defaultOptions?.offest ?? defaultToastValue.offest,
-        radius: toast.radius ?? defaultOptions?.radius ?? defaultToastValue.radius,
-        message: toast.message ?? defaultOptions?.message ?? defaultToastValue.message,
-        duration: toast.duration ?? defaultOptions?.duration ?? defaultToastValue.duration,
-        position: toast.position ?? defaultOptions?.position ?? defaultToastValue.position
+        type: toast.type ?? options?.type ?? defaultToastValue.type,
+        action: toast.action ?? options?.action ?? defaultToastValue.action,
+        style: toast.style ?? options?.style ?? defaultToastValue.style,
+        offest: toast.offest ?? options?.offest ?? defaultToastValue.offest,
+        radius: toast.radius ?? options?.radius ?? defaultToastValue.radius,
+        message: toast.message ?? options?.message ?? defaultToastValue.message,
+        duration: toast.duration ?? options?.duration ?? defaultToastValue.duration,
+        position: toast.position ?? options?.position ?? defaultToastValue.position
       };
 
       setToasts(prev => [newToast, ...prev]);
@@ -56,7 +55,7 @@ export const ToastProvider = ({ options, children }: ToastProviderProps) => {
 
       return id;
     },
-    [defaultOptions]
+    [options]
   );
 
   const remove = useCallback((id: string) => {
