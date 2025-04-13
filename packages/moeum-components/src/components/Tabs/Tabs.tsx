@@ -1,21 +1,32 @@
-import * as TabsBase from "@radix-ui/react-tabs";
+import { useRef } from "react";
+import { TabsProps } from "./Tabs.type";
+import { List, Root, Trigger, Content } from "./TabsBase";
+import { useTabsIndicator } from "./useTabsIndicator";
 
-const Root = ({ ...props }: TabsBase.TabsProps) => {
-  return <TabsBase.Root data-fotcamp-component="Tabs" {...props} />;
-};
+const Tabs: React.FC<TabsProps> = props => {
+  const { width = "100%", tabItems, value, ...rest } = props;
+  const listRef = useRef<HTMLDivElement>(null);
+  const { indicatorStyle } = useTabsIndicator({ listRef });
 
-const List = ({ ...props }: TabsBase.TabsListProps) => {
-  return <TabsBase.List data-fotcamp-component="TabsList" {...props} />;
-};
-
-const Trigger = ({ ...props }: TabsBase.TabsTriggerProps) => {
-  return <TabsBase.Trigger data-fotcamp-component="TabsTrigger" {...props} />;
-};
-
-const Content = ({ ...props }: TabsBase.TabsContentProps) => {
   return (
-    <TabsBase.Content data-fotcamp-component="TabsContent" className="tabs-content" {...props} />
+    <Root value={value} {...rest} style={{ width }}>
+      <div ref={listRef} className="tabs--list-wrapper">
+        <List data-orientation="horizontal">
+          {tabItems.map(item => (
+            <Trigger key={`tabTrigger_${item.value}`} value={item.value}>
+              {item.text}
+            </Trigger>
+          ))}
+        </List>
+        <div className="tabs--indicator" style={indicatorStyle} />
+      </div>
+      {tabItems.map(item => (
+        <Content key={`tabContent_${item.value}`} value={item.value}>
+          {item.content}
+        </Content>
+      ))}
+    </Root>
   );
 };
 
-export { Root, List, Trigger, Content };
+export { Tabs };

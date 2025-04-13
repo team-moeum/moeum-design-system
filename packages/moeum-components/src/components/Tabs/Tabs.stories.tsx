@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import * as Tabs from "./Tabs";
 import { useState } from "react";
+import { Tabs } from "./Tabs";
 
 /**
  * **radix docs**
@@ -8,7 +8,7 @@ import { useState } from "react";
  */
 const meta = {
   title: "Components/Tabs",
-  component: Tabs.Root,
+  component: Tabs,
   parameters: {
     layout: "centered"
   },
@@ -34,27 +34,23 @@ const meta = {
       description: "초기 활성 tab 값을 설정"
     }
   }
-} satisfies Meta<typeof Tabs.Root>;
+} satisfies Meta<typeof Tabs>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
+    width: "360px",
+    tabItems: [
+      { value: "tab1", text: "Tab1", content: <div></div> },
+      { value: "tab2", text: "Tab2", content: <div></div> },
+      { value: "tab3", text: "Tab3", content: <div></div> }
+    ],
+    defaultValue: "tab1",
     dir: "ltr"
   },
-  render: args => (
-    <Tabs.Root {...args}>
-      <Tabs.List>
-        <Tabs.Trigger value="tab1">Tab1</Tabs.Trigger>
-        <Tabs.Trigger value="tab2">Tab2</Tabs.Trigger>
-        <Tabs.Trigger value="tab3">Tab3</Tabs.Trigger>
-      </Tabs.List>
-      <Tabs.Content value="tab1">Tab1 Content</Tabs.Content>
-      <Tabs.Content value="tab2">Tab2 Content</Tabs.Content>
-      <Tabs.Content value="tab3">Tab3 Content</Tabs.Content>
-    </Tabs.Root>
-  )
+  render: args => <Tabs {...args} key={`tabs_${args.dir}_${args.defaultValue}`} />
 };
 
 export function ControlledTabs() {
@@ -66,15 +62,17 @@ export function ControlledTabs() {
   };
 
   return (
-    <Tabs.Root value={value} onValueChange={handleChangeTab}>
-      <Tabs.List>
-        <Tabs.Trigger value="tab1">Tab1</Tabs.Trigger>
-        <Tabs.Trigger value="tab2">Tab2</Tabs.Trigger>
-        <Tabs.Trigger value="tab3">Tab3</Tabs.Trigger>
-      </Tabs.List>
-      <Tabs.Content value="tab1">Tab1 Content</Tabs.Content>
-      <Tabs.Content value="tab2">Tab2 Content</Tabs.Content>
-      <Tabs.Content value="tab3">Tab3 Content</Tabs.Content>
-    </Tabs.Root>
+    <div style={{ width: "calc(100vw * 0.5)", minWidth: 320, maxWidth: 540 }}>
+      <Tabs
+        tabItems={[
+          { value: "tab1", text: "Tab1", content: <div>Tab1 Content</div> },
+          { value: "tab2", text: "Tab2", content: <div>Tab2 Content</div> },
+          { value: "tab3", text: "Tab3", content: <div>Tab3 Content</div> }
+        ]}
+        defaultValue="tab1"
+        value={value}
+        onValueChange={handleChangeTab}
+      />
+    </div>
   );
 }
