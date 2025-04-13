@@ -19,9 +19,8 @@ export interface ToastOptions {
   width?: string;
   radius?: number;
   style?: React.CSSProperties;
-  linkAction?: () => void;
   buttonText?: string;
-  buttonAction?: () => void;
+  onAction?: () => void;
 }
 
 export interface ToastType extends ToastOptions {

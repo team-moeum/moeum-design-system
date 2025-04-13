@@ -31,7 +31,7 @@ const ToastPortal = ({ children }: { children: ReactNode }) => {
 export const ToastProvider = ({ options, children }: ToastProviderProps) => {
   const [toasts, setToasts] = useState<ToastType[]>([]);
 
-  const defaultOptions = useMemo(() => options, [options]);
+  const defaultOptions = options;
 
   const add = useCallback(
     (toast: Partial<ToastOptions>) => {

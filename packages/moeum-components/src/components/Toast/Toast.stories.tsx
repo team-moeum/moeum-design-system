@@ -83,6 +83,7 @@ export const Primary: Story = {
       add({
         width: "326px",
         action: "icon-link",
+        onAction: () => console.log("link click"),
         type: "warning",
         message: "토스트팝업 메시지 두줄유형 토스트팝업 메시지 두줄유형 최대글씨는 이만큼",
         position: "bottom-left"

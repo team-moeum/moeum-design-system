@@ -34,19 +34,8 @@ export const Toaster = ({ toasts }: { toasts: ToastType[] }) => {
 };
 
 export const Toast = ({ ...toast }: ToastProps) => {
-  const {
-    width,
-    type,
-    action,
-    position,
-    offest,
-    duration,
-    style,
-    message,
-    buttonText,
-    linkAction,
-    buttonAction
-  } = toast;
+  const { width, type, action, position, offest, duration, style, message, buttonText, onAction } =
+    toast;
 
   const isMounted = useIsMounted();
   const [visible, setVisible] = useState(false);
@@ -106,12 +95,12 @@ export const Toast = ({ ...toast }: ToastProps) => {
         value={action || "defualt"}
         caseBy={{
           "icon-link": (
-            <button className="toast--action-link" onClick={linkAction}>
+            <button className="toast--action-link" onClick={onAction}>
               링크→
             </button>
           ),
           "icon-button": (
-            <button className="toast--action-button" onClick={buttonAction}>
+            <button className="toast--action-button" onClick={onAction}>
               {buttonText}
             </button>
           )
