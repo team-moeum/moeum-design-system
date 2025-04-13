@@ -1,0 +1,124 @@
+:root {
+  --input-transition: 0.2s ease-in-out;
+}
+
+.input-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+
+  &.input--display-line {
+    .input {
+      border: 1px solid var(--seed-ui-color-line-medium);
+      border-radius: 0;
+
+      &:focus {
+        border-bottom-color: var(--seed-brand-color-primary);
+      }
+
+      &:hover:not(:disabled) {
+        border-bottom-color: var(--seed-brand-color-primary);
+      }
+    }
+  }
+
+  &.input--display-box {
+    .input {
+      border: 1px solid var(--seed-ui-color-line-medium);
+      border-radius: var(--seed-spacing-300);
+
+      &:focus {
+        border-color: var(--seed-brand-color-primary);
+      }
+
+      &:hover:not(:disabled) {
+        border-color: var(--seed-brand-color-primary);
+      }
+    }
+  }
+
+  &.input--error {
+    .input {
+      border-color: var(--seed-brand-color-point2);
+
+      &:focus {
+        border-color: var(--seed-brand-color-point2);
+      }
+    }
+  }
+
+  &.input--disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+
+    .input {
+      border: 1px solid var(--seed-ui-color-line-medium);
+      color: var(--seed-ui-color-text-disabled);
+    }
+  }
+}
+
+.input {
+  width: 100%;
+  padding: 17px var(--seed-spacing-500);
+  height: var(--seed-font-line-height-lg);
+  font-size: var(--seed-font-size-sm);
+  line-height: var(--seed-font-size-sm);
+  background: var(--seed-ui-color-background-white);
+  color: var(--seed-ui-color-text-black);
+  transition: all var(--input-transition);
+
+  &:focus {
+    outline: none;
+  }
+
+  &[type="file"] {
+    cursor: pointer;
+    color: transparent;
+
+    &::-webkit-file-upload-button {
+      visibility: hidden;
+      width: 0;
+    }
+
+    &::before {
+      content: "파일 선택";
+      color: var(--seed-ui-color-text-lite);
+    }
+
+    &.has-file::before {
+      content: "파일 선택 완료";
+      color: var(--seed-ui-color-text-black);
+    }
+
+    &:disabled::before {
+      background: var(--seed-ui-color-background-guide);
+      color: var(--seed-ui-color-text-disabled);
+      cursor: not-allowed;
+    }
+  }
+}
+
+.input--action {
+  position: absolute;
+  right: var(--seed-spacing-500);
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--seed-ui-color-text-lite);
+
+  &:hover:not(:disabled) {
+    color: var(--seed-ui-color-text-dark);
+  }
+
+  &.input--action-link {
+    height: 24px;
+  }
+
+  &.input--close {
+    height: 16px;
+  }
+}
