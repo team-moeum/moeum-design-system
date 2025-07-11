@@ -4,6 +4,11 @@
 
 <br />
 
+## Projects
+- [frieeren-design-system](https://github.com/Frieeren/design-system)
+
+<br />
+
 ## Packages
 
 ### Design Token 생성 패키지
